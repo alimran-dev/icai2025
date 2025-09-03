@@ -2,14 +2,17 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Mail } from "lucide-react";
 import speakersData from "../../data/speakers.json";
+import { Link } from "react-router-dom";
 
 interface Speaker {
+  id: string;
   name: string;
   title: string;
   topic: string;
   email?: string;
   image?: string;
   description?: string;
+  bio?: string;
 }
 
 const Speakers: React.FC = () => {
@@ -84,9 +87,9 @@ const Speakers: React.FC = () => {
 
                 <div className="px-6 pb-6 flex-grow flex flex-col text-center">
                   <div className="mb-4">
-                    <h3 className="text-xl font-bold text-gray-800 mb-1">
+                    <Link to={`/speakers/${speaker.id}`} className="text-xl font-bold text-gray-800 mb-1">
                       {speaker.name}
-                    </h3>
+                    </Link>
                     <p className="text-primary-600 font-medium whitespace-pre-line">
                       {speaker.title }
                     </p>

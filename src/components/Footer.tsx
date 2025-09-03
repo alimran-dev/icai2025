@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* About */}
           <div>
-            <img src="logo.jpeg" alt="Logo" className="h-24 rounded-md" />
+            <img src="/logo.jpeg" alt="Logo" className="h-24 rounded-md" />
             <h3 className="mb-4 text-lg font-bold text-white">ICAI 2025</h3>
             <p className="mb-4 text-secondary-300">
               International Congress on Artificial Intelligence (ICAI 2025) - Bringing together researchers, academics, and

@@ -182,7 +182,7 @@ const Committee: React.FC = () => {
                       y: -8,
                       boxShadow: "0 15px 30px rgba(0,0,0,0.12)",
                     }}
-                    className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
+                    className={`bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100`}
                   >
                     <div className="p-6">
                       <div className="flex flex-col items-center">

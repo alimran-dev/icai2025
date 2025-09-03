@@ -1,33 +1,42 @@
 [
     {
+        "id": "ICAI25S01",
         "name": "Prof. Ashad Kabir",
         "title": "Professor of Computer Science, Charles Sturt University, Australia",
         "topic": "Applications of Artificial Intelligence and Smartphone Apps in Health and Agriculture: Recent Advancements and Opportunities",
         "email": "akabir@csu.edu.au",
-        "image": "https://i.postimg.cc/Y9y26Jc6/pic.jpg"
+        "image": "https://i.postimg.cc/Y9y26Jc6/pic.jpg",
+        "bio": "Professor Ashad Kabir is a distinguished scholar in applied artificial intelligence. He holds a PhD in Computer Science from Swinburne University of Technology, Australia, and currently serves as a Professor of Computer Science and the Leader of the Imaging and Sensing Research Group at Charles Sturt University (CSU). His academic career includes appointments at several esteemed institutions, including Rolls-Royce Corporate Lab at Nanyang Technological University (Singapore), Deakin University (Australia), Swinburne University of Technology (Australia), and INRIA at the University of Nantes (France). In Bangladesh, he worked at the University of Chittagong and CUET.\nProf Kabir’s research focuses on applying advanced technologies, including artificial intelligence and smartphone apps, to solve problems in the domains of health and agriculture. His research interests include applied machine/deep learning, smartphone apps, data analytics, digital health, and smart agriculture. He authored over 140 scholarly articles, secured over $7.1 million in external research grants, with five as lead investigator, and successfully supervised over 15 PhD and Honours theses to completion."
     },
     {
+        "id": "ICAI25S02",
         "name": "Dr. Shashikant Patil",
         "title": "Director and Professor, uGDX School of Technology, Atlas SkillTech University, Mumbai, India ",
         "topic": "Gen AI and Agentic AI",
         "email": "sspatil999@gmail.com",
-        "image": "https://i.postimg.cc/C1vKJ4LD/IMG-2520-1-1.jpg"
+        "image": "https://i.postimg.cc/C1vKJ4LD/IMG-2520-1-1.jpg",
+        "bio": " Dr. Shashikant Patil is a distinguished Full Professor at ATLAS SkillTech University, Mumbai, and a prominent figure in engineering education and research. He is a Senior Member of IEEE and ACM, designated as a Fellow Member of IETE (FIETE) and Institution of Engineers India (FIE), and holds Chartered Engineer status. With over 28 years of teaching experience, Dr. Patil specializes in Signal & Image Processing, Automation and Robotics, Data Science, Analytics, and AI & Machine Learning. Previously associated with SVKM's NMIMS Mumbai, Dr. Patil has demonstrated exceptional commitment to scholarly excellence. He has reviewed over 5000 plus  research articles, serving as Associate Editor and Editorial Board Member for various international journals. His expertise extends to emerging technologies including quantum computing and big data analytics. Dr. Patil's dedication to professional service includes active participation in IEEE conferences and committees, earning recognition through multiple IEEE Access Journal reviewer certificates, and establishing him as a respected voice in the global engineering community."
     },
     {
+        "id": "ICAI25S03",
         "name": "Dr. Mohammad Firoz Mridha",
         "title": "Professor, Department of Computer Science, AIUB",
-        "topic": "AI and Engineering Ethics - A path forward for Students",
+        "topic": "AI and Research Ethics: Opportunities and Responsibilities for Students",
         "email": "firoz.mridha@aiub.edu",
-        "image": "https://i.postimg.cc/NFvcv9K0/dmfm-1.png"
+        "image": "https://i.postimg.cc/NFvcv9K0/dmfm-1.png",
+        "bio": "M. F. Mridha (Senior Member IEEE, Professional Member ACM) is currently working as a Professor in the Department of Computer Science, American International University-Bangladesh (AIUB). He also worked as Associate Professor and Chairman in the Department of Computer Science and Engineering, Bangladesh University of Business and Technology (BUBT) from 2019 to 2022 as a CSE department faculty member at the University of Asia Pacific, and as a graduate head from 2012 to 2019. He is the founder and director of the Advanced Machine Intelligence Research Lab (AMIR Lab). He received his Ph.D. in the domain of AI from Jahangirnagar University in 2017. He has authored/edited several books with Springer and published more than 300 Journal (Including IEEE Transaction) and Conference (Including A* Conference) papers and cited more than 5200 times. His research interests include Artificial Intelligence (AI), Computer Vision (CV), Machine Learning (ML), Large Language Model (LLM), and Natural Language Processing (NLP) etc. He has served as a program committee member in several international conferences/workshops. He served as an Editorial Board Member of several journals including PLOS ONE Journal. He has been ranked among the top 0.5% of researchers worldwide by the ScholarGPS survey in 2024. He was also included among the top 2% of scientists worldwide in the 2024 edition of Stanford University/Elsevier. He achieved the top 5 most productive researchers in Bangladesh by (Scopus/ Elsevier) and secured the Top researcher in the field of Computer Science and Engineering in 2024."
     },
     {
+        "id": "ICAI25S04",
         "name": "Md Imdadul Islam",
         "title": "Sr. Business Development Manager, NetCom Learning",
         "topic": "Leveraging AI for Professional Growth",
         "email": "Imdadul@netcomlearning.com",
-        "image": "https://i.postimg.cc/hv5DJgDQ/compressed-A7408746.png"
+        "image": "https://i.postimg.cc/hv5DJgDQ/compressed-A7408746.png",
+        "bio": "Imdad is a business strategist, speaker, and business collaborator with expertise in Modern Communication, Business Development, Leadership, Executive Coaching, Management Consulting, and Learning &amp; Development. As a sophomore, he co-founded Rich Insight Global (RIG), an accounting &amp; business advisory firm, alongside a professional accountant. His partnership with Xero, an Australian Stock Exchange-listed cloud accounting software company, enabled him to serve a diverse range of clients, including startups, SMEs, group companies, and MNCs. His passion for leveraging technology to drive business growth led him to NetCom Learning, a global leader in technology training, specializing in Artificial Intelligence (AI), Machine Learning (ML), Cloud Computing, Cybersecurity, and more. As a passionate speaker and consultant, he has conducted over 100 training and keynote sessions across various educational institutions and corporations including Beximco, Synovia, Nuvista, Incepta, Guardian Life Insurance, Akij, Abdul Monem, Urmi Group, Grameen Distribuiton etc. He is mostly spending his time in consulting companies to be an AI First Organization."
     },
     {
+        "id": "ICAI25S05",
         "name": "Valentin Golovtchenko",
         "title": "World Economic Forum | Lead, Climate Technology",
         "topic": "AI and Emerging Tech for Climate Action.",
@@ -35,10 +44,12 @@
         "image": "https://i.postimg.cc/pVDztfgD/1635873072117.jpg"
     },
     {
+        "id": "ICAI25S06",
         "name": "Md. Fahim Hossain",
-        "title": "Founder, Green Lead",
+        "title": " Founder & Chairperson, Green Lead | Founder, Climate Intelligent Technologies (CIT)",
         "topic": "AI and Emerging Tech for Climate Action.",
         "email": "fahim@greenleadglobal.org",
-        "image": "https://i.postimg.cc/6QgjFrFk/Fahim-Headshot.png"
+        "image": "https://i.postimg.cc/ZnLGbxNb/Whats-App-Image-2025-09-03-at-11-07-26-PM.jpg",
+        "bio": "Md. Fahim Hossain is the Founder and Chairperson of Green Lead, a social organization on a mission to mobilize a generation of leaders for a green world. With a background in Mechanical Engineering, Fahim is currently pursuing an MSc in Climate Change and Development, focusing on technology interventions for climate-induced challenges. \nHe also leads Climate Intelligent Technologies (CIT), developing climate-tech solutions to accelerate environmental action in the Global South. Fahim has represented Bangladesh at COP 29 in Azerbaijan, the Youth Assembly in the Philippines, the UN ESCAP Energy Forum in Thailand, and the Innovative Facilitation Fellowship in Sri Lanka. He is passionate about creating systems that equip youth with the skills and mindset to tackle planetary crises and build a just and sustainable future for all."
     }
 ]

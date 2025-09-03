@@ -5,11 +5,11 @@ const scheduleData = {
   day1: [
     {
       // image: "/speakers/zahidul.jpg",
-      speaker: "",
+      speaker: "Prof. Ashad Kabir",
       localTime: "08:10 PM - 08:30 PM",
       utcTime: "02:10 PM - 02:30 PM",
       duration: "20 minutes",
-      topic: "",
+      topic: "Applications of Artificial Intelligence and Smartphone Apps in Health and Agriculture: Recent Advancements and Opportunities",
     },
     {
       // image: "/speakers/zahidul.jpg",
@@ -47,11 +47,11 @@ const scheduleData = {
   day2: [
     {
       // image: "/speakers/zahidul.jpg",
-      speaker: "Prof. Ashad Kabir",
+      speaker: "",
       localTime: "08:10 PM - 08:30 PM",
       utcTime: "02:10 PM - 02:30 PM",
       duration: "20 minutes",
-      topic: "Applications of Artificial Intelligence and Smartphone Apps in Health and Agriculture: Recent Advancements and Opportunities",
+      topic: "",
     },
     {
       // image: "/speakers/zahidul.jpg",
@@ -71,19 +71,19 @@ const scheduleData = {
     },
     {
       // image: "/speakers/zahidul.jpg",
-      speaker: "",
+      speaker: "Dr. Shashikant Patil",
       localTime: "09:25 PM - 09:45 PM",
       utcTime: "03:25 PM - 03:45 PM",
       duration: "20 minutes",
-      topic: "",
+      topic: "Gen AI and Agentic AI",
     },
     {
       // image: "/speakers/zahidul.jpg",
-      speaker: "",
+      speaker: "Dr. Mohammad Firoz Mridha",
       localTime: "09:50 PM - 10:10 PM",
       utcTime: "03:50 PM - 04:10 PM",
       duration: "20 minutes",
-      topic: "",
+      topic: "AI and Research Ethics: Opportunities and Responsibilities for Students",
     },
   ],
 };

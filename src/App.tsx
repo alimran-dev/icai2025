@@ -29,7 +29,7 @@ function App() {
               <Route path="/2024" element={<Congress2024 />} />
               <Route path="/2023" element={<Congress2023 />} />
               <Route path="/2022" element={<Congress2022 />} />
-              <Route path="/speaker/:id" element={<SpeakerDetail />} />
+              <Route path="/speakers/:id" element={<SpeakerDetail />} />
             </Routes>
           </main>
           <Footer />
