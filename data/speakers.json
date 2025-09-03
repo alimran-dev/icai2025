@@ -1,0 +1,44 @@
+[
+    {
+        "name": "Prof. Ashad Kabir",
+        "title": "Professor of Computer Science, Charles Sturt University, Australia",
+        "topic": "Applications of Artificial Intelligence and Smartphone Apps in Health and Agriculture: Recent Advancements and Opportunities",
+        "email": "akabir@csu.edu.au",
+        "image": "https://i.postimg.cc/Y9y26Jc6/pic.jpg"
+    },
+    {
+        "name": "Dr. Shashikant Patil",
+        "title": "Director and Professor, uGDX School of Technology, Atlas SkillTech University, Mumbai, India ",
+        "topic": "Gen AI and Agentic AI",
+        "email": "sspatil999@gmail.com",
+        "image": "https://i.postimg.cc/C1vKJ4LD/IMG-2520-1-1.jpg"
+    },
+    {
+        "name": "Dr. Mohammad Firoz Mridha",
+        "title": "Professor, Department of Computer Science, AIUB",
+        "topic": "AI and Engineering Ethics - A path forward for Students",
+        "email": "firoz.mridha@aiub.edu",
+        "image": "https://i.postimg.cc/NFvcv9K0/dmfm-1.png"
+    },
+    {
+        "name": "Md Imdadul Islam",
+        "title": "Sr. Business Development Manager, NetCom Learning",
+        "topic": "Leveraging AI for Professional Growth",
+        "email": "Imdadul@netcomlearning.com",
+        "image": "https://i.postimg.cc/hv5DJgDQ/compressed-A7408746.png"
+    },
+    {
+        "name": "Valentin Golovtchenko",
+        "title": "World Economic Forum | Lead, Climate Technology",
+        "topic": "AI and Emerging Tech for Climate Action.",
+        "email": "valentin.golovtchenko@weforum.org",
+        "image": "https://i.postimg.cc/pVDztfgD/1635873072117.jpg"
+    },
+    {
+        "name": "Md. Fahim Hossain",
+        "title": "Founder, Green Lead",
+        "topic": "AI and Emerging Tech for Climate Action.",
+        "email": "fahim@greenleadglobal.org",
+        "image": "https://i.postimg.cc/6QgjFrFk/Fahim-Headshot.png"
+    }
+]
