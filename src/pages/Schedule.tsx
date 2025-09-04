@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const scheduleData = {
   day1: [
@@ -21,11 +22,11 @@ const scheduleData = {
     },
     {
       // image: "/speakers/zahidul.jpg",
-      speaker: "",
+      speaker: "Dr. Jia Uddin",
       localTime: "09:00 PM - 09:20 PM",
       utcTime: "03:00 PM - 03:20 PM",
       duration: "20 minutes",
-      topic: "",
+      topic: "Industry 4.0: AI for Smart Factory",
     },
     {
       // image: "/speakers/zahidul.jpg",
@@ -63,19 +64,19 @@ const scheduleData = {
     },
     {
       // image: "/speakers/zahidul.jpg",
-      speaker: "",
+      speaker: "Dr. Shashikant Patil",
       localTime: "09:00 PM - 09:20 PM",
       utcTime: "03:00 PM - 03:20 PM",
       duration: "20 minutes",
-      topic: "",
+      topic: "Gen AI and Agentic AI",
     },
     {
       // image: "/speakers/zahidul.jpg",
-      speaker: "Dr. Shashikant Patil",
+      speaker: "Dr. Md. Zulfiker Mahmud",
       localTime: "09:25 PM - 09:45 PM",
       utcTime: "03:25 PM - 03:45 PM",
       duration: "20 minutes",
-      topic: "Gen AI and Agentic AI",
+      topic: "Genesis System: A Dual-Model AI Framework for Reverse Engineering Microstrip Patch Antennas",
     },
     {
       // image: "/speakers/zahidul.jpg",
@@ -133,7 +134,17 @@ export default function Schedule() {
           </button>
         </div>
 
-        <div className="container mx-auto px-4 overflow-x-auto">
+        <div>
+          {activeTab === "day1" ? <div className="flex gap-5">
+            <Link to={"https://bdren.zoom.us/j/8801818241?pwd=SmZkFTHvRRc5mRsx2LV3zOuoxzkr3G.1&omn=93048135218"} className="bg-[#2C4EF7] px-5 py-1.5 rounded-md text-white font-semibold ml-5">Zoom Link</Link>
+            <p className="font-semibold border-2 border-[#2C4EF7] rounded-md px-4 py-1.5">Passcode: icai</p>
+          </div>:<div className="flex gap-5">
+            <Link to={"https://bdren.zoom.us/j/8801818241?pwd=SmZkFTHvRRc5mRsx2LV3zOuoxzkr3G.1&omn=96640207975"} className="bg-[#2C4EF7] px-5 py-1.5 rounded-md text-white font-semibold ml-5">Zoom Link</Link>
+            <p className="font-semibold border-2 border-[#2C4EF7] rounded-md px-4 py-1.5">Passcode: icai</p>
+          </div>}
+        </div>
+
+        <div className="container mx-auto px-4 overflow-x-auto mt-5">
           <table className="min-w-full table-auto">
             <thead className="bg-gray-50">
               <tr>

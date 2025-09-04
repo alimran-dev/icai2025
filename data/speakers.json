@@ -28,6 +28,25 @@
     },
     {
         "id": "ICAI25S04",
+        "name": "Dr. Md. Zulfiker Mahmud",
+        "title": "Professor, Department of Computer Science & Engineering, Jagannath University",
+        "topic": "Genesis System: A Dual-Model AI Framework for Reverse Engineering Microstrip Patch Antennas",
+        "email": "zulfiker@cse.jnu.ac.bd",
+        "image": "https://i.postimg.cc/KcVyckb7/photo-10532.jpg",
+        "bio": ""
+    },
+    {
+        "id": "ICAI25S05",
+        "name": "Dr. Jia Uddin",
+        "title": "Professor, AI and Big Data Department, Endicott College, Woosong University",
+        "topic": "Industry 4.0: AI for Smart Factory",
+        "email": "jia.uddin@wsu.ac.kr",
+        "image": "https://i.postimg.cc/tTdfyJXb/1748422085719.jpg",
+        "bio": ""
+    },
+
+    {
+        "id": "ICAI25S06",
         "name": "Md Imdadul Islam",
         "title": "Sr. Business Development Manager, NetCom Learning",
         "topic": "Leveraging AI for Professional Growth",
@@ -36,7 +55,7 @@
         "bio": "Imdad is a business strategist, speaker, and business collaborator with expertise in Modern Communication, Business Development, Leadership, Executive Coaching, Management Consulting, and Learning &amp; Development. As a sophomore, he co-founded Rich Insight Global (RIG), an accounting &amp; business advisory firm, alongside a professional accountant. His partnership with Xero, an Australian Stock Exchange-listed cloud accounting software company, enabled him to serve a diverse range of clients, including startups, SMEs, group companies, and MNCs. His passion for leveraging technology to drive business growth led him to NetCom Learning, a global leader in technology training, specializing in Artificial Intelligence (AI), Machine Learning (ML), Cloud Computing, Cybersecurity, and more. As a passionate speaker and consultant, he has conducted over 100 training and keynote sessions across various educational institutions and corporations including Beximco, Synovia, Nuvista, Incepta, Guardian Life Insurance, Akij, Abdul Monem, Urmi Group, Grameen Distribuiton etc. He is mostly spending his time in consulting companies to be an AI First Organization."
     },
     {
-        "id": "ICAI25S05",
+        "id": "ICAI25S07",
         "name": "Valentin Golovtchenko",
         "title": "World Economic Forum | Lead, Climate Technology",
         "topic": "AI and Emerging Tech for Climate Action.",
@@ -44,7 +63,7 @@
         "image": "https://i.postimg.cc/pVDztfgD/1635873072117.jpg"
     },
     {
-        "id": "ICAI25S06",
+        "id": "ICAI25S08",
         "name": "Md. Fahim Hossain",
         "title": " Founder & Chairperson, Green Lead | Founder, Climate Intelligent Technologies (CIT)",
         "topic": "AI and Emerging Tech for Climate Action.",
