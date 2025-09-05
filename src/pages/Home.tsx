@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Calendar, MapPin, Users, Clock } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Home: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState({
@@ -11,7 +12,7 @@ const Home: React.FC = () => {
   });
 
   useEffect(() => {
-    const targetDate = new Date("2025-09-05T20:00:00").getTime();
+    const targetDate = new Date("2025-09-06T20:00:00").getTime();
 
     const timer = setInterval(() => {
       const now = new Date().getTime();
@@ -163,6 +164,19 @@ const Home: React.FC = () => {
               </svg>
             </a>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Meet our speakers */}
+      <section id="speakers" className="section bg-gray-100 px-2">
+        <img src="/speakers2025.jpeg" alt="Speakers 2025" className="block mx-auto" />
+        <div>
+          <h2 className="section-title mt-3 mb-3">Meet Our Distinguished Speakers</h2>
+          <p className="text-lg text-center">Gain insights from esteemed experts and thought leaders <br /> at the forefront of Artificial Intelligence research and innovation.</p>
+          <div className="flex justify-center gap-4 mt-3">
+            <Link to={"/speakers"} className="btn btn-primary border-none">View Speakers</Link>
+            <Link to={"/schedule"} className="btn btn-primary border-none">Event Schedule</Link>
+          </div>
         </div>
       </section>
 
