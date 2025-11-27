@@ -10,6 +10,7 @@ import Congress2024 from "./pages/prev-congress/2024-congress";
 import Congress2023 from "./pages/prev-congress/2023";
 import Congress2022 from "./pages/prev-congress/2022";
 import SpeakerDetail from "./pages/SpeakerDetail";
+import Participants from "./pages/Participants";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
               {/* <Route path="/call-for-papers" element={<CallForPapers />} /> */}
               {/* <Route path="/contact" element={<Contact />} /> */}
               <Route path="/schedule" element={<Schedule />} />
+              <Route path="/participants" element={<Participants />} />
               <Route path="/ambassadors" element={<Ambassadors />} />
               <Route path="/2024" element={<Congress2024 />} />
               <Route path="/2023" element={<Congress2023 />} />

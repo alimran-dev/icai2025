@@ -35,7 +35,7 @@ const Committee: React.FC = () => {
         image: "https://i.postimg.cc/MGGmNw2q/download-3.jpg",
       }
     ],
-    "General Chairs": [
+    "General Chair": [
       {
         name: "Shrabani Das",
         role: "General Chair",

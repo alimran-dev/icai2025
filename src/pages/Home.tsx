@@ -168,8 +168,8 @@ const Home: React.FC = () => {
       </section>
 
       {/* Meet our speakers */}
-      <section id="speakers" className="section bg-gray-100 px-2">
-        <img src="/speakers2025.jpeg" alt="Speakers 2025" className="block mx-auto" />
+      <section id="speakers" className="section bg-gray-100 px-2 md:px-10">
+        <img src="/speakers2025.jpg" alt="Speakers 2025" className="block mx-auto lg:w-[70%]" />
         <div>
           <h2 className="section-title mt-3 mb-3">Meet Our Distinguished Speakers</h2>
           <p className="text-lg text-center">Gain insights from esteemed experts and thought leaders <br /> at the forefront of Artificial Intelligence research and innovation.</p>
