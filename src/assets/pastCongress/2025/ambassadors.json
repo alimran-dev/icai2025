@@ -1,0 +1,737 @@
+[
+  {
+    "id":"ICAI25001",
+    "name":"Sanjida Binte Shahid",
+    "university":"Ahsanullah University of Science & Technology"
+  },
+  {
+    "id":"ICAI25002",
+    "name":"Nazmus Sakib Hossain",
+    "university":"Ahsanullah University of Science & Technology"
+  },
+  {
+    "id":"ICAI25003",
+    "name":"Md Shajadul Islam",
+    "university":"Aligarh Muslim University"
+  },
+  {
+    "id":"ICAI25004",
+    "name":"Sreekant Sutradhar",
+    "university":"American International University Bangladesh"
+  },
+  {
+    "id":"ICAI25005",
+    "name":"Md. Nahiduzzaman",
+    "university":"American International University Bangladesh"
+  },
+  {
+    "id":"ICAI25006",
+    "name":"Arnob Aich Anurag",
+    "university":"American International University Bangladesh"
+  },
+  {
+    "id":"ICAI25007",
+    "name":"Rafith Tarafder",
+    "university":"American International University Bangladesh"
+  },
+  {
+    "id":"ICAI25008",
+    "name":"Abid Hasan Mahin",
+    "university":"American International University Bangladesh"
+  },
+  {
+    "id":"ICAI25009",
+    "name":"Pallab kumar sharker",
+    "university":"Aviation and Aerospace University Bangladesh"
+  },
+  {
+    "id":"ICAI25010",
+    "name":"Md Omar Hossain",
+    "university":"Bangladesh University of Business and Technology"
+  },
+  {
+    "id":"ICAI25011",
+    "name":"Arifur Rahman",
+    "university":"Bangladesh University of Business and Technology"
+  },
+  {
+    "id":"ICAI25012",
+    "name":"Fazla Rabbi",
+    "university":"Bangladesh University of Business and Technology"
+  },
+  {
+    "id":"ICAI25013",
+    "name":"Asif Al Amin",
+    "university":"Bangladesh University of Business and Technology"
+  },
+  {
+    "id":"ICAI25014",
+    "name":"Touhidul islam",
+    "university":"Bangladesh University of Business and Technology"
+  },
+  {
+    "id":"ICAI25015",
+    "name":"Najmus Sakib Yeamin",
+    "university":"Bangladesh University of Business and Technology"
+  },
+  {
+    "id":"ICAI25016",
+    "name":"Md Sakibul Hassan Rifat",
+    "university":"Bangladesh University of Business and Technology"
+  },
+  {
+    "id":"ICAI25017",
+    "name":"Sumaiya Jahan Rajnin",
+    "university":"Bangladesh University of Business and Technology"
+  },
+  {
+    "id":"ICAI25018",
+    "name":"Abdur Rahman",
+    "university":"Bangladesh University of Business and Technology"
+  },
+  {
+    "id":"ICAI25019",
+    "name":"Aporna Bhoumick",
+    "university":"Bangladesh University of Business and Technology"
+  },
+  {
+    "id":"ICAI25020",
+    "name":"Arpita Biswas",
+    "university":"Bangladesh University of Business and Technology"
+  },
+  {
+    "id":"ICAI25021",
+    "name":"Jannatul masruk Mukta",
+    "university":"Bangladesh University of Business and Technology"
+  },
+  {
+    "id":"ICAI25022",
+    "name":"Jeba Afroz Audity",
+    "university":"Bangladesh University of Business and Technology"
+  },
+  {
+    "id":"ICAI25023",
+    "name":"Md. Nafaj Uddin Ahmed",
+    "university":"Bangladesh University of Business and Technology"
+  },
+  {
+    "id":"ICAI25024",
+    "name":"Md. Nafaj Uddin Ahmed",
+    "university":"Bangladesh University of Business and Technology"
+  },
+  {
+    "id":"ICAI25025",
+    "name":"Md. Shabirul Islam Jarif",
+    "university":"Bangladesh University of Business and Technology"
+  },
+  {
+    "id":"ICAI25026",
+    "name":"Md.Masudur Rahman Nirob",
+    "university":"Bangladesh University of Business and Technology"
+  },
+  {
+    "id":"ICAI25027",
+    "name":"Md.Shakil",
+    "university":"Bangladesh University of Business and Technology"
+  },
+  {
+    "id":"ICAI25028",
+    "name":"Mohammed Masum",
+    "university":"Bangladesh University of Business and Technology"
+  },
+  {
+    "id":"ICAI25029",
+    "name":"Naimur Rahaman Rifat",
+    "university":"Bangladesh University of Business and Technology"
+  },
+  {
+    "id":"ICAI25030",
+    "name":"Nusrat Jahan Tonmoy",
+    "university":"Bangladesh University of Business and Technology"
+  },
+  {
+    "id":"ICAI25031",
+    "name":"Ringky Rani Joba",
+    "university":"Bangladesh University of Business and Technology"
+  },
+  {
+    "id":"ICAI25032",
+    "name":"Shadida Khan",
+    "university":"Bangladesh University of Business and Technology"
+  },
+  {
+    "id":"ICAI25033",
+    "name":"Tanzina Akter Maya",
+    "university":"Bangladesh University of Business and Technology"
+  },
+  {
+    "id":"ICAI25034",
+    "name":"Zannatun Naim Tumpa",
+    "university":"Bangladesh University of Business and Technology"
+  },
+  {
+    "id":"ICAI25035",
+    "name":"Md Mahedi Hasan",
+    "university":"Bangladesh University of Business and Technology"
+  },
+  {
+    "id":"ICAI25036",
+    "name":"Md Siyam",
+    "university":"Bangladesh University of Business and Technology"
+  },
+  {
+    "id":"ICAI25037",
+    "name":"Sayed Mahbub Alam Abid",
+    "university":"Bangladesh University of Business and Technology"
+  },
+  {
+    "id":"ICAI25038",
+    "name":"Ayesha mim",
+    "university":"Bangladesh University of Business and Technology"
+  },
+  {
+    "id":"ICAI25039",
+    "name":"Sayma Zannat Mishi",
+    "university":"Bangladesh University of Business and Technology"
+  },
+  {
+    "id":"ICAI25040",
+    "name":"Mehenaj Uddin Siam",
+    "university":"Bangladesh University of Engineering and Technology (BUET)"
+  },
+  {
+    "id":"ICAI25041",
+    "name":"Mehzabin Mahmud",
+    "university":"BRAC University"
+  },
+  {
+    "id":"ICAI25042",
+    "name":"Syeda Tauba Tahrim",
+    "university":"BRAC University"
+  },
+  {
+    "id":"ICAI25043",
+    "name":"Sadman Shakib",
+    "university":"BRAC University"
+  },
+  {
+    "id":"ICAI25044",
+    "name":"Md. Nure Alam Siddiky",
+    "university":"Carmichael College, Rangpur"
+  },
+  {
+    "id":"ICAI25045",
+    "name":"Adnan Faisal",
+    "university":"Chittagong University of Engineering & Technology (CUET)"
+  },
+  {
+    "id":"ICAI25046",
+    "name":"Anindo Barua",
+    "university":"Chittagong University of Engineering & Technology (CUET)"
+  },
+  {
+    "id":"ICAI25047",
+    "name":"Pulak Bhowmik",
+    "university":"Chittagong University of Engineering & Technology (CUET)"
+  },
+  {
+    "id":"ICAI25048",
+    "name":"Lamia Tasnim Khan",
+    "university":"Chittagong University of Engineering & Technology (CUET)"
+  },
+  {
+    "id":"ICAI25049",
+    "name":"MD Shahnur",
+    "university":"City University, Bangladesh"
+  },
+  {
+    "id":"ICAI25050",
+    "name":"Mohammad Rifatul Islam Marof",
+    "university":"Comilla University"
+  },
+  {
+    "id":"ICAI25051",
+    "name":"Tanmoy Mitra",
+    "university":"Daffodil International University"
+  },
+  {
+    "id":"ICAI25052",
+    "name":"Md. Iftekhar Rahman Likhan",
+    "university":"Daffodil International University"
+  },
+  {
+    "id":"ICAI25053",
+    "name":"Niloy Joti Sana",
+    "university":"Daffodil International University"
+  },
+  {
+    "id":"ICAI25054",
+    "name":"Sajjadul Islam Somon",
+    "university":"Daffodil International University"
+  },
+  {
+    "id":"ICAI25055",
+    "name":"Sayone Dey",
+    "university":"Daffodil International University"
+  },
+  {
+    "id":"ICAI25056",
+    "name":"Sourov Kumar",
+    "university":"Daffodil International University"
+  },
+  {
+    "id":"ICAI25057",
+    "name":"Anik Chawdhury",
+    "university":"Daffodil International University"
+  },
+  {
+    "id":"ICAI25058",
+    "name":"Abdullah Al Noman Bhuyan",
+    "university":"Daffodil International University"
+  },
+  {
+    "id":"ICAI25059",
+    "name":"Arafat Islam",
+    "university":"Daffodil International University"
+  },
+  {
+    "id":"ICAI25060",
+    "name":"Arman Hossain",
+    "university":"Daffodil International University"
+  },
+  {
+    "id":"ICAI25061",
+    "name":"Husan Abrar Abir",
+    "university":"Daffodil International University"
+  },
+  {
+    "id":"ICAI25062",
+    "name":"Md. Mahfujur Rahman",
+    "university":"Daffodil International University"
+  },
+  {
+    "id":"ICAI25063",
+    "name":"Md. Rizwan Karim Lam",
+    "university":"Daffodil International University"
+  },
+  {
+    "id":"ICAI25064",
+    "name":"Md.Mazharul Islam",
+    "university":"Daffodil International University"
+  },
+  {
+    "id":"ICAI25065",
+    "name":"Pallab Biswas",
+    "university":"Daffodil International University"
+  },
+  {
+    "id":"ICAI25066",
+    "name":"Tanvir mahamud",
+    "university":"Daffodil International University"
+  },
+  {
+    "id":"ICAI25067",
+    "name":"Mahabub Alahi Rafi",
+    "university":"Dhaka University"
+  },
+  {
+    "id":"ICAI25068",
+    "name":"Md. Amir Hamja Badal",
+    "university":"Gono Bishwabidyalay"
+  },
+  {
+    "id":"ICAI25069",
+    "name":"Md Ariful Islam",
+    "university":"Govt. Bangla College"
+  },
+  {
+    "id":"ICAI25070",
+    "name":"Fatema Akter",
+    "university":"Green University of Bangladesh"
+  },
+  {
+    "id":"ICAI25071",
+    "name":"Firuz shameha",
+    "university":"Green University of Bangladesh"
+  },
+  {
+    "id":"ICAI25072",
+    "name":"Hasnat Zamil Sayad",
+    "university":"Green University of Bangladesh"
+  },
+  {
+    "id":"ICAI25073",
+    "name":"Khondokar Saim",
+    "university":"Green University of Bangladesh"
+  },
+  {
+    "id":"ICAI25074",
+    "name":"Md. Fahad Hasan",
+    "university":"Green University of Bangladesh"
+  },
+  {
+    "id":"ICAI25075",
+    "name":"Udoy Chowdhury",
+    "university":"Green University of Bangladesh"
+  },
+  {
+    "id":"ICAI25076",
+    "name":"MD ABDULLAH AL BAKI RUHIN",
+    "university":"Green University of Bangladesh"
+  },
+  {
+    "id":"ICAI25077",
+    "name":"Md. Abu Rayhan Imran",
+    "university":"Green University of Bangladesh"
+  },
+  {
+    "id":"ICAI25078",
+    "name":"S. M Shakib Mahamud Shefat",
+    "university":"Green University of Bangladesh"
+  },
+  {
+    "id":"ICAI25079",
+    "name":"Saifullah Shuvon",
+    "university":"Green University of Bangladesh"
+  },
+  {
+    "id":"ICAI25080",
+    "name":"Tawhid Hasan",
+    "university":"Green University of Bangladesh"
+  },
+  {
+    "id":"ICAI25081",
+    "name":"Fuad Ahammed",
+    "university":"Green University of Bangladesh"
+  },
+  {
+    "id":"ICAI25082",
+    "name":"MD. MOSHIUR RAHMAN",
+    "university":"Green University of Bangladesh"
+  },
+  {
+    "id":"ICAI25083",
+    "name":"NUSRATH JAHAN WORNEY",
+    "university":"International Islamic University Chittagong"
+  },
+  {
+    "id":"ICAI25084",
+    "name":"Probal Dev Nath",
+    "university":"International Islamic University Chittagong"
+  },
+  {
+    "id":"ICAI25085",
+    "name":"Samiul Azam Shuvo",
+    "university":"International Islamic University Chittagong"
+  },
+  {
+    "id":"ICAI25086",
+    "name":"Md. Rofiqul Islam Babu",
+    "university":"International Islamic University Chittagong"
+  },
+  {
+    "id":"ICAI25087",
+    "name":"Samea Binte Saif",
+    "university":"International Islamic University Chittagong"
+  },
+  {
+    "id":"ICAI25088",
+    "name":"Rimon Shil",
+    "university":"International Islamic University Chittagong"
+  },
+  {
+    "id":"ICAI25089",
+    "name":"Afia Ibnat",
+    "university":"International Islamic University Chittagong"
+  },
+  {
+    "id":"ICAI25090",
+    "name":"MD ARAFATUL ISLAM MAJUMDER",
+    "university":"International Islamic University Chittagong"
+  },
+  {
+    "id":"ICAI25091",
+    "name":"Md Mohaiminul Islam",
+    "university":"International Islamic University Chittagong"
+  },
+  {
+    "id":"ICAI25092",
+    "name":"Musfiqur Rahman",
+    "university":"International Islamic University Chittagong"
+  },
+  {
+    "id":"ICAI25093",
+    "name":"Omara Noor Subah",
+    "university":"International Islamic University Chittagong"
+  },
+  {
+    "id":"ICAI25094",
+    "name":"Waziha Jannat",
+    "university":"International Islamic University Chittagong"
+  },
+  {
+    "id":"ICAI25095",
+    "name":"Abrar Hossain",
+    "university":"IUB"
+  },
+  {
+    "id":"ICAI25096",
+    "name":"Md.Khafizur Rahman Khafiz",
+    "university":"IUB"
+  },
+  {
+    "id":"ICAI25097",
+    "name":"Faria Alam",
+    "university":"Jagannath University, Dhaka"
+  },
+  {
+    "id":"ICAI25098",
+    "name":"Mst.Mahfuza Akter",
+    "university":"Jagannath University, Dhaka"
+  },
+  {
+    "id":"ICAI25099",
+    "name":"Ankon Karmokar",
+    "university":"Jagannath University, Dhaka"
+  },
+  {
+    "id":"ICAI25100",
+    "name":"Joyeta Banerjee",
+    "university":"Khulna University of Engineering & Technology (KUET)"
+  },
+  {
+    "id":"ICAI25101",
+    "name":"Md. Nur-Alam Sarker",
+    "university":"Khulna University of Engineering & Technology (KUET)"
+  },
+  {
+    "id":"ICAI25102",
+    "name":"Shakib Absar",
+    "university":"Leading University"
+  },
+  {
+    "id":"ICAI25103",
+    "name":"Jogonnath Das Talukder",
+    "university":"Leading University"
+  },
+  {
+    "id":"ICAI25104",
+    "name":"Md Mofasel Hossain",
+    "university":"Noakhali science and technology university"
+  },
+  {
+    "id":"ICAI25105",
+    "name":"Fahim Foysal",
+    "university":"North South University"
+  },
+  {
+    "id":"ICAI25106",
+    "name":"Md.Adnan Chowdhury Ifti",
+    "university":"North South University"
+  },
+  {
+    "id":"ICAI25107",
+    "name":"Lutful Islam Nabid",
+    "university":"North South University"
+  },
+  {
+    "id":"ICAI25108",
+    "name":"Nazia Islam Juthi",
+    "university":"North South University"
+  },
+  {
+    "id":"ICAI25109",
+    "name":"Ahmed Afeef Murad",
+    "university":"Premier University"
+  },
+  {
+    "id":"ICAI25110",
+    "name":"Susmoy Barua",
+    "university":"Premier University"
+  },
+  {
+    "id":"ICAI25111",
+    "name":"Md Atikur Rahman",
+    "university":"Pundra University of Science & Technology (PUB)"
+  },
+  {
+    "id":"ICAI25112",
+    "name":"Md Shahriar Kabir Saaj",
+    "university":"Rajshahi University of Engineering and Technology"
+  },
+  {
+    "id":"ICAI25113",
+    "name":"Sohag",
+    "university":"Shanto-Mariam University of Creative Technology"
+  },
+  {
+    "id":"ICAI25114",
+    "name":"Ayesha Akter",
+    "university":"Southeast University"
+  },
+  {
+    "id":"ICAI25115",
+    "name":"Fahmida Islam",
+    "university":"Stamford University Bangladesh"
+  },
+  {
+    "id":"ICAI25116",
+    "name":"Md Ashfaqur Rahman",
+    "university":"United International University-UIU"
+  },
+  {
+    "id":"ICAI25117",
+    "name":"Md. Taufiqule Islam",
+    "university":"University of Information Technology and Sciences"
+  },
+  {
+    "id":"ICAI25118",
+    "name":"Tareq Anwar Shikdar",
+    "university":"University of Vaasa, Finland"
+  },
+  {
+    "id":"ICAI25119",
+    "name":"Md Sahadat Hossen Sajib",
+    "university":"Varendra University"
+  },
+  {
+    "id":"ICAI25120",
+    "name":"Md.Nasif Rafidi",
+    "university":"American International University-Bangladesh"
+  },
+  {
+    "id":"ICAI25121",
+    "name":"Mahmudur Rahman Zihad",
+    "university":"National Institute of Textile Engineering and Research"
+  },
+  {
+    "id":"ICAI25122",
+    "name":"Wahida Tasnim Eassa",
+    "university":"Raniganj Women's College, Dinajpur"
+  },
+  {
+    "id":"ICAI25123",
+    "name":"Fahmida Rahman",
+    "university":"Saic Institute Of Management & Technology, Technology Unit, University Of Dhaka"
+  },
+  {
+    "id":"ICAI25124",
+    "name":"Md Istekhar Alam",
+    "university":"Guru tegh bahadur institute of technology"
+  },
+  {
+    "id":"ICAI25125",
+    "name":"Nakhate Harika",
+    "university":"LBS Institute of technology for womens"
+  },
+  {
+    "id":"ICAI25126",
+    "name":"Sneha Menariya",
+    "university":"Poornima College of Engineering"
+  },
+  {
+    "id":"ICAI25127",
+    "name":"YATA HARISH",
+    "university":"Vaagdevi Engineering College"
+  },
+  {
+    "id":"ICAI25128",
+    "name":"Thummala Nirjara",
+    "university":"Vaagdevi Engineering College"
+  },
+  {
+    "id":"ICAI25129",
+    "name":"Obichukwu Success Chukwudumebi",
+    "university":"State University of Medical and Applied Sciences"
+  },
+  {
+    "id":"ICAI25130",
+    "name":"Chekwubechukwu Nnenne Anugwo",
+    "university":"State University of Medical and Applied Sciences (SUMAS)"
+  },
+  {
+    "id":"ICAI25131",
+    "name":"Mudassir Rao",
+    "university":"Mehran University Of Engineering And Technology Jamshoro"
+  },
+  {
+    "id":"ICAI25132",
+    "name":"Shajia Malik",
+    "university":"Riphah international university"
+  },
+  {
+    "id":"ICAI25133",
+    "name":"Tessnim Zaibet",
+    "university":"The National Engineering School of Sfax (ENIS)"
+  },
+  {
+    "id":"ICAI25134",
+    "name":"Cagdas Ozan Pamuk",
+    "university":"Iskenderun Technical University"
+  },
+  {
+    "id":"ICAI25135",
+    "name":"Namutebi Sophia Shantel",
+    "university":"Kyambogo University"
+  },
+  {
+    "id":"ICAI25136",
+    "name":"BAGUMA JESSY SMITH",
+    "university":"Kyambogo University"
+  },
+  {
+    "id":"ICAI25137",
+    "name":"Namugabo Florence Wangi",
+    "university":"Kyambogo University"
+  },
+  {
+    "id":"ICAI25138",
+    "name":"AMPAIRE ISAAC",
+    "university":"Kyambogo University"
+  },
+  {
+    "id":"ICAI25139",
+    "name":"Matthew Matsiko",
+    "university":"Makerere University"
+  },
+  {
+    "id":"ICAI25140",
+    "name":"Lochap faustine",
+    "university":"Metropolitan international university"
+  },
+  {
+    "id":"ICAI25141",
+    "name":"Masika Hidaya Yuwasi",
+    "university":"Kyambogo University"
+  },
+  {
+    "id":"ICAI25142",
+    "name":"DONALD MAZOLE",
+    "university":"The University of Zambia"
+  },
+  {
+    "id":"ICAI25143",
+    "name":"Musunga Mulenga",
+    "university":"The University of Zambia"
+  },
+  {
+    "id":"ICAI25144",
+    "name":"Taonga Mukobeko",
+    "university":"The university of Zambia"
+  },
+  {
+    "id":"ICAI25145",
+    "name":"Christ Mulenga",
+    "university":"University of Zambia"
+  },
+  {
+    "id":"ICAI25146",
+    "name":"Dennis Banda",
+    "university":"University of Zambia"
+  },
+  {
+    "id":"ICAI25147",
+    "name":"Salifyanji Silungwe",
+    "university":"University of Zambia (UNZA)"
+  }
+]

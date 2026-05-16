@@ -1,0 +1,118 @@
+{
+  "Advisory Panel": [
+    {
+      "name": "Prof. Dr. A B M Shawkat Ali",
+      "role": "Vice Chancellor, BUBT",
+      "image": "https://i.ibb.co.com/0jVMjqzz/download-1.png"
+    },
+    {
+      "name": "Md. Saifur Rahman",
+      "role": "Chairman, Dept. of CSE, BUBT",
+      "image": "https://i.ibb.co.com/NghXzQCr/download-2.png"
+    },
+    {
+      "name": "Dr. Md. Shafiqul Islam",
+      "role": "Assistant Professor, Dept. of CSE, BUBT",
+      "image": "https://i.postimg.cc/XNt15rMF/Whats-App-Image-2025-08-10-at-7-49-54-PM.jpg"
+    },
+    {
+      "name": "Sudipa Saha",
+      "role": "Lecturer, Dept. of CSE, BUBT",
+      "image": "https://i.postimg.cc/MGGmNw2q/download-3.jpg"
+    }
+  ],
+  "General Chair": [
+    {
+      "name": "Shrabani Das",
+      "role": "General Chair",
+      "image": "https://i.ibb.co/ZYbkQhy/Shrabani-Das-Shrabani-Das.jpg"
+    }
+  ],
+  "Organizing Committee": [
+    {
+      "name": "Md Mehedi Hasan",
+      "role": "Organizing Chair",
+      "affiliation": "Research Institute",
+      "image": "https://i.ibb.co/1sq7X8s/IMG-20240128-073552-Md-Mehedi.jpg"
+    },
+    {
+      "name": "Mujahidul Islam Joy",
+      "role": "Organizing Secretary",
+      "affiliation": "Computer Science Department",
+      "image": "https://i.postimg.cc/fRVxfKxR/8b68a013-00fd-4f9e-8de0-c3f777650193-Mujahidul-Islam-Joy.jpg"
+    },
+    {
+      "name": "Shadida Khan",
+      "role": "Master of Ceremonies",
+      "affiliation": "Computer Science Department",
+      "image": "https://i.postimg.cc/3RWQZ1X9/IMG-5401-Shadida-Khan.jpg"
+    }
+  ],
+  "Ambassador Committee": [
+    {
+      "name": "Mashfi Rejoan Saikat",
+      "role": "Ambassador Chair",
+      "affiliation": "BRAC University",
+      "image": "https://i.postimg.cc/N0X3zS3J/FP-cropped-Mashfi-Rejoan-Saikat.jpg"
+    }
+  ],
+  "Registration Committee": [
+    {
+      "name": "Sabrina Tasnim Imu",
+      "role": "Registration Chair",
+      "affiliation": "Student Affairs Committee",
+      "image": "https://i.postimg.cc/gcgTNGwc/Whats-App-Image-2025-05-25-at-3-39-10-PM-Sabrina-Tasnim-Imu.jpg"
+    },
+    {
+      "name": "Md. Abu Talab Anik",
+      "role": "Registration Co-Chair",
+      "affiliation": "Student Affairs Committee",
+      "image": "https://i.postimg.cc/HsfWkrGj/00000-Md-Abu-Talab-Anik.png"
+    }
+  ],
+  "Web and Design Committee": [
+    {
+      "name": "Md Al Imran",
+      "role": "Web & IT Chair",
+      "image": "https://i.postimg.cc/Zn9sWD8t/Whats-App-Image-2025-08-10-at-9-35-00-PM.jpg"
+    },
+    {
+      "name": "Shopnil Karmakar",
+      "role": "Design Chair",
+      "affiliation": "Creative Department",
+      "image": "https://i.postimg.cc/9MJ8LwPp/IMG-1749-2-Shopnil-Karmakar.jpg"
+    },
+    {
+      "name": "Md Sirajul Islam",
+      "role": "Design Co-Chair",
+      "affiliation": "Design Team",
+      "image": "https://i.postimg.cc/Y9TZzHqq/Image-202-03-14-at-21-36-14-954090d-MD-SIRAJUL-ISLAM.jpg"
+    },
+    {
+      "name": "Faiza Khandoker Fama",
+      "role": "Design Co-Chair",
+      "affiliation": "Design Team",
+      "image": "https://i.postimg.cc/NfDbgtq9/inbound7581585900504204818-49-338-Faiza-Khandoker.jpg"
+    }
+  ],
+  "Publication and Publicity Committee": [
+    {
+      "name": "Most.Sonia Islam",
+      "role": "Publication Chair",
+      "affiliation": "Global Science Media",
+      "image": "https://i.postimg.cc/Qxq3J2Qj/Beauty-Plus-20241119133540300-save-Most-Sonia-Islam.jpg"
+    },
+    {
+      "name": "Humayra Akter",
+      "role": "Publicity Chair",
+      "affiliation": "Communications Department",
+      "image": "https://i.postimg.cc/fWfYXhWw/Humayra-Akter-Humayra-Akter.jpg"
+    },
+    {
+      "name": "Md Nahidujaman",
+      "role": "Media Chair",
+      "affiliation": "Communications Department",
+      "image": "https://i.postimg.cc/ZYw2c2VS/IMG-2082-Nahidujjaman-Shihab.jpg"
+    }
+  ]
+}

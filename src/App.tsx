@@ -6,7 +6,7 @@ import Committee from "./pages/Committee";
 import Speakers from "./pages/Speakers";
 import Schedule from "./pages/Schedule";
 import Ambassadors from "./pages/Ambassadors";
-import Congress2024 from "./pages/prev-congress/2024-congress";
+import Congress2025 from "./pages/prev-congress/Congress2025";
 import Congress2023 from "./pages/prev-congress/2023";
 import Congress2022 from "./pages/prev-congress/2022";
 import SpeakerDetail from "./pages/SpeakerDetail";
@@ -28,7 +28,7 @@ function App() {
               <Route path="/schedule" element={<Schedule />} />
               <Route path="/participants" element={<Participants />} />
               <Route path="/ambassadors" element={<Ambassadors />} />
-              <Route path="/2024" element={<Congress2024 />} />
+              <Route path="/2025" element={<Congress2025 />} />
               <Route path="/2023" element={<Congress2023 />} />
               <Route path="/2022" element={<Congress2022 />} />
               <Route path="/speakers/:id" element={<SpeakerDetail />} />

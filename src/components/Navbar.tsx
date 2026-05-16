@@ -31,7 +31,7 @@ const Navbar: React.FC = () => {
     };
   }, []);
 
-  const navLinks = [
+  const navLinks: {name: string, path?:string, children?: {name: string, path: string}[]}[] = [
     { name: "Home", path: "/" },
     { name: "Committee", path: "/committee" },
     { name: "Speakers", path: "/speakers" },
@@ -39,14 +39,14 @@ const Navbar: React.FC = () => {
     { name: "Participants", path: "/participants"},
     { name: "Ambassadors", path: "/ambassadors" },
     // { name: "Call for Papers", path: "/call-for-papers" },
-    // {
-    //   name: "Past Congresses",
-    //   children: [
-    //     { name: "2024", path: "/2024" },
-    //     { name: "2023", path: "/2023" },
-    //     { name: "2022", path: "/2022" },
-    //   ],
-    // },
+    {
+      name: "Past Congresses",
+      children: [
+        { name: "2025", path: "/2025" },
+        // { name: "2023", path: "/2023" },
+        // { name: "2022", path: "/2022" },
+      ],
+    },
   ];
 
   return (
@@ -67,7 +67,7 @@ const Navbar: React.FC = () => {
             <div key={link.name} className="relative group">
               {link.children ? (
                 <div>
-                  <button className={`flex items-center text-sm font-medium hover:text-primary-600 ${isScrolled? "text-secondary-700":"text-white"}`}>
+                  <button className={`flex items-center text-sm font-medium hover:text-primary-600 ${isScrolled || location.pathname!=="/" ? "text-secondary-700":"text-white"}`}>
                     {link.name}
                     <ChevronDown className="w-4 h-4 ml-1" />
                   </button>
@@ -85,7 +85,7 @@ const Navbar: React.FC = () => {
                 </div>
               ) : (
                 <Link
-                  to={link.path}
+                  to={link.path as string}
                   className={`text-sm font-medium transition-colors ${
                     location.pathname === link.path
                       ? "text-primary-700"
