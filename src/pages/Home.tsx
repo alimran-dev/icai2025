@@ -12,7 +12,7 @@ const Home: React.FC = () => {
   });
 
   useEffect(() => {
-    const targetDate = new Date("2025-09-06T20:00:00").getTime();
+    const targetDate = new Date("2026-06-14T20:00:00").getTime();
 
     const timer = setInterval(() => {
       const now = new Date().getTime();
@@ -68,7 +68,7 @@ const Home: React.FC = () => {
               </span>
             </h1>
             <p className="text-xl md:text-3xl mb-6 text-secondary-200 font-semibold">
-              September 6-7, 2025
+              June 14-15, 2026
             </p>
 
             {/* For TSX uncomment the commented types below */}
@@ -131,7 +131,7 @@ const Home: React.FC = () => {
 
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLSeYlWXatwaXOicPfDS_qWU5V7yzd6Mw3qfPtyAuZjsHPBnREw/viewform"
+                href="/"
                 target="_blank"
                 className="btn btn-primary border-none"
               >
@@ -229,7 +229,7 @@ const Home: React.FC = () => {
                 </div>
                 <h3 className="text-xl font-semibold">Event Date</h3>
               </div>
-              <p className="text-secondary-700">September 6-7 , 2025</p>
+              <p className="text-secondary-700">June 14-15, 2026</p>
             </motion.div>
 
             <motion.div

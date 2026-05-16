@@ -217,7 +217,10 @@ const Congress2025 = () => {
   const totalPagesAmb = Math.ceil(filteredAmbassadors.length / itemsPerPage);
   const startIndexAmb = (currentPageAmb - 1) * itemsPerPage;
   const endIndexAmb = startIndexAmb + itemsPerPage;
-  const currentAmbassadors = filteredAmbassadors.slice(startIndexAmb, endIndexAmb);
+  const currentAmbassadors = filteredAmbassadors.slice(
+    startIndexAmb,
+    endIndexAmb,
+  );
   return (
     <div className="pt-20">
       <section className="bg-gradient-to-r from-primary-700 via-primary-600 to-primary-500 py-20 relative overflow-hidden">
@@ -308,6 +311,37 @@ const Congress2025 = () => {
                 )}
               </ul>
             </div>
+          </div>
+        </section>
+
+        {/* vtools */}
+        <section className="py-16 bg-primary-700 text-white">
+          <div className="container text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
+                Official IEEE vTools Event Registration
+              </h2>
+              <p className="text-xl mb-8 max-w-3xl mx-auto text-primary-100">
+                ICAI 2025 is officially listed on the IEEE vTools Events
+                Platform, ensuring authenticity and global recognition within
+                the IEEE community. Organized by IEEE Systems Council BUBT
+                Student Branch Chapter (OU Code: SBC03252H).
+              </p>
+              <div className="flex flex-col sm:flex-row justify-center gap-4">
+                <a
+                  href="https://events.vtools.ieee.org/m/499358"
+                  target="_blank"
+                  className="btn bg-[#F8961E] text-white hover:bg-[#c4a416]"
+                >
+                  vTools Event Report
+                </a>
+              </div>
+            </motion.div>
           </div>
         </section>
 
