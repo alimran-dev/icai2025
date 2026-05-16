@@ -25,5 +25,5 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: 'ICAI' # Exact name from your CF dashboard
+          projectName: 'icai' # Exact name from your CF dashboard
           directory: 'dist' # Change to your build output directory (e.g., dist, build, .next)
