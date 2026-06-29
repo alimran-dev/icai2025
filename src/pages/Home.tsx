@@ -1,18 +1,153 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Calendar, MapPin, Users, Clock } from "lucide-react";
+import {
+  Calendar,
+  MapPin,
+  Users,
+  Clock,
+  Globe,
+  Award,
+  Laptop,
+  BarChart3,
+  Users2,
+  Presentation,
+  Microscope,
+  Network,
+  Briefcase,
+  Sparkles,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 
-const Home: React.FC = () => {
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
+// ------------------------------------------------------------------
+// Reusable Data Arrays
+// ------------------------------------------------------------------
+
+// Countdown target (ICAI 2026 begins on 1 October 2026)
+const ICAI_2026_DATE = "2026-10-01T20:00:00";
+
+// Hero CTA buttons (with TODO placeholders)
+const heroButtons = [
+  {
+    label: "Register Now",
+    // TODO: Replace with actual registration link
+    href: "#",
+    icon: <Users2 className="w-4 h-4" />,
+  },
+  {
+    label: "Become an Ambassador",
+    // TODO: Replace with actual ambassador form
+    href: "#",
+    icon: <Globe className="w-4 h-4" />,
+  },
+  {
+    label: "Speaker Nomination",
+    // TODO: Replace with speaker nomination form
+    href: "#",
+    icon: <Presentation className="w-4 h-4" />,
+  },
+  {
+    label: "View Schedule",
+    link: "/schedule",
+    icon: <Clock className="w-4 h-4" />,
+  },
+];
+
+// ICAI 2025 achievements (for animated counters)
+const achievements = [
+  { icon: <Users className="w-6 h-6" />, label: "Registered Participants", value: 1000, suffix: "+" },
+  { icon: <Users2 className="w-6 h-6" />, label: "Live Participants", value: 400, suffix: "+" },
+  { icon: <Globe className="w-6 h-6" />, label: "Countries Represented", value: 16 },
+  { icon: <Award className="w-6 h-6" />, label: "Student Ambassadors", value: 147 },
+  { icon: <Briefcase className="w-6 h-6" />, label: "Collaboration Partners", value: 16 },
+  { icon: <Presentation className="w-6 h-6" />, label: "Distinguished Speakers", value: 10 },
+  { icon: <Clock className="w-6 h-6" />, label: "Two-Day Virtual Congress", value: 2, suffix: "" },
+  { icon: <Globe className="w-6 h-6" />, label: "Global IEEE Community Engagement", value: null },
+];
+
+// ICAI 2025 highlights (feature cards)
+const highlights = [
+  "International Keynote Sessions",
+  "Industry Expert Talks",
+  "AI in Healthcare",
+  "Generative AI",
+  "AI Ethics",
+  "Climate Technology",
+  "Big Data & Analytics",
+  "Research & Innovation",
+  "Live Q&A Sessions",
+  "Global Networking",
+];
+
+// Why Attend ICAI 2026 cards
+const whyAttend = [
+  { icon: <Users2 className="w-8 h-8 text-primary-600" />, title: "International Speakers", description: "Hear from renowned AI researchers, industry leaders, and IEEE experts from across the globe." },
+  { icon: <Laptop className="w-8 h-8 text-primary-600" />, title: "Technical Sessions", description: "Deep-dive sessions on cutting-edge AI topics, tools, and frameworks." },
+  { icon: <BarChart3 className="w-8 h-8 text-primary-600" />, title: "AI Industry Talks", description: "Learn how AI is transforming businesses, startups, and large-scale enterprises." },
+  { icon: <Presentation className="w-8 h-8 text-primary-600" />, title: "Panel Discussions", description: "Engaging debates with experts on the future of responsible AI and policy." },
+  { icon: <Briefcase className="w-8 h-8 text-primary-600" />, title: "Career Development", description: "Insights into AI career paths, skills, and opportunities from top recruiters." },
+  { icon: <Network className="w-8 h-8 text-primary-600" />, title: "Global Networking", description: "Connect with researchers, students, IEEE volunteers, and industry professionals worldwide." },
+];
+
+// Collaboration partner logos (existing)
+const collaborationPartners = [
+  "https://i.postimg.cc/W33V9XTs/1-CS-Morsalin-Ahmed-Patwary.png",
+  "https://i.postimg.cc/3JD85SpR/797-IEEE-AUST-STUDENT-BRANCH.jpg",
+  "https://i.postimg.cc/L5GmgLd2/Asset-5-4x-Naimul-Haque.png",
+  "https://i.postimg.cc/sg7gS6D8/FB-IMG-1755683384861-Zinat-Azim.jpg",
+  "https://i.postimg.cc/Y2YrvkQY/386342557-122107142024057422-7179772533766904515-n.jpg",
+  "https://i.postimg.cc/hjyDgNpJ/ieee-cs-jnu-sbc-Md-Abu-Saeed.png",
+  "https://i.postimg.cc/tJp3QZvR/IEEE-DIU-SB-Computer-Society-Chapter-logo-AKIB-MAHMUD.png",
+  "https://i.postimg.cc/Njqgg67x/IEEE-IAS-K-M-RUBAIYAT-HASAN-221-33-1767.png",
+  "https://i.postimg.cc/9fBXgD9Y/IEEE-SB-GUB-Faysal-Hossain-Tomal.png",
+  "https://i.postimg.cc/k4XJ07F3/IEEE-UAP-SB-Official-Md-Nahedul-Islam.jpg",
+  "https://i.postimg.cc/T1KRPQ4t/ieee-diu-logo-new-Jose-C-Dishman.png",
+  "https://i.postimg.cc/1zS5KG8z/inbound882344196217121997-Susmoy-Barua.jpg",
+  "https://i.postimg.cc/Gtq7fWwz/367001074-718013033674426-1996992789129344167-n-1.jpg",
+  "https://i.postimg.cc/Dz4mPGsj/IEEE-CS-UIU-color-Provat-Kundu.png",
+  "https://i.postimg.cc/1txXCzr9/Whats-App-Image-2025-09-02-at-4-38-34-PM.jpg",
+  "https://i.postimg.cc/rwPK4jdR/Whats-App-Image-2025-09-02-at-4-37-52-PM.jpg",
+];
+
+// Footer preview strip items
+const footerStrip = [
+  { icon: <Globe className="w-5 h-5" />, label: "Virtual Congress" },
+  { icon: <Presentation className="w-5 h-5" />, label: "International Speakers" },
+  { icon: <Users2 className="w-5 h-5" />, label: "IEEE Community" },
+  { icon: <Network className="w-5 h-5" />, label: "Global Networking" },
+  { icon: <Microscope className="w-5 h-5" />, label: "AI Research" },
+  { icon: <Briefcase className="w-5 h-5" />, label: "Industry Collaboration" },
+];
+
+// ------------------------------------------------------------------
+// Animated Counter Component
+// ------------------------------------------------------------------
+const AnimatedNumber = ({ target }: { target: number }) => {
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    const targetDate = new Date("2026-06-14T20:00:00").getTime();
+    if (target <= 0) return;
+    let start = 0;
+    const duration = 1500;
+    const stepTime = Math.abs(Math.floor(duration / target));
+    const timer = setInterval(() => {
+      start += 1;
+      setCount(start);
+      if (start >= target) clearInterval(timer);
+    }, stepTime);
+    return () => clearInterval(timer);
+  }, [target]);
+
+  return <span>{count}</span>;
+};
+
+// ------------------------------------------------------------------
+// Home Component
+// ------------------------------------------------------------------
+const Home: React.FC = () => {
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+  useEffect(() => {
+    const targetDate = new Date(ICAI_2026_DATE).getTime();
 
     const timer = setInterval(() => {
       const now = new Date().getTime();
@@ -20,29 +155,24 @@ const Home: React.FC = () => {
 
       if (diff <= 0) {
         clearInterval(timer);
-        setTimeLeft({
-          days: 0,
-          hours: 0,
-          minutes: 0,
-          seconds: 0,
-        });
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
         return;
       }
 
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor(
-        (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-      );
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
       setTimeLeft({ days, hours, minutes, seconds });
     }, 1000);
     return () => clearInterval(timer);
   }, []);
+
   return (
     <div>
-      {/* Hero Section */}
+      {/* ========================================================== */}
+      {/* HERO SECTION                                             */}
+      {/* ========================================================== */}
       <section className="relative h-screen flex items-center justify-center bg-gradient-to-r from-primary-900 to-primary-700 text-white">
         <div className="absolute inset-0 bg-black opacity-50"></div>
         <div
@@ -61,83 +191,60 @@ const Home: React.FC = () => {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white">
-              International Congress on
+              2nd International Congress on
               <br />
-              <span className="text-primary-300">
-                Artificial Intelligence (ICAI)
-              </span>
+              <span className="text-primary-300">Artificial Intelligence (ICAI 2026)</span>
             </h1>
-            <p className="text-xl md:text-3xl mb-6 text-secondary-200 font-semibold">
-              June 14-15, 2026
+            <p className="text-xl md:text-2xl mb-3 text-secondary-200 font-medium">
+              AI for Humanity: Research, Innovation, Industry, and Responsible Intelligence
+            </p>
+            <p className="text-lg md:text-xl mb-6 text-white/80">
+              1-2 October 2026 &bull; Virtual Congress
             </p>
 
-            {/* For TSX uncomment the commented types below */}
-            <div className="grid grid-flow-col gap-5 justify-center text-center auto-cols-max mb-3">
-              <div className="flex flex-col p-2 bg-primary-600 rounded-box text-neutral-content">
-                <span className="countdown font-mono text-3xl md:text-5xl">
-                  <span
-                    style={{ "--value": timeLeft?.days } as React.CSSProperties}
-                    aria-live="polite"
-                    aria-label={`${timeLeft?.days}`}
-                  >
-                    {timeLeft?.days}
+            {/* Countdown Timer (unchanged design) */}
+            <div className="grid grid-flow-col gap-5 justify-center text-center auto-cols-max mb-6">
+              {[
+                { value: timeLeft.days, label: "days" },
+                { value: timeLeft.hours, label: "hours" },
+                { value: timeLeft.minutes, label: "min" },
+                { value: timeLeft.seconds, label: "sec" },
+              ].map((item) => (
+                <div key={item.label} className="flex flex-col p-2 bg-primary-600 rounded-box text-neutral-content">
+                  <span className="countdown font-mono text-3xl md:text-5xl">
+                    {item.value}
                   </span>
-                </span>
-                days
-              </div>
-              <div className="flex flex-col p-2 bg-primary-600 rounded-box text-neutral-content">
-                <span className="countdown font-mono text-3xl md:text-5xl">
-                  <span
-                    style={
-                      { "--value": timeLeft?.hours } as React.CSSProperties
-                    }
-                    aria-live="polite"
-                    aria-label={`${timeLeft?.hours}`}
-                  >
-                    {timeLeft?.hours}
-                  </span>
-                </span>
-                hours
-              </div>
-              <div className="flex flex-col p-2 bg-primary-600 rounded-box text-neutral-content">
-                <span className="countdown font-mono text-3xl md:text-5xl">
-                  <span
-                    style={
-                      { "--value": timeLeft?.minutes } as React.CSSProperties
-                    }
-                    aria-live="polite"
-                    aria-label={`${timeLeft?.minutes}`}
-                  >
-                    {timeLeft?.minutes}
-                  </span>
-                </span>
-                min
-              </div>
-              <div className="flex flex-col p-2 bg-primary-600 rounded-box text-neutral-content">
-                <span className="countdown font-mono text-3xl md:text-5xl">
-                  <span
-                    style={
-                      { "--value": timeLeft?.seconds } as React.CSSProperties
-                    }
-                    aria-live="polite"
-                    aria-label={`${timeLeft?.seconds}`}
-                  >
-                    {timeLeft?.seconds}
-                  </span>
-                </span>
-                sec
-              </div>
+                  {item.label}
+                </div>
+              ))}
             </div>
 
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <a
-                href="/"
-                target="_blank"
-                className="btn btn-primary border-none"
-              >
-                Register Now
-              </a>
+            {/* CTA Buttons */}
+            <div className="flex flex-wrap justify-center gap-3">
+              {heroButtons.map((btn, idx) =>
+                btn.link ? (
+                  <Link
+                    key={idx}
+                    to={btn.link}
+                    className="inline-flex items-center gap-2 px-5 py-3 bg-white text-primary-700 font-semibold rounded-full hover:bg-primary-100 transition-colors duration-300"
+                  >
+                    {btn.icon}
+                    {btn.label}
+                  </Link>
+                ) : (
+                  <a
+                    key={idx}
+                    href={btn.href}
+                    className="inline-flex items-center gap-2 px-5 py-3 bg-white text-primary-700 font-semibold rounded-full hover:bg-primary-100 transition-colors duration-300"
+                    onClick={(e) => e.preventDefault()} // placeholder
+                  >
+                    {btn.icon}
+                    {btn.label}
+                  </a>
+                )
+              )}
             </div>
+            {/* TODO: Add real registration, ambassador, and speaker nomination links */}
           </motion.div>
         </div>
         <div className="absolute bottom-10 left-0 right-0 flex justify-center">
@@ -155,32 +262,42 @@ const Home: React.FC = () => {
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
               </svg>
             </a>
           </motion.div>
         </div>
       </section>
 
-      {/* Meet our speakers */}
+      {/* ========================================================== */}
+      {/* FEATURED SPEAKERS (Coming Soon Placeholder)                */}
+      {/* ========================================================== */}
       <section id="speakers" className="section bg-gray-100 px-2 md:px-10">
-        <img src="/speakers2025.jpg" alt="Speakers 2025" className="block mx-auto lg:w-[70%]" />
-        <div>
-          <h2 className="section-title mt-3 mb-3">Meet Our Distinguished Speakers</h2>
-          <p className="text-lg text-center">Gain insights from esteemed experts and thought leaders <br /> at the forefront of Artificial Intelligence research and innovation.</p>
-          <div className="flex justify-center gap-4 mt-3">
-            <Link to={"/speakers"} className="btn btn-primary border-none">View Speakers</Link>
-            <Link to={"/schedule"} className="btn btn-primary border-none">Event Schedule</Link>
+        <div className="flex flex-col items-center">
+          {/* Replace ICAI 2025 banner with a professional placeholder */}
+          <div className="w-full lg:w-[70%] bg-gradient-to-br from-primary-100 to-primary-50 rounded-2xl p-10 flex flex-col items-center justify-center mb-6">
+            <Presentation className="w-16 h-16 text-primary-400 mb-4" />
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">ICAI 2026 Distinguished Speakers Coming Soon</h2>
+            <p className="text-gray-600 text-center max-w-xl">
+              International keynote speakers, researchers, industry experts, and IEEE leaders will be announced soon.
+            </p>
+          </div>
+          <div>
+            <h2 className="section-title mt-3 mb-3">Meet Our Distinguished Speakers</h2>
+            <p className="text-lg text-center">
+              Gain insights from esteemed experts and thought leaders <br /> at the forefront of Artificial Intelligence research and innovation.
+            </p>
+            <div className="flex justify-center gap-4 mt-3">
+              <Link to={"/speakers"} className="btn btn-primary border-none">View Speakers</Link>
+              <Link to={"/schedule"} className="btn btn-primary border-none">Event Schedule</Link>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* About Section */}
+      {/* ========================================================== */}
+      {/* ABOUT ICAI 2026                                          */}
+      {/* ========================================================== */}
       <section id="about" className="section bg-white">
         <div className="container">
           <motion.div
@@ -189,29 +306,21 @@ const Home: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="section-title">About The Congress</h2>
+            <h2 className="section-title">About ICAI 2026</h2>
             <div className="max-w-3xl mx-auto text-center mb-12">
-              <p className="text-lg text-secondary-700 mb-6 text-justify">
-                The International Congress on Artificial Intelligence (ICAI)
-                2025 is a flagship two-day virtual event organized by the IEEE
-                Systems Council BUBT Student Branch Chapter and proudly
-                supported by the Bangladesh University of Business and
-                Technology (BUBT). This global platform will bring together
-                students, academics, industry experts, and innovators to explore
-                the latest breakthroughs, trends, and ethical considerations in
-                Artificial Intelligence. Through expert talks, live Q&A
-                sessions, and interactive discussions, the congress will cover
-                diverse themes such as AI in healthcare, autonomous systems,
-                security and privacy, education, emerging trends, and
-                responsible AI. By fostering collaboration and
-                knowledge-sharing, ICAI 2025 aims to inspire innovation,
-                strengthen professional networks, and highlight the role of AI
-                in shaping a better future. The event will be held online from 6
-                to 7 September 2025, offering participants the opportunity to
-                connect, learn, and contribute to the advancement of AI on a
-                global scale.
+              <p className="text-lg text-secondary-700 mb-4 text-justify">
+                The 2nd International Congress on Artificial Intelligence (ICAI 2026) is a premier global virtual event
+                organized by the IEEE Systems Council BUBT Student Branch Chapter. Building on the outstanding success of
+                its inaugural edition, ICAI 2026 aims to bring together a vibrant community of researchers, students,
+                IEEE volunteers, academia, startups, industry leaders, and technology innovators from across the globe.
               </p>
-              <p className="text-lg text-secondary-700"></p>
+              <p className="text-lg text-secondary-700 text-justify">
+                With a strong focus on Artificial Intelligence, Machine Learning, Generative AI, Data Science,
+                Responsible AI, Intelligent Systems, and emerging technologies, the congress provides an inclusive
+                platform for knowledge exchange, research collaboration, and professional networking. Through
+                expert talks, interactive discussions, and community engagement, ICAI 2026 continues its mission
+                to advance AI for the benefit of humanity.
+              </p>
             </div>
           </motion.div>
 
@@ -229,7 +338,7 @@ const Home: React.FC = () => {
                 </div>
                 <h3 className="text-xl font-semibold">Event Date</h3>
               </div>
-              <p className="text-secondary-700">June 14-15, 2026</p>
+              <p className="text-secondary-700">1-2 October 2026</p>
             </motion.div>
 
             <motion.div
@@ -245,9 +354,7 @@ const Home: React.FC = () => {
                 </div>
                 <h3 className="text-xl font-semibold">Location</h3>
               </div>
-              <p className="text-secondary-700">
-                Online - Join from anywhere in the world
-              </p>
+              <p className="text-secondary-700">Virtual Congress</p>
             </motion.div>
 
             <motion.div
@@ -263,38 +370,136 @@ const Home: React.FC = () => {
                 </div>
                 <h3 className="text-xl font-semibold">Participants</h3>
               </div>
-              <p className="text-secondary-700">
-                Expected 500+ attendees from academia and industry
-              </p>
+              <p className="text-secondary-700">1000+ Expected Participants Worldwide</p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* message from advisors */}
-
-      <section className="section bg-secondary-50 mb-4">
+      {/* ========================================================== */}
+      {/* BUILDING ON THE SUCCESS OF ICAI 2025                      */}
+      {/* ========================================================== */}
+      <section className="section bg-gray-50">
         <div className="container">
-          {/* <motion.div
-            initial={{opacity: 0, y: 20}}
-            whileInView={{opacity: 1, y: 0}}
-            viewport={{once: true}}
-            transition={{duration: 0.8}}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-12"
           >
-            <h2 className="section-title">Message from Advisors</h2>
-          </motion.div> */}
+            <h2 className="section-title">Building on the Success of ICAI 2025</h2>
+            <p className="text-lg text-secondary-700 max-w-3xl mx-auto">
+              The inaugural International Congress on Artificial Intelligence (ICAI 2025) successfully brought together
+              researchers, students, IEEE volunteers, academics, industry professionals, and innovators from around the world.
+              Building on this strong foundation, ICAI 2026 aims to deliver an even larger, more impactful international
+              platform for knowledge sharing, collaboration, innovation, and responsible Artificial Intelligence.
+            </p>
+          </motion.div>
 
+          {/* Animated achievement cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {achievements.map((item, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                className="bg-white rounded-xl shadow-md p-6 flex flex-col items-center justify-center text-center hover:shadow-lg transition-shadow duration-300"
+              >
+                <div className="mb-3 p-3 bg-primary-100 rounded-full">{item.icon}</div>
+                {item.value !== null ? (
+                  <div className="text-3xl font-bold text-primary-700">
+                    {item.value > 0 ? <AnimatedNumber target={item.value} /> : item.value}
+                    {item.suffix}
+                  </div>
+                ) : (
+                  <div className="text-2xl font-bold text-primary-700">🌍</div>
+                )}
+                <p className="text-sm text-gray-600 mt-2">{item.label}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================== */}
+      {/* ICAI 2025 HIGHLIGHTS                                     */}
+      {/* ========================================================== */}
+      <section className="section bg-white">
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-12"
+          >
+            <h2 className="section-title">ICAI 2025 Highlights</h2>
+          </motion.div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            {highlights.map((item, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: idx * 0.05 }}
+                className="bg-primary-50 rounded-lg p-4 flex items-center justify-center text-center hover:bg-primary-100 transition-colors duration-200"
+              >
+                <span className="text-primary-700 font-medium text-sm">{item}</span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================== */}
+      {/* CTA – BE PART OF ICAI 2026                               */}
+      {/* ========================================================== */}
+      <section className="py-16 bg-primary-700 text-white">
+        <div className="container text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
+              Be Part of ICAI 2026
+            </h2>
+            <p className="text-xl mb-8 max-w-3xl mx-auto text-primary-100">
+              Following the success of ICAI 2025, the second edition will offer even greater opportunities for
+              learning, collaboration, networking, innovation, and global engagement in Artificial Intelligence.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              {/* TODO: Replace with real registration link */}
+              <a href="#" className="btn bg-white text-primary-700 hover:bg-primary-100">Register Now</a>
+              {/* TODO: Replace with real ambassador registration */}
+              <a href="#" className="btn bg-white text-primary-700 hover:bg-primary-100">Become an Ambassador</a>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ========================================================== */}
+      {/* MESSAGES FROM ADVISORS                                    */}
+      {/* ========================================================== */}
+      <section className="section bg-secondary-50 mb-4">
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            {/* Vice Chancellor */}
             <div className="flex flex-col md:flex-row justify-center border p-5 rounded-md shadow-md mb-4 hover:bg-primary-50 duration-500">
               <div className="w-full md:w-1/3 flex flex-col justify-center items-center space-y-2">
                 <img
                   src="https://i.ibb.co.com/0jVMjqzz/download-1.png"
-                  alt="person"
+                  alt="Prof. Dr. A B M Shawkat Ali"
                   className="h-40 w-40 rounded-full"
                 />
                 <div className="text-center">
@@ -307,28 +512,25 @@ const Home: React.FC = () => {
                 <p className="text-justify font-medium text-gray-500 hover:text-gray-700 !duration-0">
                   I am delighted to welcome you to the{" "}
                   <span className="text-gray-700 font-semibold">
-                    International Congress on Artificial Intelligence (ICAI)
-                    2025
+                    2nd International Congress on Artificial Intelligence (ICAI 2026)
                   </span>
-                  , organized by the IEEE Systems Council BUBT Student Branch
-                  Chapter. This prestigious global platform unites experts,
-                  researchers, and learners to foster collaboration, share
-                  transformative AI insights, and inspire innovation. I commend
-                  the organizers for their vision and dedication, and I wish all
-                  participants a highly engaging, inspiring, and impactful
-                  experience.
+                  , organized by the IEEE Systems Council BUBT Student Branch Chapter. This prestigious global platform
+                  continues to unite experts, researchers, and learners to foster collaboration, share transformative
+                  AI insights, and inspire innovation. I commend the organizers for their vision and dedication, and I
+                  wish all participants a highly engaging, inspiring, and impactful experience.
                 </p>
               </div>
             </div>
+            {/* Chairman */}
             <div className="flex flex-col md:flex-row-reverse justify-center border p-5 rounded-md shadow-md hover:bg-primary-50 duration-500">
               <div className="w-full md:w-1/3 flex flex-col justify-center items-center space-y-2">
                 <img
-                  src="https://i.ibb.co.com/NghXzQCr/download-2.png"
-                  alt="person"
+                  src="https://i.ibb.co.com/wN2PthKc/chairman.jpg"
+                  alt="Prof. Dr. Md. Ahsan Habib"
                   className="h-40 w-40 rounded-full"
                 />
                 <div className="text-center">
-                  <h3>Md. Saifur Rahman</h3>
+                  <h3>Prof. Dr. Md. Ahsan Habib</h3>
                   <p>Chairman, Dept. of CSE, BUBT</p>
                 </div>
               </div>
@@ -337,16 +539,12 @@ const Home: React.FC = () => {
                 <p className="text-justify font-medium text-gray-500 hover:text-gray-700 !duration-0">
                   I am pleased to welcome you to the{" "}
                   <span className="text-gray-700 font-semibold">
-                    International Congress on Artificial Intelligence (ICAI)
-                    2025
-                  </span>{" "}
-                  , organized by the IEEE Systems Council BUBT Student Branch
-                  Chapter. This distinguished platform offers a unique
-                  opportunity to explore cutting-edge AI innovations and connect
-                  with a global network of experts. I applaud the
-                  organizers&apos; dedication and wish all participants an
-                  inspiring, collaborative, and impactful experience over these
-                  two transformative days.
+                    2nd International Congress on Artificial Intelligence (ICAI 2026)
+                  </span>
+                  , organized by the IEEE Systems Council BUBT Student Branch Chapter. This distinguished platform
+                  offers a unique opportunity to explore cutting-edge AI innovations and connect with a global network
+                  of experts. I applaud the organizers&apos; dedication and wish all participants an inspiring,
+                  collaborative, and impactful experience over these two transformative days.
                 </p>
               </div>
             </div>
@@ -354,6 +552,9 @@ const Home: React.FC = () => {
         </div>
       </section>
 
+      {/* ========================================================== */}
+      {/* IEEE vTOOLS REGISTRATION                                  */}
+      {/* ========================================================== */}
       <section className="py-16 bg-primary-700 text-white">
         <div className="container text-center">
           <motion.div
@@ -366,22 +567,25 @@ const Home: React.FC = () => {
               Official IEEE vTools Event Registration
             </h2>
             <p className="text-xl mb-8 max-w-3xl mx-auto text-primary-100">
-              ICAI 2025 is officially listed on the IEEE vTools Events Platform, ensuring authenticity and global recognition within the IEEE community. Organized by IEEE Systems Council BUBT Student Branch Chapter (OU Code: SBC03252H).
+              ICAI 2026 will be officially listed on the IEEE vTools Events Platform upon approval. The official
+              IEEE registration page will be published here once available.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <a
-                href="https://events.vtools.ieee.org/m/499358"
-                target="_blank"
-                className="btn bg-[#F8961E] text-white hover:bg-[#c4a416]"
+              {/* TODO: Replace with actual vTools link when approved */}
+              <button
+                disabled
+                className="btn bg-gray-400 text-white cursor-not-allowed opacity-70"
               >
-                vTools Event Report
-              </a>
+                Coming Soon
+              </button>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Key Features */}
+      {/* ========================================================== */}
+      {/* WHY ATTEND ICAI 2026                                    */}
+      {/* ========================================================== */}
       <section className="section bg-secondary-50">
         <div className="container">
           <motion.div
@@ -390,126 +594,33 @@ const Home: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="section-title">Congress Highlights</h2>
+            <h2 className="section-title">Why Attend ICAI 2026</h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="card p-6"
-            >
-              <div className="flex items-center mb-4">
-                <div className="p-3 bg-primary-100 rounded-full mr-4">
-                  <Users className="h-6 w-6 text-primary-600" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+            {whyAttend.map((item, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                className="card p-6"
+              >
+                <div className="flex items-center mb-4">
+                  <div className="p-3 bg-primary-100 rounded-full mr-4">{item.icon}</div>
+                  <h3 className="text-xl font-semibold">{item.title}</h3>
                 </div>
-                <h3 className="text-xl font-semibold">Keynote Speakers</h3>
-              </div>
-              <p className="text-secondary-700 mb-4">
-                Distinguished speakers from leading universities and tech
-                companies sharing insights on emerging technologies.
-              </p>
-            </motion.div>
-
-            {/* <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="card p-6"
-            >
-              <div className="flex items-center mb-4">
-                <div className="p-3 bg-primary-100 rounded-full mr-4">
-                  <Clock className="h-6 w-6 text-primary-600" />
-                </div>
-                <h3 className="text-xl font-semibold">Workshops</h3>
-              </div>
-              <p className="text-secondary-700 mb-4">
-                Interactive workshops on cutting-edge technologies and
-                methodologies led by industry experts.
-              </p>
-            </motion.div> */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="card p-6"
-            >
-              <div className="flex items-center mb-4">
-                <div className="p-3 bg-primary-100 rounded-full mr-4">
-                  <Clock className="h-6 w-6 text-primary-600" />
-                </div>
-                <h3 className="text-xl font-semibold">Panel Discussions</h3>
-              </div>
-              <p className="text-secondary-700 mb-4">
-                Engaging discussions featuring experts debating current trends,
-                challenges, and future directions in technology and research.
-              </p>
-            </motion.div>
-
-            {/* <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="card p-6"
-            >
-              <div className="flex items-center mb-4">
-                <div className="p-3 bg-primary-100 rounded-full mr-4">
-                  <Clock className="h-6 w-6 text-primary-600" />
-                </div>
-                <h3 className="text-xl font-semibold">Innovation Showcase</h3>
-              </div>
-              <p className="text-secondary-700 mb-4">
-                Presentations and demonstrations of groundbreaking research,
-                prototypes, and technological advancements.
-              </p>
-            </motion.div> */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="card p-6"
-            >
-              <div className="flex items-center mb-4">
-                <div className="p-3 bg-primary-100 rounded-full mr-4">
-                  <Clock className="h-6 w-6 text-primary-600" />
-                </div>
-                <h3 className="text-xl font-semibold">Career Opportunities</h3>
-              </div>
-              <p className="text-secondary-700 mb-4">
-                Insights into career paths, job market trends, and recruitment
-                opportunities from top companies and research institutions.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              className="card p-6"
-            >
-              <div className="flex items-center mb-4">
-                <div className="p-3 bg-primary-100 rounded-full mr-4">
-                  <Users className="h-6 w-6 text-primary-600" />
-                </div>
-                <h3 className="text-xl font-semibold">Networking</h3>
-              </div>
-              <p className="text-secondary-700 mb-4">
-                Opportunities to connect with researchers, academics, and
-                industry professionals from around the world.
-              </p>
-            </motion.div>
+                <p className="text-secondary-700">{item.description}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* ========================================================== */}
+      {/* JOIN ICAI 2026 CTA                                       */}
+      {/* ========================================================== */}
       <section className="py-16 bg-primary-700 text-white">
         <div className="container text-center">
           <motion.div
@@ -519,28 +630,25 @@ const Home: React.FC = () => {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
-              Ready to Join ICAI 2025?
+              Join ICAI 2026
             </h2>
             <p className="text-xl mb-8 max-w-3xl mx-auto text-primary-100">
-              Don&apos;t miss this opportunity to be part of the leading
-              congress in AI. Register now to secure your spot!
+              Become part of an international community advancing Artificial Intelligence through research,
+              innovation, collaboration, and professional development.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLSeYlWXatwaXOicPfDS_qWU5V7yzd6Mw3qfPtyAuZjsHPBnREw/viewform"
-                target="_blank"
-                className="btn bg-white text-primary-700 hover:bg-primary-100"
-              >
-                Register Now
-              </a>
+              {/* TODO: Add real registration link */}
+              <a href="#" className="btn bg-white text-primary-700 hover:bg-primary-100">Register Now</a>
+              {/* TODO: Add real ambassador link */}
+              <a href="#" className="btn bg-white text-primary-700 hover:bg-primary-100">Become an Ambassador</a>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* organized by & supported by */}
-
-      {/* Organizers & Supporters Section */}
+      {/* ========================================================== */}
+      {/* PARTNERS SECTIONS                                         */}
+      {/* ========================================================== */}
       <section className="section bg-gradient-to-b from-white to-gray-50 py-16">
         <div className="container mx-auto px-4 md:px-6">
           <motion.div
@@ -550,145 +658,145 @@ const Home: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            {/* Organizers */}
+            {/* Organized By */}
             <div className="mb-16">
-              <h3 className="text-2xl md:text-3xl font-semibold text-secondary-800 mb-10">
-                Organized By
-              </h3>
+              <h3 className="text-2xl md:text-3xl font-semibold text-secondary-800 mb-10">Organized By</h3>
               <div className="flex justify-center items-center max-w-5xl mx-auto">
-                {[
-                  {
-                    logo: "https://ieeecsbdc.org/assets/logo-fd1b8824.png",
-                  },
-                ].map((org, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: index * 0.2 }}
-                    className="group w-full max-w-md p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 hover:bg-primary-50"
-                  >
-                    <div className="relative overflow-hidden rounded-xl">
-                      <img
-                        src={"https://i.ibb.co.com/d0vnyxmH/bubt.png"}
-                        alt="Organizer logo"
-                        className="h-36 md:h-40 w-auto mx-auto object-contain transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-transparent to-white opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-            {/* supported by */}
-            <div className="mb-16">
-              <h3 className="text-2xl md:text-3xl font-semibold text-secondary-800 mb-10">
-                Supported By
-              </h3>
-              <div className="flex justify-center items-center max-w-5xl mx-auto">
-                {[
-                  {
-                    logo: "https://i.postimg.cc/8PhtFvTZ/bubt-logo.png",
-                  },
-                ].map((org, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: index * 0.2 }}
-                    className="group w-full max-w-md p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 hover:bg-primary-50"
-                  >
-                    <div className="relative overflow-hidden rounded-xl">
-                      <img
-                        src={org?.logo}
-                        alt="Organizer logo"
-                        className="h-36 md:h-40 w-auto mx-auto object-contain transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-transparent to-white opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
-                    </div>
-                  </motion.div>
-                ))}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  className="group w-full max-w-md p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 hover:bg-primary-50"
+                >
+                  <div className="relative overflow-hidden rounded-xl">
+                    <img
+                      src="https://i.ibb.co.com/d0vnyxmH/bubt.png"
+                      alt="IEEE BUBT Student Branch"
+                      className="h-36 md:h-40 w-auto mx-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <p className="mt-4 text-gray-600 text-sm">
+                    ICAI 2026 is proudly organized by the IEEE Systems Council BUBT Student Branch Chapter.
+                  </p>
+                </motion.div>
               </div>
             </div>
 
-            {/* Supporters */}
-            <div>
-              <h3 className="text-2xl md:text-3xl font-semibold text-secondary-800 mb-10">
-                Our Collaboration Partners
-              </h3>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8 items-center justify-items-center max-w-6xl mx-auto">
-                {[
-                  {
-                    logo: "https://i.postimg.cc/W33V9XTs/1-CS-Morsalin-Ahmed-Patwary.png",
-                  },
-                  {
-                    logo: "https://i.postimg.cc/3JD85SpR/797-IEEE-AUST-STUDENT-BRANCH.jpg",
-                  },
-                  {
-                    logo: "https://i.postimg.cc/L5GmgLd2/Asset-5-4x-Naimul-Haque.png",
-                  },
-                  {
-                    logo: "https://i.postimg.cc/sg7gS6D8/FB-IMG-1755683384861-Zinat-Azim.jpg",
-                  },
-                  {
-                    logo: "https://i.postimg.cc/Y2YrvkQY/386342557-122107142024057422-7179772533766904515-n.jpg",
-                  },
-                  {
-                    logo: "https://i.postimg.cc/hjyDgNpJ/ieee-cs-jnu-sbc-Md-Abu-Saeed.png",
-                  },
-                  {
-                    logo: "https://i.postimg.cc/tJp3QZvR/IEEE-DIU-SB-Computer-Society-Chapter-logo-AKIB-MAHMUD.png",
-                  },
-                  {
-                    logo: "https://i.postimg.cc/Njqgg67x/IEEE-IAS-K-M-RUBAIYAT-HASAN-221-33-1767.png",
-                  },
-                  {
-                    logo: "https://i.postimg.cc/9fBXgD9Y/IEEE-SB-GUB-Faysal-Hossain-Tomal.png",
-                  },
-                  {
-                    logo: "https://i.postimg.cc/k4XJ07F3/IEEE-UAP-SB-Official-Md-Nahedul-Islam.jpg",
-                  },
-                  {
-                    logo: "https://i.postimg.cc/T1KRPQ4t/ieee-diu-logo-new-Jose-C-Dishman.png",
-                  },
-                  {
-                    logo: "https://i.postimg.cc/1zS5KG8z/inbound882344196217121997-Susmoy-Barua.jpg",
-                  },
-                  {
-                    logo: "https://i.postimg.cc/Gtq7fWwz/367001074-718013033674426-1996992789129344167-n-1.jpg",
-                  },
-                  {
-                    logo: "https://i.postimg.cc/Dz4mPGsj/IEEE-CS-UIU-color-Provat-Kundu.png",
-                  },
-                  {
-                    logo: "https://i.postimg.cc/1txXCzr9/Whats-App-Image-2025-09-02-at-4-38-34-PM.jpg",
-                  },
-                  {
-                    logo: "https://i.postimg.cc/rwPK4jdR/Whats-App-Image-2025-09-02-at-4-37-52-PM.jpg",
-                  },
-                ].map((partner, index) => (
+            {/* Supported By */}
+            <div className="mb-16">
+              <h3 className="text-2xl md:text-3xl font-semibold text-secondary-800 mb-10">Supported By</h3>
+              <div className="flex justify-center items-center max-w-5xl mx-auto">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  className="group w-full max-w-md p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 hover:bg-primary-50"
+                >
+                  <div className="relative overflow-hidden rounded-xl">
+                    <img
+                      src="https://i.postimg.cc/8PhtFvTZ/bubt-logo.png"
+                      alt="BUBT"
+                      className="h-36 md:h-40 w-auto mx-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+
+            {/* Technical Partners (NEW) */}
+            <div className="mb-16">
+              <h3 className="text-2xl md:text-3xl font-semibold text-secondary-800 mb-6">Technical Partners</h3>
+              <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
+                Technical Partners contribute technical expertise, academic collaboration, and knowledge sharing to strengthen ICAI 2026.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
+                {Array.from({ length: 4 }).map((_, idx) => (
                   <motion.div
-                    key={index}
+                    key={idx}
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    transition={{ duration: 0.5, delay: idx * 0.1 }}
+                    className="bg-white rounded-xl shadow p-6 flex flex-col items-center justify-center text-center hover:shadow-lg transition-shadow duration-300"
+                  >
+                    {/* TODO: Replace dummy logo with real technical partner logo */}
+                    <div className="w-20 h-20 bg-gray-200 rounded-full flex items-center justify-center mb-3">
+                      <Sparkles className="w-8 h-8 text-gray-400" />
+                    </div>
+                    <h4 className="font-semibold text-gray-700">Technical Partner</h4>
+                    <span className="text-xs text-primary-500 bg-primary-50 px-2 py-0.5 rounded-full mt-1">Coming Soon</span>
+                  </motion.div>
+                ))}
+              </div>
+              {/* TODO: Add real technical partner logos */}
+            </div>
+
+            {/* Collaboration Partners */}
+            <div>
+              <h3 className="text-2xl md:text-3xl font-semibold text-secondary-800 mb-6">Collaboration Partners</h3>
+              <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
+                ICAI 2026 welcomes collaboration from IEEE Student Branches, IEEE Chapters, universities, research
+                laboratories, startups, innovation hubs, professional societies, and industry organizations worldwide.
+              </p>
+              {/* Become a Collaboration Partner button */}
+              <div className="mb-10">
+                {/* TODO: Replace with actual collaboration form link */}
+                <a
+                  href="#"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 text-white font-semibold rounded-full hover:bg-primary-700 transition-colors duration-300"
+                  onClick={(e) => e.preventDefault()}
+                >
+                  <Users2 className="w-5 h-5" />
+                  Become a Collaboration Partner
+                </a>
+              </div>
+              {/* <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8 items-center justify-items-center max-w-6xl mx-auto">
+                {collaborationPartners.map((logo, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: idx * 0.1 }}
                     className="group w-full p-6 bg-white rounded-lg shadow hover:shadow-lg transition-all duration-300"
                   >
                     <div className="relative overflow-hidden rounded-lg">
                       <img
-                        src={partner.logo}
-                        alt="Supporter logo"
-                        className="h-32 w-auto mx-auto object-contain transition-all duration-300 transform group-hover:scale-105"
+                        src={logo}
+                        alt="Collaboration Partner"
+                        className="h-32 w-auto mx-auto object-contain transition-transform duration-300 group-hover:scale-105"
                       />
                     </div>
                   </motion.div>
                 ))}
-              </div>
+              </div> */}
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* ========================================================== */}
+      {/* FOOTER PREVIEW STRIP                                     */}
+      {/* ========================================================== */}
+      <section className="bg-primary-800 text-white py-8">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10">
+            {footerStrip.map((item, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: idx * 0.1 }}
+                className="flex items-center gap-2"
+              >
+                {item.icon}
+                <span className="text-sm font-medium">{item.label}</span>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
     </div>
