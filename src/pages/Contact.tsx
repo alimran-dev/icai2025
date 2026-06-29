@@ -10,7 +10,7 @@ const Contact: React.FC = () => {
           <div className="text-center">
             <h1 className="text-3xl font-bold text-white mb-4">Get in Touch</h1>
             <p className="text-lg text-primary-100 max-w-xl mx-auto">
-              Have questions about ICRCS 2025? We're here to help.
+              Have questions about ICAI 2026? We're here to help.
             </p>
           </div>
         </div>
@@ -27,10 +27,10 @@ const Contact: React.FC = () => {
                 <h3 className="font-semibold text-gray-800">Email Us</h3>
               </div>
               <a
-                href="mailto:icai@ieee.org"
+                href="mailto:icai.bubt@gmail.com"
                 className="text-primary-600 hover:underline"
               >
-                icai@ieee.org
+                icai.bubt@gmail.com
               </a>
             </div>
 
@@ -42,16 +42,16 @@ const Contact: React.FC = () => {
               </div>
               <div className="space-y-2">
                 <a
-                  href="https://wa.me/8801710048394"
+                  href="https://wa.me/"
                   className="block text-primary-600 hover:underline"
                 >
-                  +880 1710 048394 (Registration Chair)
+                   Coming Soon (Registration Chair)
                 </a>
                 <a
-                  href="https://wa.me/8801985419558"
+                  href="https://wa.me/"
                   className="block text-primary-600 hover:underline"
                 >
-                  +880 1985 419558 (Ambassador Chair)
+                  Coming Soon (Ambassador Chair)
                 </a>
               </div>
             </div>
@@ -63,7 +63,7 @@ const Contact: React.FC = () => {
               </div>
               <div className="flex gap-4">
                 <a
-                  href="https://www.facebook.com/icrcsbd"
+                  href="https://www.facebook.com/InternationalCongressonArtificialIntelligence"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-primary-600 hover:text-primary-700"
@@ -71,7 +71,7 @@ const Contact: React.FC = () => {
                   <FacebookIcon size={20} />
                 </a>
                 <a
-                  href="https://www.linkedin.com/company/icrcsbd/"
+                  href="https://www.linkedin.com/company/108141637/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-primary-600 hover:text-primary-700"
