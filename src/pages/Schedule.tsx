@@ -1,93 +1,39 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 
+// =============================================
+// ICAI 2026 Demo Schedule
+// Replace the placeholder sessions below with
+// the official congress schedule once approved.
+// =============================================
 const scheduleData = {
   day1: [
     {
-      // image: "/speakers/zahidul.jpg",
-      speaker: "Prof. Ashad Kabir",
-      localTime: "08:10 PM - 08:30 PM",
-      utcTime: "02:10 PM - 02:30 PM",
-      duration: "20 minutes",
-      topic: "Applications of Artificial Intelligence and Smartphone Apps in Health and Agriculture: Recent Advancements and Opportunities",
-    },
-    {
-      // image: "/speakers/zahidul.jpg",
-      speaker: "Dr. Gaurav Kumar Bharti",
-      localTime: "08:35 PM - 08:55 PM",
-      utcTime: "02:35 PM - 02:55 PM",
-      duration: "20 minutes",
-      topic: "AI Assisted FBG Optical Sensors for Healthcare Applications",
-    },
-    {
-      // image: "/speakers/zahidul.jpg",
-      speaker: "Dr. Mohammad Shamsul Arefin",
-      localTime: "09:00 PM - 09:20 PM",
-      utcTime: "03:00 PM - 03:20 PM",
-      duration: "20 minutes",
-      topic: "Ethical Use of AI in Academia: Challanges and Opportunities",
-    },
-    {
-      // image: "/speakers/zahidul.jpg",
-      speaker: "Md Sohanur Rahman",
-      localTime: "09:25 PM - 09:45 PM",
-      utcTime: "03:25 PM - 03:45 PM",
-      duration: "20 minutes",
-      topic: "Innovating the Future with Big Data: Bridging Research and Industry",
-    },
-    {
-      // image: "/speakers/zahidul.jpg",
-      speaker: "Md. Fahim Hossain",
-      localTime: "09:50 PM - 10:10 PM",
-      utcTime: "03:50 PM - 04:10 PM",
-      duration: "20 minutes",
-      topic: "AI and Emerging Tech for Climate Action.",
+      speaker: "Coming Soon",
+      topic: "Opening Ceremony & Keynote Session",
+      localTime: "TBA",
+      utcTime: "TBA",
+      duration: "TBA",
     },
   ],
   day2: [
     {
-      // image: "/speakers/zahidul.jpg",
-      speaker: "Prof. Dr. A B M Shawkat Ali",
-      localTime: "08:10 PM - 08:30 PM",
-      utcTime: "02:10 PM - 02:30 PM",
-      duration: "20 minutes",
-      topic: "AI in Practice.",
-    },
-    {
-      // image: "/speakers/zahidul.jpg",
-      speaker: "Md Imdadul Islam",
-      localTime: "08:35 PM - 08:55 PM",
-      utcTime: "02:35 PM - 02:55 PM",
-      duration: "20 minutes",
-      topic: "Leveraging AI for Professional Growth",
-    },
-    {
-      // image: "/speakers/zahidul.jpg",
-      speaker: "Dr. Shashikant Patil",
-      localTime: "09:00 PM - 09:20 PM",
-      utcTime: "03:00 PM - 03:20 PM",
-      duration: "20 minutes",
-      topic: "Gen AI and Agentic AI",
-    },
-    {
-      // image: "/speakers/zahidul.jpg",
-      speaker: "Dr. Md. Zulfiker Mahmud",
-      localTime: "09:25 PM - 09:45 PM",
-      utcTime: "03:25 PM - 03:45 PM",
-      duration: "20 minutes",
-      topic: "Genesis System: A Dual-Model AI Framework for Reverse Engineering Microstrip Patch Antennas",
-    },
-    {
-      // image: "/speakers/zahidul.jpg",
-      speaker: "Dr. Mohammad Firoz Mridha",
-      localTime: "09:50 PM - 10:10 PM",
-      utcTime: "03:50 PM - 04:10 PM",
-      duration: "20 minutes",
-      topic: "AI and Research Ethics: Opportunities and Responsibilities for Students",
+      speaker: "Coming Soon",
+      topic: "Technical Sessions & Closing Ceremony",
+      localTime: "TBA",
+      utcTime: "TBA",
+      duration: "TBA",
     },
   ],
 };
+
+// TODO:
+// - Update speaker names
+// - Update session titles
+// - Update BD and UTC timings
+// - Add Zoom links
+// - Add remaining sessions
+
 export default function Schedule() {
   const [activeTab, setActiveTab] = useState("day1");
   return (
@@ -104,13 +50,13 @@ export default function Schedule() {
               Program Schedule
             </h1>
             <p className="text-xl max-w-3xl mx-auto text-primary-100">
-              Check out the schedule for ICAI 2025 below.
+              The official ICAI 2026 program schedule will be announced soon. The schedule below is a temporary preview.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Time zone info */}
+      {/* Time zone info – preserved for ICAI 2026 context */}
       <div className="mb-6 bg-blue-50 p-4 rounded-lg">
         <p className="text-center text-blue-800">
           <span className="font-semibold">Local Time:</span> Bangladesh (UTC+6)
@@ -119,37 +65,40 @@ export default function Schedule() {
       </div>
 
       <section className="max-w-6xl mx-auto py-6">
+        {/* Tabs with updated ICAI 2026 dates */}
         <div className="flex mb-6 border-b">
           <button
             className={`py-2 px-6 font-medium ${activeTab === "day1" ? "text-indigo-600 border-b-2 border-indigo-600" : "text-gray-500"}`}
             onClick={() => setActiveTab("day1")}
           >
-            Day 1 (6 September 2025)
+            Day 1 (1 October 2026)
           </button>
           <button
             className={`py-2 px-6 font-medium ${activeTab === "day2" ? "text-indigo-600 border-b-2 border-indigo-600" : "text-gray-500"}`}
             onClick={() => setActiveTab("day2")}
           >
-            Day 2 (7 September 2025)
+            Day 2 (2 October 2026)
           </button>
         </div>
 
-        <div>
-          {activeTab === "day1" ? <div className="flex gap-5">
-            <Link to={"https://bdren.zoom.us/j/8801818241?pwd=SmZkFTHvRRc5mRsx2LV3zOuoxzkr3G.1&omn=93048135218"} className="bg-[#2C4EF7] px-5 py-1.5 rounded-md text-white font-semibold ml-5">Zoom Link</Link>
-            <p className="font-semibold border-2 border-[#2C4EF7] rounded-md px-4 py-1.5">Passcode: icai</p>
-          </div>:<div className="flex gap-5">
-            <Link to={"https://bdren.zoom.us/j/8801818241?pwd=SmZkFTHvRRc5mRsx2LV3zOuoxzkr3G.1&omn=96640207975"} className="bg-[#2C4EF7] px-5 py-1.5 rounded-md text-white font-semibold ml-5">Zoom Link</Link>
-            <p className="font-semibold border-2 border-[#2C4EF7] rounded-md px-4 py-1.5">Passcode: icai</p>
-          </div>}
+        {/* Zoom & Passcode – temporary coming soon notice */}
+        <div className="flex justify-center gap-5 mt-5 mb-8">
+          <div className="flex flex-col items-center bg-gray-50 border border-gray-200 rounded-md px-5 py-3 min-w-[140px]">
+            <span className="font-semibold text-gray-600 text-sm">Zoom Details</span>
+            <span className="text-gray-500 text-xs mt-1">Coming Soon</span>
+          </div>
+          <div className="flex flex-col items-center bg-gray-50 border border-gray-200 rounded-md px-5 py-3 min-w-[140px]">
+            <span className="font-semibold text-gray-600 text-sm">Passcode</span>
+            <span className="text-gray-500 text-xs mt-1">Coming Soon</span>
+          </div>
         </div>
 
+        {/* Schedule table – uses demo placeholder data */}
         <div className="container mx-auto px-4 overflow-x-auto mt-5">
           <table className="min-w-full table-auto">
             <thead className="bg-gray-50">
               <tr>
                 <th className="px-4 py-2">Speaker</th>
-
                 <th className="px-4 py-2">Topic</th>
                 <th className="px-4 py-2">BD Time</th>
                 <th className="px-4 py-2">UTC Time</th>
