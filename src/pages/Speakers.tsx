@@ -1,38 +1,19 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Mail } from "lucide-react";
-import speakersData from "../../data/speakers.json";
-import { Link } from "react-router-dom";
+// import speakersData from "../../data/speakers.json"; // Temporarily disabled for ICAI 2026
 
-interface Speaker {
-  id: string;
-  name: string;
-  title: string;
-  topic: string;
-  email?: string;
-  image?: string;
-  description?: string;
-  bio?: string;
-}
+// ============================================================
+// ICAI 2026 Speakers – Placeholder
+// The official speaker lineup is not yet published.
+// Uncomment the import and the grid mapping below once
+// the confirmed speakers are available.
+// ============================================================
 
 const Speakers: React.FC = () => {
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
-
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0 },
-  };
 
   return (
     <div className="pt-20 bg-gray-50">
+      {/* Header – identical style, subtitle updated for ICAI 2026 */}
       <section className="bg-gradient-to-r from-primary-800 to-primary-600 py-20 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0 bg-[url('/pattern.svg')] bg-repeat"></div>
@@ -48,15 +29,21 @@ const Speakers: React.FC = () => {
               Distinguished Speakers
             </h1>
             <p className="text-xl max-w-3xl mx-auto text-primary-50 leading-relaxed">
-              Join us in welcoming our esteemed speakers who will share their
-              expertise and insights in various domains of computer science and
-              technology.
+              The official ICAI 2026 speaker lineup will be announced soon.
+              Please check back later for updates.
             </p>
           </motion.div>
         </div>
       </section>
 
+      {/* Speakers Grid – replaced with a professional Coming Soon placeholder */}
       <div className="container mx-auto px-4 py-20">
+        {/* 
+          // TODO: ICAI 2026 Speakers
+          // Uncomment the following block and replace the placeholder
+          // once the speaker list is finalized.
+        */}
+        {/* 
         <motion.div
           variants={container}
           initial="hidden"
@@ -116,6 +103,71 @@ const Speakers: React.FC = () => {
               </div>
             </motion.div>
           ))}
+        </motion.div>
+        */}
+
+        {/* ICAI 2026 – Speakers Coming Soon Placeholder */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex justify-center"
+        >
+          <div className="w-full max-w-2xl bg-white rounded-2xl shadow-lg border border-primary-100 p-10 text-center">
+            {/* Icon */}
+            <div className="flex justify-center mb-5">
+              <svg
+                className="w-16 h-16 text-primary-400"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z"
+                />
+              </svg>
+            </div>
+            <h2 className="text-3xl font-bold text-gray-800 mb-3">
+              Coming Soon
+            </h2>
+            <p className="text-gray-600 text-lg mb-8">
+              We are curating an exciting lineup of distinguished speakers from
+              academia and industry. The full speaker list for ICAI 2026 will be
+              published shortly.
+            </p>
+
+            {/* Placeholder list */}
+            <div className="space-y-3 text-left max-w-sm mx-auto">
+              {[
+                "Keynote Speakers",
+                "Invited Talks",
+                "Technical Sessions",
+                "Panel Discussions",
+              ].map((item) => (
+                <div
+                  key={item}
+                  className="flex items-center justify-between border border-gray-200 rounded-lg px-4 py-2"
+                >
+                  <span className="text-gray-700 font-medium">{item}</span>
+                  <span className="text-xs text-primary-500 bg-primary-50 px-2 py-0.5 rounded-full font-medium">
+                    Coming Soon
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-8">
+              <button
+                className="inline-flex items-center px-6 py-3 bg-primary-600 text-white font-semibold rounded-full shadow hover:bg-primary-700 transition-colors duration-200"
+                onClick={(e) => e.preventDefault()}
+              >
+                Stay Tuned
+              </button>
+            </div>
+          </div>
         </motion.div>
       </div>
     </div>
