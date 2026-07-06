@@ -32,11 +32,11 @@ const Committee: React.FC = () => {
         role: "Lecturer, Dept. of CSE, BUBT",
         image: "https://i.ibb.co/ZYbkQhy/Shrabani-Das-Shrabani-Das.jpg",
       },
-      {
-        name: "Sudipa Saha",
-        role: "Lecturer, Dept. of CSE, BUBT",
-        image: "https://i.postimg.cc/MGGmNw2q/download-3.jpg",
-      },
+      // {
+      //   name: "Sudipa Saha",
+      //   role: "Lecturer, Dept. of CSE, BUBT",
+      //   image: "https://i.postimg.cc/MGGmNw2q/download-3.jpg",
+      // },
     ],
     "General Chair": [
       {
