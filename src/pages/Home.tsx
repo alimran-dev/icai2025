@@ -22,26 +22,23 @@ import { Link } from "react-router-dom";
 // Reusable Data Arrays
 // ------------------------------------------------------------------
 
-// Countdown target (ICAI 2026 begins on 1 October 2026)
-const ICAI_2026_DATE = "2026-10-01T20:00:00";
+// Countdown target (ICAI 2026 begins on 18 July 2026)
+const ICAI_2026_DATE = "2026-07-18T20:00:00";
 
 // Hero CTA buttons (with TODO placeholders)
 const heroButtons = [
   {
     label: "Register Now",
-    // TODO: Replace with actual registration link
     href: "#",
     icon: <Users2 className="w-4 h-4" />,
   },
   {
     label: "Become an Ambassador",
-    // TODO: Replace with actual ambassador form
     href: "#",
     icon: <Globe className="w-4 h-4" />,
   },
   {
     label: "Speaker Nomination",
-    // TODO: Replace with speaker nomination form
     href: "#",
     icon: <Presentation className="w-4 h-4" />,
   },
@@ -60,7 +57,7 @@ const achievements = [
   { icon: <Award className="w-6 h-6" />, label: "Student Ambassadors", value: 147 },
   { icon: <Briefcase className="w-6 h-6" />, label: "Collaboration Partners", value: 16 },
   { icon: <Presentation className="w-6 h-6" />, label: "Distinguished Speakers", value: 10 },
-  { icon: <Clock className="w-6 h-6" />, label: "Two-Day Virtual Congress", value: 2, suffix: "" },
+  { icon: <Clock className="w-6 h-6" />, label: "Three-Day Virtual Congress", value: 3, suffix: "" },
   { icon: <Globe className="w-6 h-6" />, label: "Global IEEE Community Engagement", value: null },
 ];
 
@@ -86,26 +83,6 @@ const whyAttend = [
   { icon: <Presentation className="w-8 h-8 text-primary-600" />, title: "Panel Discussions", description: "Engaging debates with experts on the future of responsible AI and policy." },
   { icon: <Briefcase className="w-8 h-8 text-primary-600" />, title: "Career Development", description: "Insights into AI career paths, skills, and opportunities from top recruiters." },
   { icon: <Network className="w-8 h-8 text-primary-600" />, title: "Global Networking", description: "Connect with researchers, students, IEEE volunteers, and industry professionals worldwide." },
-];
-
-// Collaboration partner logos (existing)
-const collaborationPartners = [
-  "https://i.postimg.cc/W33V9XTs/1-CS-Morsalin-Ahmed-Patwary.png",
-  "https://i.postimg.cc/3JD85SpR/797-IEEE-AUST-STUDENT-BRANCH.jpg",
-  "https://i.postimg.cc/L5GmgLd2/Asset-5-4x-Naimul-Haque.png",
-  "https://i.postimg.cc/sg7gS6D8/FB-IMG-1755683384861-Zinat-Azim.jpg",
-  "https://i.postimg.cc/Y2YrvkQY/386342557-122107142024057422-7179772533766904515-n.jpg",
-  "https://i.postimg.cc/hjyDgNpJ/ieee-cs-jnu-sbc-Md-Abu-Saeed.png",
-  "https://i.postimg.cc/tJp3QZvR/IEEE-DIU-SB-Computer-Society-Chapter-logo-AKIB-MAHMUD.png",
-  "https://i.postimg.cc/Njqgg67x/IEEE-IAS-K-M-RUBAIYAT-HASAN-221-33-1767.png",
-  "https://i.postimg.cc/9fBXgD9Y/IEEE-SB-GUB-Faysal-Hossain-Tomal.png",
-  "https://i.postimg.cc/k4XJ07F3/IEEE-UAP-SB-Official-Md-Nahedul-Islam.jpg",
-  "https://i.postimg.cc/T1KRPQ4t/ieee-diu-logo-new-Jose-C-Dishman.png",
-  "https://i.postimg.cc/1zS5KG8z/inbound882344196217121997-Susmoy-Barua.jpg",
-  "https://i.postimg.cc/Gtq7fWwz/367001074-718013033674426-1996992789129344167-n-1.jpg",
-  "https://i.postimg.cc/Dz4mPGsj/IEEE-CS-UIU-color-Provat-Kundu.png",
-  "https://i.postimg.cc/1txXCzr9/Whats-App-Image-2025-09-02-at-4-38-34-PM.jpg",
-  "https://i.postimg.cc/rwPK4jdR/Whats-App-Image-2025-09-02-at-4-37-52-PM.jpg",
 ];
 
 // Footer preview strip items
@@ -199,7 +176,7 @@ const Home: React.FC = () => {
               AI for Humanity: Research, Innovation, Industry, and Responsible Intelligence
             </p>
             <p className="text-lg md:text-xl mb-6 text-white/80">
-              1-2 October 2026 &bull; Virtual Congress
+              18-20 July 2026 &bull; Virtual Congress
             </p>
 
             {/* Countdown Timer (unchanged design) */}
@@ -236,7 +213,7 @@ const Home: React.FC = () => {
                     key={idx}
                     href={btn.href}
                     className="inline-flex items-center gap-2 px-5 py-3 bg-white text-primary-700 font-semibold rounded-full hover:bg-primary-100 transition-colors duration-300"
-                    onClick={(e) => e.preventDefault()} // placeholder
+                    onClick={(e) => e.preventDefault()}
                   >
                     {btn.icon}
                     {btn.label}
@@ -274,7 +251,6 @@ const Home: React.FC = () => {
       {/* ========================================================== */}
       <section id="speakers" className="section bg-gray-100 px-2 md:px-10">
         <div className="flex flex-col items-center">
-          {/* Replace ICAI 2025 banner with a professional placeholder */}
           <div className="w-full lg:w-[70%] bg-gradient-to-br from-primary-100 to-primary-50 rounded-2xl p-10 flex flex-col items-center justify-center mb-6">
             <Presentation className="w-16 h-16 text-primary-400 mb-4" />
             <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">ICAI 2026 Distinguished Speakers Coming Soon</h2>
@@ -338,7 +314,7 @@ const Home: React.FC = () => {
                 </div>
                 <h3 className="text-xl font-semibold">Event Date</h3>
               </div>
-              <p className="text-secondary-700">1-2 October 2026</p>
+              <p className="text-secondary-700">18-20 July 2026</p>
             </motion.div>
 
             <motion.div
@@ -544,7 +520,7 @@ const Home: React.FC = () => {
                   , organized by the IEEE Systems Council BUBT Student Branch Chapter. This distinguished platform
                   offers a unique opportunity to explore cutting-edge AI innovations and connect with a global network
                   of experts. I applaud the organizers&apos; dedication and wish all participants an inspiring,
-                  collaborative, and impactful experience over these two transformative days.
+                  collaborative, and impactful experience over these three transformative days.
                 </p>
               </div>
             </div>
@@ -752,26 +728,6 @@ const Home: React.FC = () => {
                   Become a Collaboration Partner
                 </a>
               </div>
-              {/* <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8 items-center justify-items-center max-w-6xl mx-auto">
-                {collaborationPartners.map((logo, idx) => (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: idx * 0.1 }}
-                    className="group w-full p-6 bg-white rounded-lg shadow hover:shadow-lg transition-all duration-300"
-                  >
-                    <div className="relative overflow-hidden rounded-lg">
-                      <img
-                        src={logo}
-                        alt="Collaboration Partner"
-                        className="h-32 w-auto mx-auto object-contain transition-transform duration-300 group-hover:scale-105"
-                      />
-                    </div>
-                  </motion.div>
-                ))}
-              </div> */}
             </div>
           </motion.div>
         </div>

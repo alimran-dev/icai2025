@@ -19,7 +19,16 @@ const scheduleData = {
   day2: [
     {
       speaker: "Coming Soon",
-      topic: "Technical Sessions & Closing Ceremony",
+      topic: "Technical Sessions",
+      localTime: "TBA",
+      utcTime: "TBA",
+      duration: "TBA",
+    },
+  ],
+  day3: [
+    {
+      speaker: "Coming Soon",
+      topic: "Closing Ceremony",
       localTime: "TBA",
       utcTime: "TBA",
       duration: "TBA",
@@ -71,13 +80,19 @@ export default function Schedule() {
             className={`py-2 px-6 font-medium ${activeTab === "day1" ? "text-indigo-600 border-b-2 border-indigo-600" : "text-gray-500"}`}
             onClick={() => setActiveTab("day1")}
           >
-            Day 1 (1 October 2026)
+            Day 1 (18 July 2026)
           </button>
           <button
             className={`py-2 px-6 font-medium ${activeTab === "day2" ? "text-indigo-600 border-b-2 border-indigo-600" : "text-gray-500"}`}
             onClick={() => setActiveTab("day2")}
           >
-            Day 2 (2 October 2026)
+            Day 2 (19 July 2026)
+          </button>
+          <button
+            className={`py-2 px-6 font-medium ${activeTab === "day3" ? "text-indigo-600 border-b-2 border-indigo-600" : "text-gray-500"}`}
+            onClick={() => setActiveTab("day3")}
+          >
+            Day 3 (20 July 2026)
           </button>
         </div>
 
