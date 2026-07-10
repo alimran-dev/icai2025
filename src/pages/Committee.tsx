@@ -41,7 +41,7 @@ const Committee: React.FC = () => {
         name: "Md Mehedi Hasan",
         role: "Research Assistant, Advanced Machine Intelligence Research Lab (AMIR Lab)",
         affiliation: "Research Institute",
-        image: "https://i.ibb.co/1sq7X8s/IMG-20240128-073552-Md-Mehedi.jpg",
+        image: "https://i.ibb.co.com/vx5hPvmw/pp.png",
         linkedin: "https://www.linkedin.com/in/0mehedihasan/",
       },
     ],
