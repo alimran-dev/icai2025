@@ -16,15 +16,10 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
-// ------------------------------------------------------------------
-// Reusable Data Arrays
-// ------------------------------------------------------------------
-
-// Countdown target (ICAI 2026 begins on 18 July 2026)
 const ICAI_2026_DATE = "2026-07-18T20:00:00+06:00";
-const AMBASSADOR_REG_URL = "https://docs.google.com/forms/d/e/1FAIpQLSf-piaP9Cwg8FKEddErOm9GUOppJ_g7HJChSJbG74wgYVpPDw/viewform";
+const REGISTER_URL = "https://docs.google.com/forms/d/e/1FAIpQLScoeHfNTaWiEKTK3aE1lLrSxEomz2-rdU-SuYZH_FudqzA9bA/viewform";
+const AMBASSADOR_REG_URL = "#"; // Placeholder for Ambassador Registration URL
 
-// ICAI 2025 achievements (for animated counters)
 const achievements = [
   { icon: <Users className="w-6 h-6" />, label: "Registered Participants", value: 1000, suffix: "+" },
   { icon: <Users2 className="w-6 h-6" />, label: "Live Participants", value: 400, suffix: "+" },
@@ -32,11 +27,10 @@ const achievements = [
   { icon: <Award className="w-6 h-6" />, label: "Student Ambassadors", value: 147 },
   { icon: <Briefcase className="w-6 h-6" />, label: "Collaboration Partners", value: 16 },
   { icon: <Presentation className="w-6 h-6" />, label: "Distinguished Speakers", value: 10 },
-  { icon: <Clock className="w-6 h-6" />, label: "Two-Day Virtual Congress", value: 2, suffix: "" },
+  { icon: <Clock className="w-6 h-6" />, label: "Three-Day Virtual Congress", value: 3 },
   { icon: <Globe className="w-6 h-6" />, label: "Global IEEE Community Engagement", value: null },
 ];
 
-// ICAI 2025 highlights (feature cards)
 const highlights = [
   "International Keynote Sessions",
   "Industry Expert Talks",
@@ -50,7 +44,6 @@ const highlights = [
   "Global Networking",
 ];
 
-// Why Attend ICAI 2026 cards
 const whyAttend = [
   { icon: <Users2 className="w-8 h-8 text-primary-600" />, title: "International Speakers", description: "Hear from renowned AI researchers, industry leaders, and IEEE experts from across the globe." },
   { icon: <Laptop className="w-8 h-8 text-primary-600" />, title: "Technical Sessions", description: "Deep-dive sessions on cutting-edge AI topics, tools, and frameworks." },
@@ -61,30 +54,16 @@ const whyAttend = [
 ];
 
 const technicalPartners = [
-  {
-    name: "IEEE CS BDC",
-    logo: "https://i.ibb.co.com/8D1ZG707/CS-BDC-LOGO-2023.png",
-  },
-  {
-    name: "IEEE CIS BDC",
-    logo: "https://i.ibb.co.com/992W7Zmf/ieeecisbdc.webp",
-  },
+  { name: "IEEE CS BDC", logo: "https://i.ibb.co.com/8D1ZG707/CS-BDC-LOGO-2023.png" },
+  { name: "IEEE CIS BDC", logo: "https://i.ibb.co.com/992W7Zmf/ieeecisbdc.webp" },
 ];
 
 const youthPartners = [
-  {
-    name: "IEEE CS BDC Team SPARK",
-    logo: "https://i.ibb.co.com/mV8Ckx2t/SPARK-LOGO.png",
-    link: "https://ibb.co.com/Mx6DrXtp",
-  },
+  { name: "IEEE CS BDC Team SPARK", logo: "https://i.ibb.co.com/mV8Ckx2t/SPARK-LOGO.png", link: "https://ibb.co.com/Mx6DrXtp" },
 ];
 
-// ------------------------------------------------------------------
-// Animated Counter Component
-// ------------------------------------------------------------------
 const AnimatedNumber = ({ target }: { target: number }) => {
   const [count, setCount] = useState(0);
-
   useEffect(() => {
     if (target <= 0) return;
     let start = 0;
@@ -97,29 +76,22 @@ const AnimatedNumber = ({ target }: { target: number }) => {
     }, stepTime);
     return () => clearInterval(timer);
   }, [target]);
-
   return <span>{count}</span>;
 };
 
-// ------------------------------------------------------------------
-// Home Component
-// ------------------------------------------------------------------
 const Home: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
     const targetDate = new Date(ICAI_2026_DATE).getTime();
-
     const timer = setInterval(() => {
       const now = new Date().getTime();
       const diff = targetDate - now;
-
       if (diff <= 0) {
         clearInterval(timer);
         setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
         return;
       }
-
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
@@ -139,8 +111,7 @@ const Home: React.FC = () => {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage:
-              "url('https://images.pexels.com/photos/8721318/pexels-photo-8721318.jpeg')",
+            backgroundImage: "url('https://images.pexels.com/photos/8721318/pexels-photo-8721318.jpeg')",
             backgroundBlendMode: "overlay",
             backgroundColor: "rgba(0, 0, 0, 0.6)",
           }}
@@ -163,7 +134,7 @@ const Home: React.FC = () => {
               18-20 July 2026 &bull; Virtual Congress
             </p>
 
-            {/* Countdown Timer (unchanged design) */}
+            {/* Countdown Timer */}
             <div className="grid grid-flow-col gap-5 justify-center text-center auto-cols-max mb-6">
               {[
                 { value: timeLeft.days, label: "days" },
@@ -180,6 +151,23 @@ const Home: React.FC = () => {
               ))}
             </div>
 
+            {/* Register Now Button – added after countdown */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.8 }}
+              className="mt-4"
+            >
+              <a
+                href={REGISTER_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-8 py-3 bg-white text-primary-700 font-bold rounded-full shadow-lg hover:bg-primary-100 transition-colors duration-300 text-lg"
+              >
+                <Users2 className="w-5 h-5" />
+                Register Now
+              </a>
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -311,7 +299,6 @@ const Home: React.FC = () => {
             </p>
           </motion.div>
 
-          {/* Animated achievement cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {achievements.map((item, idx) => (
               <motion.div
@@ -393,10 +380,8 @@ const Home: React.FC = () => {
               learning, collaboration, networking, innovation, and global engagement in Artificial Intelligence.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              {/* TODO: Replace with real registration link */}
-              <a href="https://docs.google.com/forms/d/e/1FAIpQLScoeHfNTaWiEKTK3aE1lLrSxEomz2-rdU-SuYZH_FudqzA9bA/viewform" className="btn bg-white text-primary-700 hover:bg-primary-100">Register Now</a>
-              {/* TODO: Replace with real ambassador registration */}
-              <a href={AMBASSADOR_REG_URL} className="btn bg-white text-primary-700 hover:bg-primary-100">Become an Ambassador</a>
+              <a href={REGISTER_URL} target="_blank" rel="noopener noreferrer" className="btn bg-white text-primary-700 hover:bg-primary-100">Register Now</a>
+              <a href={AMBASSADOR_REG_URL} target="_blank" rel="noopener noreferrer" className="btn bg-white text-primary-700 hover:bg-primary-100">Become an Ambassador</a>
             </div>
           </motion.div>
         </div>
@@ -413,7 +398,6 @@ const Home: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            {/* Vice Chancellor */}
             <div className="flex flex-col md:flex-row justify-center border p-5 rounded-md shadow-md mb-4 hover:bg-primary-50 duration-500">
               <div className="w-full md:w-1/3 flex flex-col justify-center items-center space-y-2">
                 <img
@@ -440,7 +424,6 @@ const Home: React.FC = () => {
                 </p>
               </div>
             </div>
-            {/* Chairman */}
             <div className="flex flex-col md:flex-row-reverse justify-center border p-5 rounded-md shadow-md hover:bg-primary-50 duration-500">
               <div className="w-full md:w-1/3 flex flex-col justify-center items-center space-y-2">
                 <img
@@ -490,7 +473,6 @@ const Home: React.FC = () => {
               IEEE registration page will be published here once available.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              {/* TODO: Replace with actual vTools link when approved */}
               <button
                 disabled
                 className="btn bg-gray-400 text-white cursor-not-allowed opacity-70"
@@ -567,14 +549,11 @@ const Home: React.FC = () => {
                       className="h-36 md:h-40 w-auto mx-auto object-contain transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
-                  {/* <p className="mt-4 text-gray-600 text-sm">
-                    ICAI 2026 is proudly organized by the IEEE Systems Council BUBT Student Branch Chapter.
-                  </p> */}
                 </motion.div>
               </div>
             </div>
 
-            {/* C0-Organized By */}
+            {/* Co-Organized By */}
             <div className="mb-16">
               <h3 className="text-2xl md:text-3xl font-semibold text-secondary-800 mb-10">Co-Organized By</h3>
               <div className="flex justify-center items-center max-w-5xl mx-auto">
@@ -585,17 +564,13 @@ const Home: React.FC = () => {
                   transition={{ duration: 0.6 }}
                   className="group w-full max-w-md p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 hover:bg-primary-50"
                 >
-                  {/* <div className="relative overflow-hidden rounded-xl">
+                  <div className="relative overflow-hidden rounded-xl">
                     <img
-                      src="https://i.ibb.co.com/ZphFCFt5/balabubt.png"
-                      alt="IEEE BUBT Student Branch"
+                      src="https://i.ibb.co.com/kgWCqpy9/bubtsbc.jpg"
+                      alt="IEEE BUBT Student Branch Chapters"
                       className="h-36 md:h-40 w-auto mx-auto object-contain transition-transform duration-500 group-hover:scale-105"
                     />
-                  </div> */}
-                  <p className="mt-4 text-gray-600 text-sm">
-                    coming soon...
-                  </p>
-              
+                  </div>
                 </motion.div>
               </div>
             </div>
@@ -622,7 +597,7 @@ const Home: React.FC = () => {
               </div>
             </div>
 
-            {/* Technical Partners (NEW) */}
+            {/* Technical Partners */}
             <div className="mb-16">
               <h3 className="text-2xl md:text-3xl font-semibold text-secondary-800 mb-6">Technical Partners</h3>
               <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
@@ -639,11 +614,7 @@ const Home: React.FC = () => {
                     className="bg-white rounded-xl shadow p-6 flex flex-col items-center justify-center text-center hover:shadow-lg transition-shadow duration-300"
                   >
                     <div className="w-24 h-24 mb-3 flex items-center justify-center">
-                      <img
-                        src={partner.logo}
-                        alt={partner.name}
-                        className="max-h-full max-w-full object-contain"
-                      />
+                      <img src={partner.logo} alt={partner.name} className="max-h-full max-w-full object-contain" />
                     </div>
                     <h4 className="font-semibold text-gray-700">{partner.name}</h4>
                   </motion.div>
@@ -651,7 +622,7 @@ const Home: React.FC = () => {
               </div>
             </div>
 
-            {/* Youth Partners (NEW) */}
+            {/* Youth Partners */}
             <div className="mb-16">
               <h3 className="text-2xl md:text-3xl font-semibold text-secondary-800 mb-6">Youth Partner</h3>
               <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
@@ -669,11 +640,7 @@ const Home: React.FC = () => {
                   >
                     <div className="w-24 h-24 mb-3 flex items-center justify-center">
                       <a href={partner.link} target="_blank" rel="noreferrer">
-                        <img
-                          src={partner.logo}
-                          alt={partner.name}
-                          className="max-h-full max-w-full object-contain"
-                        />
+                        <img src={partner.logo} alt={partner.name} className="max-h-full max-w-full object-contain" />
                       </a>
                     </div>
                     <h4 className="font-semibold text-gray-700">{partner.name}</h4>
@@ -689,23 +656,20 @@ const Home: React.FC = () => {
                 ICAI 2026 welcomes collaboration from IEEE Student Branches, IEEE Chapters, universities, research
                 laboratories, startups, innovation hubs, professional societies, and industry organizations worldwide.
               </p>
-              {/* Become a Collaboration Partner button */}
               <div className="mb-10">
-                {/* TODO: Replace with actual collaboration form link */}
                 <a
                   href="#"
                   className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 text-white font-semibold rounded-full hover:bg-primary-700 transition-colors duration-300"
                   onClick={(e) => e.preventDefault()}
                 >
                   <Users2 className="w-5 h-5" />
-                  Become a Collaboration Partner
+                  Pending
                 </a>
               </div>
             </div>
           </motion.div>
         </div>
       </section>
-
     </div>
   );
 };

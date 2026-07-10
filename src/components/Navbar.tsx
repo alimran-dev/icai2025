@@ -98,7 +98,7 @@ const Navbar: React.FC = () => {
             </div>
           ))}
           <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLSeYlWXatwaXOicPfDS_qWU5V7yzd6Mw3qfPtyAuZjsHPBnREw/viewform"
+            href="https://docs.google.com/forms/d/e/1FAIpQLScoeHfNTaWiEKTK3aE1lLrSxEomz2-rdU-SuYZH_FudqzA9bA/viewform"
             target="_blank"
             className="btn btn-primary border-none"
           >
@@ -172,7 +172,7 @@ const Navbar: React.FC = () => {
               </div>
             ))}
             <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLSeYlWXatwaXOicPfDS_qWU5V7yzd6Mw3qfPtyAuZjsHPBnREw/viewform"
+              href="https://docs.google.com/forms/d/e/1FAIpQLScoeHfNTaWiEKTK3aE1lLrSxEomz2-rdU-SuYZH_FudqzA9bA/viewform"
               target="_blank"
               className="block w-full px-3 py-2 mt-4 text-base font-medium text-center text-white bg-primary-600 rounded-md hover:bg-primary-700"
               onClick={() => setIsOpen(false)}
