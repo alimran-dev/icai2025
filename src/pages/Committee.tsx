@@ -13,11 +13,6 @@ interface CommitteeMember {
 }
 
 const Committee: React.FC = () => {
-  // ============================================================
-  // ICAI 2026 Committee Data – preserved for future reactivation
-  // When the full 2026 committee is finalized, uncomment the
-  // hidden sections and delete the placeholder.
-  // ============================================================
   const committeeMembers: Record<string, CommitteeMember[]> = {
     "Advisory Panel": [
       {
@@ -25,28 +20,21 @@ const Committee: React.FC = () => {
         role: "Vice Chancellor, BUBT",
         image: "https://i.ibb.co.com/0jVMjqzz/download-1.png",
       },
-       {
+      {
         name: "Dr. Muhammad Aminur Rahaman",
         role: "Dean, Faculty of Computer Science & Artificial Intelligence, BUBT",
         image: "https://i.ibb.co.com/whw8FxfF/balaminurbala.jpg",
-        
       },
       {
         name: "Prof. Dr. Md. Ahsan Habib",
         role: "Chairman, Dept. of CSE, BUBT",
         image: "https://i.ibb.co.com/wN2PthKc/chairman.jpg",
-        
       },
       {
         name: "Shrabani Das",
         role: "Lecturer, Dept. of CSE, BUBT",
         image: "https://i.ibb.co/ZYbkQhy/Shrabani-Das-Shrabani-Das.jpg",
       },
-      // {
-      //   name: "Sudipa Saha",
-      //   role: "Lecturer, Dept. of CSE, BUBT",
-      //   image: "https://i.postimg.cc/MGGmNw2q/download-3.jpg",
-      // },
     ],
     "General Chair": [
       {
@@ -54,29 +42,45 @@ const Committee: React.FC = () => {
         role: "Research Assistant, Advanced Machine Intelligence Research Lab (AMIR Lab)",
         affiliation: "Research Institute",
         image: "https://i.ibb.co/1sq7X8s/IMG-20240128-073552-Md-Mehedi.jpg",
-        // email: "mdmehedihasansr@gmail.com",
         linkedin: "https://www.linkedin.com/in/0mehedihasan/",
-        // orcid: "https://orcid.org/0009-0009-0025-0062",
       },
     ],
-
-    // ============================================================
-    // TODO: ICAI 2026 – Uncomment the following committee sections
-    // when the new committee lineup is ready.
-    // ============================================================
-    /*
     "Organizing Committee": [
       {
-        name: "Md Mehedi Hasan",
-        role: "Organizing Chair",
-        affiliation: "Research Institute",
-        image: "https://i.ibb.co/1sq7X8s/IMG-20240128-073552-Md-Mehedi.jpg",
+        name: "Maruf Billah Anas",
+        role: "Organizing Chair (Operations)",
+        affiliation: "BUBT",
+        image: "https://i.ibb.co.com/HpgyMWvw/inbound5648170297621318866-maruf-billah-anas.jpg",
       },
       {
-        name: "Mujahidul Islam Joy",
+        name: "Md Al Imran",
+        role: "Organizing Chair (Technical)",
+        affiliation: "BUBT",
+        image: "https://i.postimg.cc/Zn9sWD8t/Whats-App-Image-2025-08-10-at-9-35-00-PM.jpg",
+      },
+      {
+        name: "Naimur Rahaman Rifat",
+        role: "Organizing Co-Chair (Operations)",
+        affiliation: "BUBT",
+        image: "https://i.ibb.co.com/B5FpW5rp/8935-Naimur-Rahaman.jpg",
+      },
+      {
+        name: "Mashfi Rejoan Saikat",
+        role: "Organizing Co-Chair (Technical)",
+        affiliation: "BUBT",
+        image: "https://i.postimg.cc/N0X3zS3J/FP-cropped-Mashfi-Rejoan-Saikat.jpg",
+      },
+      {
+        name: "Ashif Sheikh",
         role: "Organizing Secretary",
-        affiliation: "Computer Science Department",
-        image: "https://i.postimg.cc/fRVxfKxR/8b68a013-00fd-4f9e-8de0-c3f777650193-Mujahidul-Islam-Joy.jpg",
+        affiliation: "BUBT",
+        image: "https://i.ibb.co.com/d4xH5jq8/Whats-App-Image-2026-07-04-at-1-57-59-AM-Ashif-Sheikh.jpg",
+      },
+      {
+        name: "Adiba Azam Mati",
+        role: "Master of Ceremonies",
+        affiliation: "BUBT",
+        image: "https://i.ibb.co.com/PvqTWZwv/NHS06220-Adiba-Azam-Mati.jpg",
       },
       {
         name: "Shadida Khan",
@@ -87,77 +91,93 @@ const Committee: React.FC = () => {
     ],
     "Ambassador Committee": [
       {
-        name: "Mashfi Rejoan Saikat ",
+        name: "Md. Sadik Mahmud Adive",
         role: "Ambassador Chair",
-        affiliation: "BRAC University",
-        image: "https://i.postimg.cc/N0X3zS3J/FP-cropped-Mashfi-Rejoan-Saikat.jpg",
-      }
+        affiliation: "BUBT",
+        image: "https://i.ibb.co.com/wZB58WRX/599677195-2702743066737038-3730406491581254218-n-Sm-Adive.jpg",
+      },
     ],
     "Registration Committee": [
       {
-        name: "Sabrina Tasnim Imu",
+        name: "Md. Sanjid Hosen",
         role: "Registration Chair",
-        affiliation: "Student Affairs Committee",
-        image: "https://i.postimg.cc/gcgTNGwc/Whats-App-Image-2025-05-25-at-3-39-10-PM-Sabrina-Tasnim-Imu.jpg",
+        affiliation: "BUBT",
+        image: "https://i.ibb.co.com/5hg1wrnS/20260629-145816-Sanjid-Al-Mamun.jpg",
       },
       {
-        name: "Md. Abu Talab Anik",
+        name: "Jannathul Ferdousi Shoshi",
         role: "Registration Co-Chair",
-        affiliation: "Student Affairs Committee",
-        image: "https://i.postimg.cc/HsfWkrGj/00000-Md-Abu-Talab-Anik.png",
+        affiliation: "BUBT",
+        image: "https://i.ibb.co.com/TqNRY5ft/inbound193459536612755663-jannathul-ferdaus.jpg",
       },
     ],
-    "Web and Design Committee": [
+    "Presentation Program Committee": [
       {
-        name: "Md Al Imran",
-        role: "Web & IT Chair",
-        image: "https://i.postimg.cc/Zn9sWD8t/Whats-App-Image-2025-08-10-at-9-35-00-PM.jpg",
+        name: "Md Masudur Rahaman Nirob",
+        role: "Presentation Program Chair",
+        affiliation: "BUBT",
+        image: "https://i.ibb.co.com/N2XtnZt0/Gemini-Generated-Image-64q3d964q3d964q3.png",
       },
       {
-        name: "Shopnil Karmakar",
+        name: "Nur Uddin",
+        role: "Presentation Program Co-Chair",
+        affiliation: "BUBT",
+        image: "https://i.ibb.co.com/FkT55DV8/inbound6867854119187620541-Nur.jpg",
+      },
+    ],
+    "Design Committee": [
+      {
+        name: "Nusrat Jahan Tonmoy",
         role: "Design Chair",
-        affiliation: "Creative Department",
-        image: "https://i.postimg.cc/9MJ8LwPp/IMG-1749-2-Shopnil-Karmakar.jpg",
+        affiliation: "BUBT",
+        image: "https://i.ibb.co.com/vCvW57YB/IMG-20260102-WA0764-Nusrat-Jahan-Tonmoy.jpg",
       },
       {
-        name: "Md Sirajul Islam",
+        name: "Sarah",
         role: "Design Co-Chair",
-        affiliation: "Design Team",
-        image: "https://i.postimg.cc/Y9TZzHqq/Image-202-03-14-at-21-36-14-954090d-MD-SIRAJUL-ISLAM.jpg",
+        affiliation: "BUBT",
+        image: "https://i.ibb.co.com/Hf1MYY9Y/IMG-20250814-WA0069-Original-Sarah.jpg",
       },
       {
-        name: "Faiza Khandoker Fama",
+        name: "Nazif Azad Maadol",
         role: "Design Co-Chair",
-        affiliation: "Design Team",
-        image: "https://i.postimg.cc/NfDbgtq9/inbound7581585900504204818-49-338-Faiza-Khandoker.jpg",
+        affiliation: "BUBT",
+        image: "https://i.ibb.co.com/vSnb2gr/66407-Nazif-Azad.jpg",
       },
     ],
-    "Publication and Publicity Committee": [
+    "Publication Committee": [
       {
-        name: "Most.Sonia Islam",
+        name: "Muhammad Nazmus Sakib Prachurjo",
         role: "Publication Chair",
-        affiliation: "Global Science Media",
-        image: "https://i.postimg.cc/Qxq3J2Qj/Beauty-Plus-20241119133540300-save-Most-Sonia-Islam.jpg",
+        affiliation: "BUBT",
+        image: "https://i.ibb.co.com/jk1skQrC/IMG-20260417-001545-Muhammad-Nazmus-Sakib-Prachurjo.jpg",
       },
       {
-        name: "Humayra Akter",
-        role: "Publicity Chair",
-        affiliation: "Communications Department",
-        image: "https://i.postimg.cc/fWfYXhWw/Humayra-Akter-Humayra-Akter.jpg",
-      },
-      {
-        name: "Md Nahidujaman",
-        role: "Media Chair",
-        affiliation: "Communications Department",
-        image: "https://i.postimg.cc/ZYw2c2VS/IMG-2082-Nahidujjaman-Shihab.jpg",
+        name: "Saidur Rahaman",
+        role: "Publication Co-Chair",
+        affiliation: "BUBT",
+        image: "https://i.ibb.co.com/4wjTwww5/IMG-20251230-020047-591-Saidur-Rahaman.webp",
       },
     ],
-    */
+    "Publicity Committee": [
+      {
+        name: "Kamrul Islam",
+        role: "Publicity Chair",
+        affiliation: "BUBT",
+        image: "https://i.ibb.co.com/HLLhS8Vb/Tuhin-Mia.jpg",
+      },
+      {
+        name: "MD Tanvir Ahmmed",
+        role: "Publicity Co-Chair",
+        affiliation: "BUBT",
+        image: "https://i.ibb.co.com/DHv14Wsv/IMG-20260619-213620-106-Tanvir-Ahmmed.jpg",
+      },
+    ],
   };
 
   return (
     <div className="pt-20">
-      {/* Header – title updated for ICAI 2026 */}
+      {/* Header */}
       <section className="bg-primary-700 py-16 text-white">
         <div className="container">
           <motion.div
@@ -177,15 +197,11 @@ const Committee: React.FC = () => {
         </div>
       </section>
 
-      {/* Committee Members – only Advisory Panel and General Chair remain visible */}
+      {/* Committee Members */}
       <section className="section bg-white py-16">
         <div className="container">
           {Object.entries(committeeMembers).map(([category, members]) => {
-            // Hide all committees except Advisory Panel and General Chair
-            if (category !== "Advisory Panel" && category !== "General Chair") {
-              return null; // temporarily disabled for ICAI 2026
-            }
-
+            const isGeneralChair = category === "General Chair";
             return (
               <div key={category} className="mb-24 last:mb-0">
                 <motion.h2
@@ -200,7 +216,7 @@ const Committee: React.FC = () => {
 
                 <div
                   className={
-                    category === "General Chair"
+                    isGeneralChair
                       ? "flex justify-center"
                       : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
                   }
@@ -217,7 +233,7 @@ const Committee: React.FC = () => {
                         boxShadow: "0 15px 30px rgba(0,0,0,0.12)",
                       }}
                       className={
-                        category === "General Chair"
+                        isGeneralChair
                           ? "w-full max-w-md bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
                           : "bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
                       }
@@ -238,7 +254,7 @@ const Committee: React.FC = () => {
                             <div className="inline-block bg-primary-50 text-primary-700 px-4 py-1.5 rounded-full text-sm font-medium mb-3">
                               {member.role}
                             </div>
-                            {category === "General Chair" && (
+                            {isGeneralChair && (
                               <div className="mt-4 flex flex-col items-center gap-2 text-sm">
                                 {member.email && (
                                   <a
@@ -284,57 +300,6 @@ const Committee: React.FC = () => {
               </div>
             );
           })}
-
-          {/* ============================================================
-              ICAI 2026 Organizing Committee – Placeholder
-              Uncomment the hidden committee sections above and delete
-              this block once the full committee is announced.
-          ============================================================ */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="mt-16 mb-24"
-          >
-            <h2 className="text-3xl font-bold mb-12 text-center after:content-[''] after:block after:w-24 after:h-1 after:bg-primary-500 after:mx-auto after:mt-4">
-              Organizing Committee
-            </h2>
-
-            <div className="max-w-2xl mx-auto">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="bg-white border border-primary-100 rounded-2xl shadow-lg p-10 text-center"
-              >
-                {/* Subtle clock icon – matches primary theme */}
-                <div className="flex justify-center mb-6">
-                  <svg
-                    className="w-16 h-16 text-primary-400"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                    />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-bold text-gray-800 mb-3">
-                  Coming Soon
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  The ICAI 2026 Organizing Committee will be announced soon. Please
-                  check back later for updates.
-                </p>
-              </motion.div>
-            </div>
-          </motion.div>
         </div>
       </section>
     </div>
