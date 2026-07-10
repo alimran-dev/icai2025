@@ -394,7 +394,7 @@ const Home: React.FC = () => {
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               {/* TODO: Replace with real registration link */}
-              <a href="#" className="btn bg-white text-primary-700 hover:bg-primary-100">Register Now</a>
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLScoeHfNTaWiEKTK3aE1lLrSxEomz2-rdU-SuYZH_FudqzA9bA/viewform" className="btn bg-white text-primary-700 hover:bg-primary-100">Register Now</a>
               {/* TODO: Replace with real ambassador registration */}
               <a href={AMBASSADOR_REG_URL} className="btn bg-white text-primary-700 hover:bg-primary-100">Become an Ambassador</a>
             </div>
