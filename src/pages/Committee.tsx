@@ -1,11 +1,15 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { LinkedinIcon, Mail } from "lucide-react";
 
 interface CommitteeMember {
   name: string;
   role: string;
   affiliation?: string;
   image: string;
+  email?: string;
+  linkedin?: string;
+  orcid?: string;
 }
 
 const Committee: React.FC = () => {
@@ -50,6 +54,9 @@ const Committee: React.FC = () => {
         role: "Research Assistant, Advanced Machine Intelligence Research Lab (AMIR Lab)",
         affiliation: "Research Institute",
         image: "https://i.ibb.co/1sq7X8s/IMG-20240128-073552-Md-Mehedi.jpg",
+        // email: "mdmehedihasansr@gmail.com",
+        linkedin: "https://www.linkedin.com/in/0mehedihasan/",
+        // orcid: "https://orcid.org/0009-0009-0025-0062",
       },
     ],
 
@@ -191,7 +198,13 @@ const Committee: React.FC = () => {
                   {category}
                 </motion.h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <div
+                  className={
+                    category === "General Chair"
+                      ? "flex justify-center"
+                      : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
+                  }
+                >
                   {members.map((member, index) => (
                     <motion.div
                       key={member.name}
@@ -203,7 +216,11 @@ const Committee: React.FC = () => {
                         y: -8,
                         boxShadow: "0 15px 30px rgba(0,0,0,0.12)",
                       }}
-                      className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
+                      className={
+                        category === "General Chair"
+                          ? "w-full max-w-md bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
+                          : "bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
+                      }
                     >
                       <div className="p-6">
                         <div className="flex flex-col items-center">
@@ -221,6 +238,43 @@ const Committee: React.FC = () => {
                             <div className="inline-block bg-primary-50 text-primary-700 px-4 py-1.5 rounded-full text-sm font-medium mb-3">
                               {member.role}
                             </div>
+                            {category === "General Chair" && (
+                              <div className="mt-4 flex flex-col items-center gap-2 text-sm">
+                                {member.email && (
+                                  <a
+                                    href={`mailto:${member.email}`}
+                                    className="inline-flex items-center gap-2 text-primary-700 hover:text-primary-800 transition-colors"
+                                  >
+                                    <Mail className="w-4 h-4" />
+                                    {member.email}
+                                  </a>
+                                )}
+                                {member.linkedin && (
+                                  <a
+                                    href={member.linkedin}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="inline-flex items-center gap-2 text-primary-700 hover:text-primary-800 transition-colors"
+                                  >
+                                    <LinkedinIcon className="w-4 h-4" />
+                                    LinkedIn Profile
+                                  </a>
+                                )}
+                                {member.orcid && (
+                                  <a
+                                    href={member.orcid}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="inline-flex items-center gap-2 text-primary-700 hover:text-primary-800 transition-colors"
+                                  >
+                                    <span className="inline-flex h-4 w-4 items-center justify-center rounded-full border border-primary-700 text-[10px] font-bold leading-none">
+                                      iD
+                                    </span>
+                                    ORCID Profile
+                                  </a>
+                                )}
+                              </div>
+                            )}
                           </div>
                         </div>
                       </div>
