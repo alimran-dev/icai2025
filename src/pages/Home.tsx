@@ -11,7 +11,6 @@ import {
   BarChart3,
   Users2,
   Presentation,
-  Microscope,
   Network,
   Briefcase,
 } from "lucide-react";
@@ -23,30 +22,7 @@ import { Link } from "react-router-dom";
 
 // Countdown target (ICAI 2026 begins on 18 July 2026)
 const ICAI_2026_DATE = "2026-07-18T20:00:00";
-
-// Hero CTA buttons (with TODO placeholders)
-const heroButtons = [
-  {
-    label: "Register Now",
-    href: "#",
-    icon: <Users2 className="w-4 h-4" />,
-  },
-  {
-    label: "Become an Ambassador",
-    href: "#",
-    icon: <Globe className="w-4 h-4" />,
-  },
-  {
-    label: "Speaker Nomination",
-    href: "#",
-    icon: <Presentation className="w-4 h-4" />,
-  },
-  {
-    label: "View Schedule",
-    link: "/schedule",
-    icon: <Clock className="w-4 h-4" />,
-  },
-];
+const AMBASSADOR_REG_URL = "https://docs.google.com/forms/d/e/1FAIpQLSf-piaP9Cwg8FKEddErOm9GUOppJ_g7HJChSJbG74wgYVpPDw/viewform";
 
 // ICAI 2025 achievements (for animated counters)
 const achievements = [
@@ -82,16 +58,6 @@ const whyAttend = [
   { icon: <Presentation className="w-8 h-8 text-primary-600" />, title: "Panel Discussions", description: "Engaging debates with experts on the future of responsible AI and policy." },
   { icon: <Briefcase className="w-8 h-8 text-primary-600" />, title: "Career Development", description: "Insights into AI career paths, skills, and opportunities from top recruiters." },
   { icon: <Network className="w-8 h-8 text-primary-600" />, title: "Global Networking", description: "Connect with researchers, students, IEEE volunteers, and industry professionals worldwide." },
-];
-
-// Footer preview strip items
-const footerStrip = [
-  { icon: <Globe className="w-5 h-5" />, label: "Virtual Congress" },
-  { icon: <Presentation className="w-5 h-5" />, label: "International Speakers" },
-  { icon: <Users2 className="w-5 h-5" />, label: "IEEE Community" },
-  { icon: <Network className="w-5 h-5" />, label: "Global Networking" },
-  { icon: <Microscope className="w-5 h-5" />, label: "AI Research" },
-  { icon: <Briefcase className="w-5 h-5" />, label: "Industry Collaboration" },
 ];
 
 const technicalPartners = [
@@ -214,52 +180,6 @@ const Home: React.FC = () => {
               ))}
             </div>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-wrap justify-center gap-3">
-              {heroButtons.map((btn, idx) =>
-                btn.link ? (
-                  <Link
-                    key={idx}
-                    to={btn.link}
-                    className="inline-flex items-center gap-2 px-5 py-3 bg-white text-primary-700 font-semibold rounded-full hover:bg-primary-100 transition-colors duration-300"
-                  >
-                    {btn.icon}
-                    {btn.label}
-                  </Link>
-                ) : (
-                  <a
-                    key={idx}
-                    href={btn.href}
-                    className="inline-flex items-center gap-2 px-5 py-3 bg-white text-primary-700 font-semibold rounded-full hover:bg-primary-100 transition-colors duration-300"
-                    onClick={(e) => e.preventDefault()}
-                  >
-                    {btn.icon}
-                    {btn.label}
-                  </a>
-                )
-              )}
-            </div>
-            {/* TODO: Add real registration, ambassador, and speaker nomination links */}
-          </motion.div>
-        </div>
-        <div className="absolute bottom-10 left-0 right-0 flex justify-center">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1, duration: 1 }}
-            className="animate-bounce"
-          >
-            <a href="#about" className="text-white">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-8 w-8"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-              </svg>
-            </a>
           </motion.div>
         </div>
       </section>
@@ -409,7 +329,7 @@ const Home: React.FC = () => {
                     {item.suffix}
                   </div>
                 ) : (
-                  <div className="text-2xl font-bold text-primary-700">🌍</div>
+                  <div className="text-2xl font-bold text-primary-700" />
                 )}
                 <p className="text-sm text-gray-600 mt-2">{item.label}</p>
               </motion.div>
@@ -434,16 +354,21 @@ const Home: React.FC = () => {
           </motion.div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {highlights.map((item, idx) => (
-              <motion.div
+              <motion.button
                 key={idx}
+                type="button"
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: idx * 0.05 }}
-                className="bg-primary-50 rounded-lg p-4 flex items-center justify-center text-center hover:bg-primary-100 transition-colors duration-200"
+                whileHover={{ scale: 1.04, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                className="group bg-primary-50 rounded-lg p-4 flex items-center justify-center text-center cursor-pointer shadow-sm hover:bg-primary-100 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 transition-all duration-200"
               >
-                <span className="text-primary-700 font-medium text-sm">{item}</span>
-              </motion.div>
+                <span className="text-primary-700 font-bold text-sm transition-colors duration-200 group-hover:text-primary-800">
+                  {item}
+                </span>
+              </motion.button>
             ))}
           </div>
         </div>
@@ -471,7 +396,7 @@ const Home: React.FC = () => {
               {/* TODO: Replace with real registration link */}
               <a href="#" className="btn bg-white text-primary-700 hover:bg-primary-100">Register Now</a>
               {/* TODO: Replace with real ambassador registration */}
-              <a href="#" className="btn bg-white text-primary-700 hover:bg-primary-100">Become an Ambassador</a>
+              <a href={AMBASSADOR_REG_URL} className="btn bg-white text-primary-700 hover:bg-primary-100">Become an Ambassador</a>
             </div>
           </motion.div>
         </div>
@@ -613,34 +538,6 @@ const Home: React.FC = () => {
       </section>
 
       {/* ========================================================== */}
-      {/* JOIN ICAI 2026 CTA                                       */}
-      {/* ========================================================== */}
-      <section className="py-16 bg-primary-700 text-white">
-        <div className="container text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
-              Join ICAI 2026
-            </h2>
-            <p className="text-xl mb-8 max-w-3xl mx-auto text-primary-100">
-              Become part of an international community advancing Artificial Intelligence through research,
-              innovation, collaboration, and professional development.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              {/* TODO: Add real registration link */}
-              <a href="#" className="btn bg-white text-primary-700 hover:bg-primary-100">Register Now</a>
-              {/* TODO: Add real ambassador link */}
-              <a href="#" className="btn bg-white text-primary-700 hover:bg-primary-100">Become an Ambassador</a>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ========================================================== */}
       {/* PARTNERS SECTIONS                                         */}
       {/* ========================================================== */}
       <section className="section bg-gradient-to-b from-white to-gray-50 py-16">
@@ -695,9 +592,9 @@ const Home: React.FC = () => {
                       className="h-36 md:h-40 w-auto mx-auto object-contain transition-transform duration-500 group-hover:scale-105"
                     />
                   </div> */}
-                  <paragraph className="mt-4 text-gray-600 text-sm">
+                  <p className="mt-4 text-gray-600 text-sm">
                     coming soon...
-                  </paragraph>
+                  </p>
               
                 </motion.div>
               </div>
@@ -809,28 +706,6 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* ========================================================== */}
-      {/* FOOTER PREVIEW STRIP                                     */}
-      {/* ========================================================== */}
-      <section className="bg-primary-800 text-white py-8">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10">
-            {footerStrip.map((item, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.1 }}
-                className="flex items-center gap-2"
-              >
-                {item.icon}
-                <span className="text-sm font-medium">{item.label}</span>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
     </div>
   );
 };

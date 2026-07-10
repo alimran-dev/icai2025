@@ -1,5 +1,5 @@
 import React from "react";
-import { Mail, Phone, FacebookIcon, LinkedinIcon } from "lucide-react";
+import { Mail, FacebookIcon, LinkedinIcon } from "lucide-react";
 
 const Contact: React.FC = () => {
   return (
@@ -34,25 +34,33 @@ const Contact: React.FC = () => {
               </a>
             </div>
 
-            {/* Phone */}
+            {/* Committee Contacts */}
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <div className="flex items-center gap-4 mb-4">
-                <Phone className="h-6 w-6 text-primary-600" />
-                <h3 className="font-semibold text-gray-800">Call Us</h3>
+                <Mail className="h-6 w-6 text-primary-600" />
+                <h3 className="font-semibold text-gray-800">Committee Contacts</h3>
               </div>
-              <div className="space-y-2">
-                <a
-                  href="https://wa.me/"
-                  className="block text-primary-600 hover:underline"
-                >
-                   Coming Soon (Registration Chair)
-                </a>
-                <a
-                  href="https://wa.me/"
-                  className="block text-primary-600 hover:underline"
-                >
-                  Coming Soon (Ambassador Chair)
-                </a>
+              <div className="space-y-3 text-sm">
+                <div>
+                  <p className="font-semibold text-gray-800">Md. Sanjid Hosen</p>
+                  <p className="text-gray-500">Registration Chair</p>
+                  <a
+                    href="mailto:sanjid.b65@gmail.com"
+                    className="block text-primary-600 hover:underline"
+                  >
+                    sanjid.b65@gmail.com
+                  </a>
+                </div>
+                <div>
+                  <p className="font-semibold text-gray-800">Md. Sadik Mahmud Adive</p>
+                  <p className="text-gray-500">Ambassador Chair</p>
+                  <a
+                    href="mailto:siradive137@gmail.com"
+                    className="block text-primary-600 hover:underline"
+                  >
+                    siradive137@gmail.com
+                  </a>
+                </div>
               </div>
             </div>
 

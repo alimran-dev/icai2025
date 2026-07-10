@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Mail, Phone, MapPin, Facebook, Linkedin } from "lucide-react";
+import { Mail, MapPin, Facebook, Linkedin } from "lucide-react";
 
 const Footer: React.FC = () => {
   return (
@@ -10,9 +10,9 @@ const Footer: React.FC = () => {
           {/* About */}
           <div>
             <img src="/logo.jpeg" alt="Logo" className="h-24 rounded-md" />
-            <h3 className="mb-4 text-lg font-bold text-white">ICAI 2025</h3>
+            <h3 className="mb-4 text-lg font-bold text-white">ICAI 2026</h3>
             <p className="mb-4 text-secondary-300">
-              International Congress on Artificial Intelligence (ICAI 2025) - Bringing together researchers, academics, and
+              2nd International Congress on Artificial Intelligence (ICAI 2026) - Bringing together researchers, academics, and
               industry professionals.
             </p>
           </div>
@@ -90,21 +90,21 @@ const Footer: React.FC = () => {
                 </a>
               </li>
               <li className="flex items-center space-x-2">
-                <Phone size={20} className="flex-shrink-0 text-primary-400" />
+                <Mail size={20} className="flex-shrink-0 text-primary-400" />
                 <a
-                  href="tel: +880 1623 185968"
+                  href="mailto:sanjid.b65@gmail.com"
                   className="text-secondary-300 hover:text-white"
                 >
-                  +880 1623 185968 (Registration Chair)
+                  Md. Sanjid Hosen (Registration Chair)
                 </a>
               </li>
               <li className="flex items-center space-x-2">
-                <Phone size={20} className="flex-shrink-0 text-primary-400" />
+                <Mail size={20} className="flex-shrink-0 text-primary-400" />
                 <a
-                  href="tel: +880 1897 911901"
+                  href="mailto:siradive137@gmail.com"
                   className="text-secondary-300 hover:text-white"
                 >
-                  +880 1897 911901 (Ambassador Chair)
+                  Md. Sadik Mahmud Adive (Ambassador Chair)
                 </a>
               </li>
             </ul>
