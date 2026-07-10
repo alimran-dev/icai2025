@@ -14,7 +14,6 @@ import {
   Microscope,
   Network,
   Briefcase,
-  Sparkles,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -57,7 +56,7 @@ const achievements = [
   { icon: <Award className="w-6 h-6" />, label: "Student Ambassadors", value: 147 },
   { icon: <Briefcase className="w-6 h-6" />, label: "Collaboration Partners", value: 16 },
   { icon: <Presentation className="w-6 h-6" />, label: "Distinguished Speakers", value: 10 },
-  { icon: <Clock className="w-6 h-6" />, label: "Three-Day Virtual Congress", value: 3, suffix: "" },
+  { icon: <Clock className="w-6 h-6" />, label: "Two-Day Virtual Congress", value: 2, suffix: "" },
   { icon: <Globe className="w-6 h-6" />, label: "Global IEEE Community Engagement", value: null },
 ];
 
@@ -93,6 +92,25 @@ const footerStrip = [
   { icon: <Network className="w-5 h-5" />, label: "Global Networking" },
   { icon: <Microscope className="w-5 h-5" />, label: "AI Research" },
   { icon: <Briefcase className="w-5 h-5" />, label: "Industry Collaboration" },
+];
+
+const technicalPartners = [
+  {
+    name: "IEEE CS BDC",
+    logo: "https://i.ibb.co.com/8D1ZG707/CS-BDC-LOGO-2023.png",
+  },
+  {
+    name: "IEEE CIS BDC",
+    logo: "https://i.ibb.co.com/992W7Zmf/ieeecisbdc.webp",
+  },
+];
+
+const youthPartners = [
+  {
+    name: "IEEE CS BDC Team SPARK",
+    logo: "https://i.ibb.co.com/mV8Ckx2t/SPARK-LOGO.png",
+    link: "https://ibb.co.com/Mx6DrXtp",
+  },
 ];
 
 // ------------------------------------------------------------------
@@ -647,14 +665,40 @@ const Home: React.FC = () => {
                 >
                   <div className="relative overflow-hidden rounded-xl">
                     <img
-                      src="https://i.ibb.co.com/d0vnyxmH/bubt.png"
+                      src="https://i.ibb.co.com/ZphFCFt5/balabubt.png"
                       alt="IEEE BUBT Student Branch"
                       className="h-36 md:h-40 w-auto mx-auto object-contain transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
-                  <p className="mt-4 text-gray-600 text-sm">
+                  {/* <p className="mt-4 text-gray-600 text-sm">
                     ICAI 2026 is proudly organized by the IEEE Systems Council BUBT Student Branch Chapter.
-                  </p>
+                  </p> */}
+                </motion.div>
+              </div>
+            </div>
+
+            {/* C0-Organized By */}
+            <div className="mb-16">
+              <h3 className="text-2xl md:text-3xl font-semibold text-secondary-800 mb-10">Co-Organized By</h3>
+              <div className="flex justify-center items-center max-w-5xl mx-auto">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  className="group w-full max-w-md p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 hover:bg-primary-50"
+                >
+                  {/* <div className="relative overflow-hidden rounded-xl">
+                    <img
+                      src="https://i.ibb.co.com/ZphFCFt5/balabubt.png"
+                      alt="IEEE BUBT Student Branch"
+                      className="h-36 md:h-40 w-auto mx-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div> */}
+                  <paragraph className="mt-4 text-gray-600 text-sm">
+                    coming soon...
+                  </paragraph>
+              
                 </motion.div>
               </div>
             </div>
@@ -687,26 +731,58 @@ const Home: React.FC = () => {
               <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
                 Technical Partners contribute technical expertise, academic collaboration, and knowledge sharing to strengthen ICAI 2026.
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
-                {Array.from({ length: 4 }).map((_, idx) => (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                {technicalPartners.map((partner) => (
                   <motion.div
-                    key={idx}
+                    key={partner.name}
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: idx * 0.1 }}
+                    transition={{ duration: 0.5 }}
                     className="bg-white rounded-xl shadow p-6 flex flex-col items-center justify-center text-center hover:shadow-lg transition-shadow duration-300"
                   >
-                    {/* TODO: Replace dummy logo with real technical partner logo */}
-                    <div className="w-20 h-20 bg-gray-200 rounded-full flex items-center justify-center mb-3">
-                      <Sparkles className="w-8 h-8 text-gray-400" />
+                    <div className="w-24 h-24 mb-3 flex items-center justify-center">
+                      <img
+                        src={partner.logo}
+                        alt={partner.name}
+                        className="max-h-full max-w-full object-contain"
+                      />
                     </div>
-                    <h4 className="font-semibold text-gray-700">Technical Partner</h4>
-                    <span className="text-xs text-primary-500 bg-primary-50 px-2 py-0.5 rounded-full mt-1">Coming Soon</span>
+                    <h4 className="font-semibold text-gray-700">{partner.name}</h4>
                   </motion.div>
                 ))}
               </div>
-              {/* TODO: Add real technical partner logos */}
+            </div>
+
+            {/* Youth Partners (NEW) */}
+            <div className="mb-16">
+              <h3 className="text-2xl md:text-3xl font-semibold text-secondary-800 mb-6">Youth Partner</h3>
+              <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
+                Youth Partners contribute outreach, engagement, and student-driven collaboration to strengthen ICAI 2026.
+              </p>
+              <div className="flex justify-center">
+                {youthPartners.map((partner) => (
+                  <motion.div
+                    key={partner.name}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                    className="w-full max-w-md bg-white rounded-xl shadow p-6 flex flex-col items-center justify-center text-center hover:shadow-lg transition-shadow duration-300"
+                  >
+                    <div className="w-24 h-24 mb-3 flex items-center justify-center">
+                      <a href={partner.link} target="_blank" rel="noreferrer">
+                        <img
+                          src={partner.logo}
+                          alt={partner.name}
+                          className="max-h-full max-w-full object-contain"
+                        />
+                      </a>
+                    </div>
+                    <h4 className="font-semibold text-gray-700">{partner.name}</h4>
+                  </motion.div>
+                ))}
+              </div>
             </div>
 
             {/* Collaboration Partners */}

@@ -21,6 +21,12 @@ const Committee: React.FC = () => {
         role: "Vice Chancellor, BUBT",
         image: "https://i.ibb.co.com/0jVMjqzz/download-1.png",
       },
+       {
+        name: "Dr. Muhammad Aminur Rahaman",
+        role: "Dean, Faculty of Computer Science & Artificial Intelligence, BUBT",
+        image: "https://i.ibb.co.com/whw8FxfF/balaminurbala.jpg",
+        
+      },
       {
         name: "Prof. Dr. Md. Ahsan Habib",
         role: "Chairman, Dept. of CSE, BUBT",
@@ -41,7 +47,7 @@ const Committee: React.FC = () => {
     "General Chair": [
       {
         name: "Md Mehedi Hasan",
-        role: "General Chair",
+        role: "Research Assistant, Advanced Machine Intelligence Research Lab (AMIR Lab)",
         affiliation: "Research Institute",
         image: "https://i.ibb.co/1sq7X8s/IMG-20240128-073552-Md-Mehedi.jpg",
       },
