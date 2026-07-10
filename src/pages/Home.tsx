@@ -27,7 +27,7 @@ const achievements = [
   { icon: <Award className="w-6 h-6" />, label: "Student Ambassadors", value: 147 },
   { icon: <Briefcase className="w-6 h-6" />, label: "Collaboration Partners", value: 16 },
   { icon: <Presentation className="w-6 h-6" />, label: "Distinguished Speakers", value: 10 },
-  { icon: <Clock className="w-6 h-6" />, label: "Three-Day Virtual Congress", value: 3 },
+  { icon: <Clock className="w-6 h-6" />, label: "Two-Day Virtual Congress", value: 2 },
   { icon: <Globe className="w-6 h-6" />, label: "Global IEEE Community Engagement", value: null },
 ];
 
