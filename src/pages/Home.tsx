@@ -21,7 +21,7 @@ import { Link } from "react-router-dom";
 // ------------------------------------------------------------------
 
 // Countdown target (ICAI 2026 begins on 18 July 2026)
-const ICAI_2026_DATE = "2026-07-18T20:00:00";
+const ICAI_2026_DATE = "2026-07-18T20:00:00+06:00";
 const AMBASSADOR_REG_URL = "https://docs.google.com/forms/d/e/1FAIpQLSf-piaP9Cwg8FKEddErOm9GUOppJ_g7HJChSJbG74wgYVpPDw/viewform";
 
 // ICAI 2025 achievements (for animated counters)
