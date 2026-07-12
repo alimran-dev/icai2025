@@ -62,19 +62,21 @@ const youthPartners = [
   { name: "IEEE CS BDC Team SPARK", logo: "https://i.ibb.co.com/mV8Ckx2t/SPARK-LOGO.png", link: "https://ibb.co.com/Mx6DrXtp" },
 ];
 
-// Highlighted external conferences
+// Highlighted external conferences – same height images, deadline shown
 const highlightedConferences = [
   {
     name: "IEEE CSDE 2026",
     logo: "https://i.ibb.co.com/LDYfxmTs/csde.jpg",
     link: "https://ieee-csde.org/",
     alt: "CSDE Conference",
+    deadline: "Submission Deadline: 31 July 2026",
   },
   {
     name: "IEEE iCOSTE 2026",
     logo: "https://i.ibb.co.com/2pVHz3m/icoste.jpg",
     link: "https://i-coste.org/",
     alt: "iCOSTE Conference",
+    deadline: "Submission Deadline: 31 July 2026",
   },
 ];
 
@@ -167,7 +169,7 @@ const Home: React.FC = () => {
               ))}
             </div>
 
-            {/* Register Now Button – added after countdown */}
+            {/* Register Now Button */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -189,7 +191,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* ========================================================== */}
-      {/* HIGHLIGHTED CONFERENCES                                   */}
+      {/* HIGHLIGHTED CONFERENCES – UNIFORM CARD HEIGHT             */}
       {/* ========================================================== */}
       <section className="py-12 bg-white">
         <div className="container mx-auto px-4">
@@ -220,19 +222,23 @@ const Home: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.2 }}
                 whileHover={{ scale: 1.02, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }}
-                className="block bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300"
+                className="block bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition-all duration-300"
               >
-                <div className="relative w-full h-40 md:h-48 bg-gradient-to-r from-primary-50 to-secondary-50 flex items-center justify-center p-4">
+                {/* Image area with fixed height for uniformity */}
+                <div className="h-48 w-full flex items-center justify-center bg-gray-50">
                   <img
                     src={conf.logo}
                     alt={conf.alt}
                     className="max-h-full max-w-full object-contain"
                   />
                 </div>
-                <div className="p-4 text-center">
-                  <span className="inline-block bg-primary-50 text-primary-700 px-4 py-1.5 rounded-full text-sm font-medium">
+                <div className="px-4 pb-4 pt-3 text-center">
+                  <span className="inline-block bg-primary-50 text-primary-700 px-4 py-1.5 rounded-full text-sm font-medium mb-2">
                     {conf.name}
                   </span>
+                  <p className="text-red-600 font-semibold text-xs uppercase tracking-wide">
+                    {conf.deadline}
+                  </p>
                 </div>
               </motion.a>
             ))}
@@ -244,7 +250,6 @@ const Home: React.FC = () => {
       {/* FEATURED SPEAKERS (Coming Soon Placeholder)                */}
       {/* ========================================================== */}
       <section id="speakers" className="section bg-gray-100 px-2 md:px-10">
-        {/* ... rest of the component remains unchanged ... */}
         <div className="flex flex-col items-center">
           <div className="w-full lg:w-[70%] bg-gradient-to-br from-primary-100 to-primary-50 rounded-2xl p-10 flex flex-col items-center justify-center mb-6">
             <Presentation className="w-16 h-16 text-primary-400 mb-4" />
@@ -270,7 +275,6 @@ const Home: React.FC = () => {
       {/* ABOUT ICAI 2026                                          */}
       {/* ========================================================== */}
       <section id="about" className="section bg-white">
-        {/* ... about section unchanged ... */}
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
