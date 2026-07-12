@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import {
   Calendar,
@@ -62,7 +62,6 @@ const youthPartners = [
   { name: "IEEE CS BDC Team SPARK", logo: "https://i.ibb.co.com/mV8Ckx2t/SPARK-LOGO.png", link: "https://ibb.co.com/Mx6DrXtp" },
 ];
 
-// Highlighted external conferences – same height images, deadline shown
 const highlightedConferences = [
   {
     name: "IEEE CSDE 2026",
@@ -97,6 +96,38 @@ const AnimatedNumber = ({ target }: { target: number }) => {
   return <span>{count}</span>;
 };
 
+// ------------------------------------------------------------------
+// LOCALSTORAGE VIEW COUNTER – increments by exactly 1 per refresh
+// ------------------------------------------------------------------
+const ViewCounter: React.FC = () => {
+  const [views, setViews] = useState<number>(0);
+  const hasIncremented = useRef(false); // guard against StrictMode double effect
+
+  useEffect(() => {
+    if (hasIncremented.current) return; // already incremented, skip
+    try {
+      const stored = localStorage.getItem("icai2026_views");
+      const current = stored ? parseInt(stored, 10) : 0;
+      const newCount = current + 1;
+      localStorage.setItem("icai2026_views", newCount.toString());
+      setViews(newCount);
+      hasIncremented.current = true;
+    } catch (err) {
+      console.error("View counter error:", err);
+      setViews(1);
+    }
+  }, []);
+
+  return (
+    <span className="text-white/80 text-sm">
+      Total views: {views.toLocaleString()}
+    </span>
+  );
+};
+
+// ------------------------------------------------------------------
+// HOME COMPONENT
+// ------------------------------------------------------------------
 const Home: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
@@ -161,12 +192,15 @@ const Home: React.FC = () => {
                 { value: timeLeft.seconds, label: "sec" },
               ].map((item) => (
                 <div key={item.label} className="flex flex-col p-2 bg-primary-600 rounded-box text-neutral-content">
-                  <span className="countdown font-mono text-3xl md:text-5xl">
-                    {item.value}
-                  </span>
+                  <span className="countdown font-mono text-3xl md:text-5xl">{item.value}</span>
                   {item.label}
                 </div>
               ))}
+            </div>
+
+            {/* Website View Counter – placed right below the countdown */}
+            <div className="flex justify-center mb-6">
+              <ViewCounter />
             </div>
 
             {/* Register Now Button */}
@@ -191,7 +225,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* ========================================================== */}
-      {/* HIGHLIGHTED CONFERENCES – UNIFORM CARD HEIGHT             */}
+      {/* HIGHLIGHTED CONFERENCES                                   */}
       {/* ========================================================== */}
       <section className="py-12 bg-white">
         <div className="container mx-auto px-4">
@@ -224,7 +258,6 @@ const Home: React.FC = () => {
                 whileHover={{ scale: 1.02, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }}
                 className="block bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition-all duration-300"
               >
-                {/* Image area with fixed height for uniformity */}
                 <div className="h-48 w-full flex items-center justify-center bg-gray-50">
                   <img
                     src={conf.logo}
