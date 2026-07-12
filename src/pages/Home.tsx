@@ -17,7 +17,8 @@ import {
 import { Link } from "react-router-dom";
 
 const ICAI_2026_DATE = "2026-07-18T20:00:00+06:00";
-const REGISTER_URL = "https://docs.google.com/forms/d/e/1FAIpQLScoeHfNTaWiEKTK3aE1lLrSxEomz2-rdU-SuYZH_FudqzA9bA/viewform";
+const REGISTER_URL =
+  "https://docs.google.com/forms/d/e/1FAIpQLScoeHfNTaWiEKTK3aE1lLrSxEomz2-rdU-SuYZH_FudqzA9bA/viewform";
 const AMBASSADOR_REG_URL = "#"; // Placeholder for Ambassador Registration URL
 
 const achievements = [
@@ -45,12 +46,36 @@ const highlights = [
 ];
 
 const whyAttend = [
-  { icon: <Users2 className="w-8 h-8 text-primary-600" />, title: "International Speakers", description: "Hear from renowned AI researchers, industry leaders, and IEEE experts from across the globe." },
-  { icon: <Laptop className="w-8 h-8 text-primary-600" />, title: "Technical Sessions", description: "Deep-dive sessions on cutting-edge AI topics, tools, and frameworks." },
-  { icon: <BarChart3 className="w-8 h-8 text-primary-600" />, title: "AI Industry Talks", description: "Learn how AI is transforming businesses, startups, and large-scale enterprises." },
-  { icon: <Presentation className="w-8 h-8 text-primary-600" />, title: "Panel Discussions", description: "Engaging debates with experts on the future of responsible AI and policy." },
-  { icon: <Briefcase className="w-8 h-8 text-primary-600" />, title: "Career Development", description: "Insights into AI career paths, skills, and opportunities from top recruiters." },
-  { icon: <Network className="w-8 h-8 text-primary-600" />, title: "Global Networking", description: "Connect with researchers, students, IEEE volunteers, and industry professionals worldwide." },
+  {
+    icon: <Users2 className="w-8 h-8 text-primary-600" />,
+    title: "International Speakers",
+    description: "Hear from renowned AI researchers, industry leaders, and IEEE experts from across the globe.",
+  },
+  {
+    icon: <Laptop className="w-8 h-8 text-primary-600" />,
+    title: "Technical Sessions",
+    description: "Deep-dive sessions on cutting-edge AI topics, tools, and frameworks.",
+  },
+  {
+    icon: <BarChart3 className="w-8 h-8 text-primary-600" />,
+    title: "AI Industry Talks",
+    description: "Learn how AI is transforming businesses, startups, and large-scale enterprises.",
+  },
+  {
+    icon: <Presentation className="w-8 h-8 text-primary-600" />,
+    title: "Panel Discussions",
+    description: "Engaging debates with experts on the future of responsible AI and policy.",
+  },
+  {
+    icon: <Briefcase className="w-8 h-8 text-primary-600" />,
+    title: "Career Development",
+    description: "Insights into AI career paths, skills, and opportunities from top recruiters.",
+  },
+  {
+    icon: <Network className="w-8 h-8 text-primary-600" />,
+    title: "Global Networking",
+    description: "Connect with researchers, students, IEEE volunteers, and industry professionals worldwide.",
+  },
 ];
 
 const technicalPartners = [
@@ -59,7 +84,11 @@ const technicalPartners = [
 ];
 
 const youthPartners = [
-  { name: "IEEE CS BDC Team SPARK", logo: "https://i.ibb.co.com/mV8Ckx2t/SPARK-LOGO.png", link: "https://ibb.co.com/Mx6DrXtp" },
+  {
+    name: "IEEE CS BDC Team SPARK",
+    logo: "https://i.ibb.co.com/mV8Ckx2t/SPARK-LOGO.png",
+    link: "https://ibb.co.com/Mx6DrXtp",
+  },
 ];
 
 const highlightedConferences = [
@@ -97,30 +126,102 @@ const AnimatedNumber = ({ target }: { target: number }) => {
 };
 
 // ------------------------------------------------------------------
-// LOCALSTORAGE VIEW COUNTER – increments by exactly 1 per refresh
+// GLOBAL VIEW COUNTER
+// - Uses a CountAPI-compatible service for a true global count
+//   (the original api.countapi.xyz is defunct; this points at a
+//   maintained, API-compatible replacement instead)
+// - 5s timeout so a slow/dead endpoint doesn't hang the UI
+// - Falls back to a per-browser localStorage count if the
+//   request fails or the response shape is unexpected
+// - "hit once per browser session" via sessionStorage, so
+//   refreshing the page doesn't inflate the count every time
 // ------------------------------------------------------------------
 const ViewCounter: React.FC = () => {
-  const [views, setViews] = useState<number>(0);
-  const hasIncremented = useRef(false); // guard against StrictMode double effect
+  const [views, setViews] = useState<number | null>(null);
+  const [isGlobal, setIsGlobal] = useState(false);
+  const hasFetched = useRef(false);
 
   useEffect(() => {
-    if (hasIncremented.current) return; // already incremented, skip
-    try {
-      const stored = localStorage.getItem("icai2026_views");
-      const current = stored ? parseInt(stored, 10) : 0;
-      const newCount = current + 1;
-      localStorage.setItem("icai2026_views", newCount.toString());
-      setViews(newCount);
-      hasIncremented.current = true;
-    } catch (err) {
-      console.error("View counter error:", err);
-      setViews(1);
-    }
+    if (hasFetched.current) return;
+    hasFetched.current = true;
+
+    const NAMESPACE = "icai2026global-x7k2";
+    const KEY = "homepage";
+    const COUNTER_KEY = `${NAMESPACE}_${KEY}`;
+    const SESSION_FLAG = "icai2026_counted_this_session";
+
+    const fetchWithTimeout = async (url: string, ms: number) => {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), ms);
+      try {
+        return await fetch(url, { signal: controller.signal });
+      } finally {
+        clearTimeout(timeout);
+      }
+    };
+
+    const readLocalFallback = () => {
+      try {
+        const stored = localStorage.getItem("icai2026_views");
+        const current = stored ? parseInt(stored, 10) : 0;
+        const newCount = current + 1;
+        localStorage.setItem("icai2026_views", newCount.toString());
+        return newCount;
+      } catch {
+        return 1;
+      }
+    };
+
+    const fetchGlobalCount = async () => {
+      try {
+        // Only increment once per browser session; otherwise just
+        // read the current value so refreshes don't inflate the count.
+        let alreadyCountedThisSession = false;
+        try {
+          alreadyCountedThisSession = sessionStorage.getItem(SESSION_FLAG) === "1";
+        } catch {
+          // sessionStorage unavailable (e.g. privacy mode) — treat as not counted
+        }
+
+        const action = alreadyCountedThisSession ? "get" : "hit";
+        const res = await fetchWithTimeout(
+          `https://countapi.mileshilliard.com/api/v1/${action}/${COUNTER_KEY}`,
+          5000
+        );
+
+        if (!res.ok) throw new Error(`Counter API returned ${res.status}`);
+
+        const data = await res.json();
+        if (typeof data.value !== "number" && typeof data.value !== "string") {
+          throw new Error("Unexpected counter response shape");
+        }
+
+        if (!alreadyCountedThisSession) {
+          try {
+            sessionStorage.setItem(SESSION_FLAG, "1");
+          } catch {
+            // ignore if sessionStorage isn't available
+          }
+        }
+
+        setViews(Number(data.value));
+        setIsGlobal(true);
+      } catch (err) {
+        console.warn("Global counter unavailable, falling back to local count:", err);
+        setViews(readLocalFallback());
+        setIsGlobal(false);
+      }
+    };
+
+    fetchGlobalCount();
   }, []);
+
+  if (views === null) return null;
 
   return (
     <span className="text-white/80 text-sm">
-      Total views: {views.toLocaleString()}
+      Total Page Views: {views.toLocaleString()}
+      {!isGlobal && " (local)"}
     </span>
   );
 };
@@ -160,7 +261,8 @@ const Home: React.FC = () => {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: "url('https://images.pexels.com/photos/8721318/pexels-photo-8721318.jpeg')",
+            backgroundImage:
+              "url('https://images.pexels.com/photos/8721318/pexels-photo-8721318.jpeg')",
             backgroundBlendMode: "overlay",
             backgroundColor: "rgba(0, 0, 0, 0.6)",
           }}
@@ -191,14 +293,17 @@ const Home: React.FC = () => {
                 { value: timeLeft.minutes, label: "min" },
                 { value: timeLeft.seconds, label: "sec" },
               ].map((item) => (
-                <div key={item.label} className="flex flex-col p-2 bg-primary-600 rounded-box text-neutral-content">
+                <div
+                  key={item.label}
+                  className="flex flex-col p-2 bg-primary-600 rounded-box text-neutral-content"
+                >
                   <span className="countdown font-mono text-3xl md:text-5xl">{item.value}</span>
                   {item.label}
                 </div>
               ))}
             </div>
 
-            {/* Website View Counter – placed right below the countdown */}
+            {/* Global View Counter – placed right below the countdown */}
             <div className="flex justify-center mb-6">
               <ViewCounter />
             </div>
@@ -286,19 +391,27 @@ const Home: React.FC = () => {
         <div className="flex flex-col items-center">
           <div className="w-full lg:w-[70%] bg-gradient-to-br from-primary-100 to-primary-50 rounded-2xl p-10 flex flex-col items-center justify-center mb-6">
             <Presentation className="w-16 h-16 text-primary-400 mb-4" />
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">ICAI 2026 Distinguished Speakers Coming Soon</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
+              ICAI 2026 Distinguished Speakers Coming Soon
+            </h2>
             <p className="text-gray-600 text-center max-w-xl">
-              International keynote speakers, researchers, industry experts, and IEEE leaders will be announced soon.
+              International keynote speakers, researchers, industry experts, and IEEE leaders will be
+              announced soon.
             </p>
           </div>
           <div>
             <h2 className="section-title mt-3 mb-3">Meet Our Distinguished Speakers</h2>
             <p className="text-lg text-center">
-              Gain insights from esteemed experts and thought leaders <br /> at the forefront of Artificial Intelligence research and innovation.
+              Gain insights from esteemed experts and thought leaders <br /> at the forefront of
+              Artificial Intelligence research and innovation.
             </p>
             <div className="flex justify-center gap-4 mt-3">
-              <Link to={"/speakers"} className="btn btn-primary border-none">View Speakers</Link>
-              <Link to={"/schedule"} className="btn btn-primary border-none">Event Schedule</Link>
+              <Link to={"/speakers"} className="btn btn-primary border-none">
+                View Speakers
+              </Link>
+              <Link to={"/schedule"} className="btn btn-primary border-none">
+                Event Schedule
+              </Link>
             </div>
           </div>
         </div>
@@ -318,17 +431,18 @@ const Home: React.FC = () => {
             <h2 className="section-title">About ICAI 2026</h2>
             <div className="max-w-3xl mx-auto text-center mb-12">
               <p className="text-lg text-secondary-700 mb-4 text-justify">
-                The 2nd International Congress on Artificial Intelligence (ICAI 2026) is a premier global virtual event
-                organized by the IEEE Systems Council BUBT Student Branch Chapter. Building on the outstanding success of
-                its inaugural edition, ICAI 2026 aims to bring together a vibrant community of researchers, students,
-                IEEE volunteers, academia, startups, industry leaders, and technology innovators from across the globe.
+                The 2nd International Congress on Artificial Intelligence (ICAI 2026) is a premier
+                global virtual event organized by the IEEE Systems Council BUBT Student Branch Chapter.
+                Building on the outstanding success of its inaugural edition, ICAI 2026 aims to bring
+                together a vibrant community of researchers, students, IEEE volunteers, academia,
+                startups, industry leaders, and technology innovators from across the globe.
               </p>
               <p className="text-lg text-secondary-700 text-justify">
-                With a strong focus on Artificial Intelligence, Machine Learning, Generative AI, Data Science,
-                Responsible AI, Intelligent Systems, and emerging technologies, the congress provides an inclusive
-                platform for knowledge exchange, research collaboration, and professional networking. Through
-                expert talks, interactive discussions, and community engagement, ICAI 2026 continues its mission
-                to advance AI for the benefit of humanity.
+                With a strong focus on Artificial Intelligence, Machine Learning, Generative AI, Data
+                Science, Responsible AI, Intelligent Systems, and emerging technologies, the congress
+                provides an inclusive platform for knowledge exchange, research collaboration, and
+                professional networking. Through expert talks, interactive discussions, and community
+                engagement, ICAI 2026 continues its mission to advance AI for the benefit of humanity.
               </p>
             </div>
           </motion.div>
@@ -399,10 +513,11 @@ const Home: React.FC = () => {
           >
             <h2 className="section-title">Building on the Success of ICAI 2025</h2>
             <p className="text-lg text-secondary-700 max-w-3xl mx-auto">
-              The inaugural International Congress on Artificial Intelligence (ICAI 2025) successfully brought together
-              researchers, students, IEEE volunteers, academics, industry professionals, and innovators from around the world.
-              Building on this strong foundation, ICAI 2026 aims to deliver an even larger, more impactful international
-              platform for knowledge sharing, collaboration, innovation, and responsible Artificial Intelligence.
+              The inaugural International Congress on Artificial Intelligence (ICAI 2025) successfully
+              brought together researchers, students, IEEE volunteers, academics, industry professionals,
+              and innovators from around the world. Building on this strong foundation, ICAI 2026 aims to
+              deliver an even larger, more impactful international platform for knowledge sharing,
+              collaboration, innovation, and responsible Artificial Intelligence.
             </p>
           </motion.div>
 
@@ -483,12 +598,27 @@ const Home: React.FC = () => {
               Be Part of ICAI 2026
             </h2>
             <p className="text-xl mb-8 max-w-3xl mx-auto text-primary-100">
-              Following the success of ICAI 2025, the second edition will offer even greater opportunities for
-              learning, collaboration, networking, innovation, and global engagement in Artificial Intelligence.
+              Following the success of ICAI 2025, the second edition will offer even greater
+              opportunities for learning, collaboration, networking, innovation, and global engagement
+              in Artificial Intelligence.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <a href={REGISTER_URL} target="_blank" rel="noopener noreferrer" className="btn bg-white text-primary-700 hover:bg-primary-100">Register Now</a>
-              <a href={AMBASSADOR_REG_URL} target="_blank" rel="noopener noreferrer" className="btn bg-white text-primary-700 hover:bg-primary-100">Become an Ambassador</a>
+              <a
+                href={REGISTER_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn bg-white text-primary-700 hover:bg-primary-100"
+              >
+                Register Now
+              </a>
+              <a
+                href={AMBASSADOR_REG_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn bg-white text-primary-700 hover:bg-primary-100"
+              >
+                Become an Ambassador
+              </a>
             </div>
           </motion.div>
         </div>
@@ -524,10 +654,11 @@ const Home: React.FC = () => {
                   <span className="text-gray-700 font-semibold">
                     2nd International Congress on Artificial Intelligence (ICAI 2026)
                   </span>
-                  , organized by the IEEE Systems Council BUBT Student Branch Chapter. This prestigious global platform
-                  continues to unite experts, researchers, and learners to foster collaboration, share transformative
-                  AI insights, and inspire innovation. I commend the organizers for their vision and dedication, and I
-                  wish all participants a highly engaging, inspiring, and impactful experience.
+                  , organized by the IEEE Systems Council BUBT Student Branch Chapter. This prestigious
+                  global platform continues to unite experts, researchers, and learners to foster
+                  collaboration, share transformative AI insights, and inspire innovation. I commend the
+                  organizers for their vision and dedication, and I wish all participants a highly
+                  engaging, inspiring, and impactful experience.
                 </p>
               </div>
             </div>
@@ -550,10 +681,11 @@ const Home: React.FC = () => {
                   <span className="text-gray-700 font-semibold">
                     2nd International Congress on Artificial Intelligence (ICAI 2026)
                   </span>
-                  , organized by the IEEE Systems Council BUBT Student Branch Chapter. This distinguished platform
-                  offers a unique opportunity to explore cutting-edge AI innovations and connect with a global network
-                  of experts. I applaud the organizers&apos; dedication and wish all participants an inspiring,
-                  collaborative, and impactful experience over these three transformative days.
+                  , organized by the IEEE Systems Council BUBT Student Branch Chapter. This distinguished
+                  platform offers a unique opportunity to explore cutting-edge AI innovations and connect
+                  with a global network of experts. I applaud the organizers&apos; dedication and wish all
+                  participants an inspiring, collaborative, and impactful experience over these three
+                  transformative days.
                 </p>
               </div>
             </div>
@@ -576,8 +708,8 @@ const Home: React.FC = () => {
               Official IEEE vTools Event Registration
             </h2>
             <p className="text-xl mb-8 max-w-3xl mx-auto text-primary-100">
-              ICAI 2026 will be officially listed on the IEEE vTools Events Platform upon approval. The official
-              IEEE registration page will be published here once available.
+              ICAI 2026 will be officially listed on the IEEE vTools Events Platform upon approval. The
+              official IEEE registration page will be published here once available.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <button
@@ -640,7 +772,9 @@ const Home: React.FC = () => {
           >
             {/* Organized By */}
             <div className="mb-16">
-              <h3 className="text-2xl md:text-3xl font-semibold text-secondary-800 mb-10">Organized By</h3>
+              <h3 className="text-2xl md:text-3xl font-semibold text-secondary-800 mb-10">
+                Organized By
+              </h3>
               <div className="flex justify-center items-center max-w-5xl mx-auto">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -662,7 +796,9 @@ const Home: React.FC = () => {
 
             {/* Co-Organized By */}
             <div className="mb-16">
-              <h3 className="text-2xl md:text-3xl font-semibold text-secondary-800 mb-10">Co-Organized By</h3>
+              <h3 className="text-2xl md:text-3xl font-semibold text-secondary-800 mb-10">
+                Co-Organized By
+              </h3>
               <div className="flex justify-center items-center max-w-5xl mx-auto">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -684,7 +820,9 @@ const Home: React.FC = () => {
 
             {/* Supported By */}
             <div className="mb-16">
-              <h3 className="text-2xl md:text-3xl font-semibold text-secondary-800 mb-10">Supported By</h3>
+              <h3 className="text-2xl md:text-3xl font-semibold text-secondary-800 mb-10">
+                Supported By
+              </h3>
               <div className="flex justify-center items-center max-w-5xl mx-auto">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -706,9 +844,12 @@ const Home: React.FC = () => {
 
             {/* Technical Partners */}
             <div className="mb-16">
-              <h3 className="text-2xl md:text-3xl font-semibold text-secondary-800 mb-6">Technical Partners</h3>
+              <h3 className="text-2xl md:text-3xl font-semibold text-secondary-800 mb-6">
+                Technical Partners
+              </h3>
               <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-                Technical Partners contribute technical expertise, academic collaboration, and knowledge sharing to strengthen ICAI 2026.
+                Technical Partners contribute technical expertise, academic collaboration, and knowledge
+                sharing to strengthen ICAI 2026.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
                 {technicalPartners.map((partner) => (
@@ -721,7 +862,11 @@ const Home: React.FC = () => {
                     className="bg-white rounded-xl shadow p-6 flex flex-col items-center justify-center text-center hover:shadow-lg transition-shadow duration-300"
                   >
                     <div className="w-24 h-24 mb-3 flex items-center justify-center">
-                      <img src={partner.logo} alt={partner.name} className="max-h-full max-w-full object-contain" />
+                      <img
+                        src={partner.logo}
+                        alt={partner.name}
+                        className="max-h-full max-w-full object-contain"
+                      />
                     </div>
                     <h4 className="font-semibold text-gray-700">{partner.name}</h4>
                   </motion.div>
@@ -731,9 +876,12 @@ const Home: React.FC = () => {
 
             {/* Youth Partners */}
             <div className="mb-16">
-              <h3 className="text-2xl md:text-3xl font-semibold text-secondary-800 mb-6">Youth Partner</h3>
+              <h3 className="text-2xl md:text-3xl font-semibold text-secondary-800 mb-6">
+                Youth Partner
+              </h3>
               <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-                Youth Partners contribute outreach, engagement, and student-driven collaboration to strengthen ICAI 2026.
+                Youth Partners contribute outreach, engagement, and student-driven collaboration to
+                strengthen ICAI 2026.
               </p>
               <div className="flex justify-center">
                 {youthPartners.map((partner) => (
@@ -747,7 +895,11 @@ const Home: React.FC = () => {
                   >
                     <div className="w-24 h-24 mb-3 flex items-center justify-center">
                       <a href={partner.link} target="_blank" rel="noreferrer">
-                        <img src={partner.logo} alt={partner.name} className="max-h-full max-w-full object-contain" />
+                        <img
+                          src={partner.logo}
+                          alt={partner.name}
+                          className="max-h-full max-w-full object-contain"
+                        />
                       </a>
                     </div>
                     <h4 className="font-semibold text-gray-700">{partner.name}</h4>
@@ -758,10 +910,13 @@ const Home: React.FC = () => {
 
             {/* Collaboration Partners */}
             <div>
-              <h3 className="text-2xl md:text-3xl font-semibold text-secondary-800 mb-6">Collaboration Partners</h3>
+              <h3 className="text-2xl md:text-3xl font-semibold text-secondary-800 mb-6">
+                Collaboration Partners
+              </h3>
               <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-                ICAI 2026 welcomes collaboration from IEEE Student Branches, IEEE Chapters, universities, research
-                laboratories, startups, innovation hubs, professional societies, and industry organizations worldwide.
+                ICAI 2026 welcomes collaboration from IEEE Student Branches, IEEE Chapters,
+                universities, research laboratories, startups, innovation hubs, professional societies,
+                and industry organizations worldwide.
               </p>
               <div className="mb-10">
                 <a
