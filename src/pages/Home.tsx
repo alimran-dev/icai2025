@@ -62,6 +62,22 @@ const youthPartners = [
   { name: "IEEE CS BDC Team SPARK", logo: "https://i.ibb.co.com/mV8Ckx2t/SPARK-LOGO.png", link: "https://ibb.co.com/Mx6DrXtp" },
 ];
 
+// Highlighted external conferences
+const highlightedConferences = [
+  {
+    name: "IEEE CSDE 2026",
+    logo: "https://i.ibb.co.com/LDYfxmTs/csde.jpg",
+    link: "https://ieee-csde.org/",
+    alt: "CSDE Conference",
+  },
+  {
+    name: "IEEE iCOSTE 2026",
+    logo: "https://i.ibb.co.com/2pVHz3m/icoste.jpg",
+    link: "https://i-coste.org/",
+    alt: "iCOSTE Conference",
+  },
+];
+
 const AnimatedNumber = ({ target }: { target: number }) => {
   const [count, setCount] = useState(0);
   useEffect(() => {
@@ -173,9 +189,62 @@ const Home: React.FC = () => {
       </section>
 
       {/* ========================================================== */}
+      {/* HIGHLIGHTED CONFERENCES                                   */}
+      {/* ========================================================== */}
+      <section className="py-12 bg-white">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-10"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-secondary-800 mb-4">
+              Highlighted Conferences
+            </h2>
+            <p className="text-lg text-secondary-600 max-w-2xl mx-auto">
+              Explore these premier IEEE events happening alongside ICAI 2026.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {highlightedConferences.map((conf, idx) => (
+              <motion.a
+                key={conf.name}
+                href={conf.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.2 }}
+                whileHover={{ scale: 1.02, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }}
+                className="block bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300"
+              >
+                <div className="relative w-full h-40 md:h-48 bg-gradient-to-r from-primary-50 to-secondary-50 flex items-center justify-center p-4">
+                  <img
+                    src={conf.logo}
+                    alt={conf.alt}
+                    className="max-h-full max-w-full object-contain"
+                  />
+                </div>
+                <div className="p-4 text-center">
+                  <span className="inline-block bg-primary-50 text-primary-700 px-4 py-1.5 rounded-full text-sm font-medium">
+                    {conf.name}
+                  </span>
+                </div>
+              </motion.a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================== */}
       {/* FEATURED SPEAKERS (Coming Soon Placeholder)                */}
       {/* ========================================================== */}
       <section id="speakers" className="section bg-gray-100 px-2 md:px-10">
+        {/* ... rest of the component remains unchanged ... */}
         <div className="flex flex-col items-center">
           <div className="w-full lg:w-[70%] bg-gradient-to-br from-primary-100 to-primary-50 rounded-2xl p-10 flex flex-col items-center justify-center mb-6">
             <Presentation className="w-16 h-16 text-primary-400 mb-4" />
@@ -201,6 +270,7 @@ const Home: React.FC = () => {
       {/* ABOUT ICAI 2026                                          */}
       {/* ========================================================== */}
       <section id="about" className="section bg-white">
+        {/* ... about section unchanged ... */}
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
