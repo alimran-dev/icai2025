@@ -916,16 +916,16 @@ const Home: React.FC = () => {
               {/* Logo grid */}
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 items-center justify-items-center max-w-6xl mx-auto">
                 {[
-                  { logo: "https://i.ibb.co.com/TDb1RWcx/AI-Community-BUBT.png", name: "AI Community BUBT" },
-                  { logo: "https://i.ibb.co.com/8LJCkdys/IEEE-Computer-Society-Eastern-University-Student-Branch-Chapter.jpg", name: "IEEE Computer Society Eastern University Student Branch Chapter" },
-                  { logo: "https://i.ibb.co.com/yFnQh2TZ/IEEE-CS-SEU-SBC.png", name: "IEEE CS SEU SBC" },
-                  { logo: "https://i.ibb.co.com/0p0CC5Ns/IEEE-GUB-SB-IEEE-Student-Branch-GUB.png", name: "IEEE GUB SB" },
-                  { logo: "https://i.ibb.co.com/3y5Dm4vk/IEEE-SEU-Student-Branch.jpg", name: "IEEE SEU Student Branch" },
-                  { logo: "https://i.ibb.co.com/qMcBL9dp/IEEE-Southeast-University-Student-Branch-WIE-Affinity-Group.jpg", name: "IEEE Southeast University Student Branch WIE Affinity Group" },
-                  { logo: "https://i.ibb.co.com/1GmfjDtS/IEEE-UAP-SB-Official-IEEE-UAP-Student-Branch.jpg", name: "IEEE UAP SB" },
-                  { logo: "https://i.ibb.co.com/1J7hySbW/IEEE-UAP-SB-WIE-AG-IEEE-UAP-Student-Branch.jpg", name: "IEEE UAP SB WIE AG" },
-                  { logo: "https://i.ibb.co.com/TBw4rRvM/ieeeuiusb.png", name: "IEEE UIU SB" },
-                  { logo: "https://i.ibb.co.com/jvVmr6th/JUKTI-LOGO.png", name: "JUKTI Logo" }
+                  { logo: "https://i.ibb.co.com/23RM1RvH/AI-Community-BUBT.png", name: "AI Community BUBT" },
+                  { logo: "https://i.ibb.co.com/4gtN47JV/IEEE-Computer-Society-Eastern-University-Student-Branch-Chapter.jpg", name: "IEEE Computer Society Eastern University Student Branch Chapter" },
+                  { logo: "https://i.ibb.co.com/RkSvW49M/IEEE-CS-SEU-SBC.png", name: "IEEE CS SEU SBC" },
+                  { logo: "https://i.ibb.co.com/LdCD6NF1/IEEE-GUB-SB-IEEE-Student-Branch-GUB.png", name: "IEEE GUB SB" },
+                  { logo: "https://i.ibb.co.com/TMrRPg0p/IEEE-SEU-Student-Branch.jpg", name: "IEEE SEU Student Branch" },
+                  { logo: "https://i.ibb.co.com/fztkJ6sH/IEEE-Southeast-University-Student-Branch-WIE-Affinity-Group.jpg", name: "IEEE Southeast University Student Branch WIE Affinity Group" },
+                  { logo: "https://i.ibb.co.com/YF3KC9FQ/IEEE-UAP-SB-Official-IEEE-UAP-Student-Branch.jpg", name: "IEEE UAP SB" },
+                  { logo: "https://i.ibb.co.com/bjMCgjBg/IEEE-UAP-SB-WIE-AG-IEEE-UAP-Student-Branch.jpg", name: "IEEE UAP SB WIE AG" },
+                  { logo: "https://i.ibb.co.com/FLGjwnjp/ieeeuiusb.png", name: "IEEE UIU SB" },
+                  { logo: "https://i.ibb.co.com/F40L4Hcg/JUKTI-LOGO.png", name: "JUKTI Logo" }
                 ].map((partner, index) => (
                   <motion.div
                     key={partner.name}
