@@ -1,0 +1,38 @@
+[
+  {
+    "id": "ICAI26S01",
+    "name": "Dr. Shashikant Patil",
+    "title": "Director and Professor, Atlas SkillTech University, Mumbai, India",
+    "topic": "Agentic AI for Computer Networks",
+    "email": "sspatil999@gmail.com",
+    "image": "https://i.postimg.cc/C1vKJ4LD/IMG-2520-1-1.jpg",
+    "bio": "Dr. Shashikant Patil is a Full Professor and Senior Director at Atlas SkillTech University, Mumbai, with over 28 years of experience. He is a Senior Member of IEEE and ACM, Fellow of IETE, IEI, IBE, and ISDS, and a Chartered Engineer. His expertise spans Signal & Image Processing, Automation & Robotics, Data Science, Analytics, AI & Machine Learning. He has 103+ publications, seven books, one patent, and has reviewed over 5,000 research articles. He is an IEEE Brand Ambassador Expert and IEEE Computer Society Distinguished Visitor for 2025."
+  },
+  {
+    "id": "ICAI26S02",
+    "name": "Dr. Fida Hasan",
+    "title": "Senior Lecturer in Cybersecurity, University of New South Wales (UNSW), Australia",
+    "topic": "Trust, the Weakest Link in AI: What Does It Mean for AI to Be 'Trustworthy'?",
+    "email": "fida.hasan@unsw.edu.au",
+    "image": "https://via.placeholder.com/400x400.png?text=Dr.+Fida+Hasan",
+    "bio": "Dr. Fida Hasan is a Bangladeshi-Australian computer scientist and Senior Lecturer in Cybersecurity at UNSW. With over 18 years of academic experience, his research focuses on Trustworthy AI for Cybersecurity and security challenges in the era of quantum computing. He is a Harvard-certified higher education teacher, a Fellow of the Higher Education Academy (FHEA), a Senior Member of IEEE, and a professional member of the Australian Information Security Association (AISA)."
+  },
+  {
+    "id": "ICAI26S03",
+    "name": "Dr. Mohammad Polash",
+    "title": "Lecturer and Director of Teaching & Learning, School of Computer Science, The University of Sydney, Australia",
+    "topic": "AI and Innovation",
+    "email": "mohammad.polash@sydney.edu.au",
+    "image": "https://via.placeholder.com/400x400.png?text=Dr.+Mohammad+Polash",
+    "bio": "Dr. Mohammad Polash is a Lecturer at the University of Sydney, where he also serves as Director of Teaching & Learning. He has received multiple Best Paper Awards and the Vice-Chancellor's Award for Teaching and Learning Excellence. His research interests include Computing Education Research, Combinatorial Optimisation, and Natural Language Processing (NLP). He publishes extensively in high-impact journals and serves as a reviewer for top-tier conferences and journals."
+  },
+  {
+    "id": "ICAI26S04",
+    "name": "Dr. Tahera Hossain",
+    "title": "Research Assistant Professor, Nagoya University, Japan",
+    "topic": "Human Behavior Modeling for Human-Centered AI: From Wearable Sensing to Real-World Health and Wellbeing",
+    "email": "tahera.hossain@nagoya-u.ac.jp",
+    "image": "https://via.placeholder.com/400x400.png?text=Dr.+Tahera+Hossain",
+    "bio": "Dr. Tahera Hossain is a Research Assistant Professor at Nagoya University, Japan, specializing in Human-Computer Interaction (HCI) and AI-driven healthcare technologies. She earned her Ph.D. in Engineering from the Kyushu Institute of Technology, Japan, in 2021. She has held research positions at the University of Michigan, Aoyama Gakuin University, and now Nagoya University. Her work leverages multimodal data (behavioral, physiological, clinical) and machine learning to understand human behaviour and predict health outcomes. She is an active member of ACM and ACM SIGCHI."
+  }
+]

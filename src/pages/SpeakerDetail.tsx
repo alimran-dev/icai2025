@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import speakersData from "../../data/speakers.json";
+import speakersData from "../../data/speakers2026.json"; // Updated for ICAI 2026
 import { Mail } from "lucide-react";
 
 interface Speaker {
@@ -17,17 +17,20 @@ interface Speaker {
 
 const SpeakerDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  console.log(id);
   const speaker: Speaker | undefined = speakersData.find((s) => s.id === id);
-  console.log(speaker);
+
   const item = {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0 },
   };
+
   return (
     <div className="pt-20 bg-gray-50">
       <section>
-        <motion.div variants={item} className="grid grid-cols-1 md:grid-cols-3 gap-4 justify-center p-2 lg:p-8 m-2 lg:m-10 border-2 border-primary-400 rounded-md">
+        <motion.div
+          variants={item}
+          className="grid grid-cols-1 md:grid-cols-3 gap-4 justify-center p-2 lg:p-8 m-2 lg:m-10 border-2 border-primary-400 rounded-md"
+        >
           <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 h-full flex flex-col pt-14 ">
             <div className="flex flex-col justify-center items-center -mt-12 mb-4 relative z-10">
               {speaker?.image ? (
@@ -50,9 +53,7 @@ const SpeakerDetail: React.FC = () => {
 
             <div className="px-6 pb-6 flex-grow flex flex-col text-center">
               <div className="mb-4">
-                <div
-                  className="text-xl font-bold text-gray-800 mb-1"
-                >
+                <div className="text-xl font-bold text-gray-800 mb-1">
                   {speaker?.name}
                 </div>
                 <p className="text-primary-600 font-medium whitespace-pre-line">
@@ -68,7 +69,7 @@ const SpeakerDetail: React.FC = () => {
               </div>
 
               {speaker?.email && (
-                <div className=" flex space-x-3 justify-center">
+                <div className="flex space-x-3 justify-center">
                   <button
                     onClick={() =>
                       (window.location.href = `mailto:${speaker.email}`)

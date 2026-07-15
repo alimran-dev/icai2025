@@ -2,9 +2,8 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 
 // =============================================
-// ICAI 2026 Demo Schedule
-// Replace the placeholder sessions below with
-// the official congress schedule once approved.
+// ICAI 2026 Schedule (Partial – announced keynotes)
+// Add more sessions as they are confirmed.
 // =============================================
 const scheduleData = {
   day1: [
@@ -18,33 +17,43 @@ const scheduleData = {
   ],
   day2: [
     {
-      speaker: "Coming Soon",
-      topic: "Technical Sessions",
-      localTime: "TBA",
-      utcTime: "TBA",
-      duration: "TBA",
+      speaker: "Dr. Fida Hasan",
+      topic:
+        "Trust, the Weakest Link in AI: What Does It Mean for AI to Be 'Trustworthy'?",
+      localTime: "09:00 PM – 09:20 PM",
+      utcTime: "03:00 PM – 03:20 PM",
+      duration: "20 minutes",
     },
   ],
   day3: [
     {
-      speaker: "Coming Soon",
-      topic: "Closing Ceremony",
-      localTime: "TBA",
-      utcTime: "TBA",
-      duration: "TBA",
+      speaker: "Dr. Tahera Hossain",
+      topic:
+        "Human Behavior Modeling for Human‑Centered AI: From Wearable Sensing to Real‑World Health and Wellbeing",
+      localTime: "08:00 PM – 08:20 PM",
+      utcTime: "02:00 PM – 02:20 PM",
+      duration: "20 minutes",
+    },
+    {
+      speaker: "Dr. Shashikant Patil",
+      topic: "Agentic AI for Computer Networks",
+      localTime: "08:30 PM – 08:50 PM",
+      utcTime: "02:30 PM – 02:50 PM",
+      duration: "20 minutes",
+    },
+    {
+      speaker: "Dr. Mohammad Polash",
+      topic: "AI and Innovation",
+      localTime: "09:00 PM – 09:20 PM",
+      utcTime: "03:00 PM – 03:20 PM",
+      duration: "20 minutes",
     },
   ],
 };
 
-// TODO:
-// - Update speaker names
-// - Update session titles
-// - Update BD and UTC timings
-// - Add Zoom links
-// - Add remaining sessions
-
 export default function Schedule() {
   const [activeTab, setActiveTab] = useState("day1");
+
   return (
     <div className="pt-20">
       <section className="bg-primary-700 py-16 text-white">
@@ -59,13 +68,15 @@ export default function Schedule() {
               Program Schedule
             </h1>
             <p className="text-xl max-w-3xl mx-auto text-primary-100">
-              The official ICAI 2026 program schedule will be announced soon. The schedule below is a temporary preview.
+              The official ICAI 2026 program schedule will be announced soon.
+              The schedule below is a temporary preview based on confirmed
+              keynote sessions.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Time zone info – preserved for ICAI 2026 context */}
+      {/* Time zone info */}
       <div className="mb-6 bg-blue-50 p-4 rounded-lg">
         <p className="text-center text-blue-800">
           <span className="font-semibold">Local Time:</span> Bangladesh (UTC+6)
@@ -74,7 +85,7 @@ export default function Schedule() {
       </div>
 
       <section className="max-w-6xl mx-auto py-6">
-        {/* Tabs with updated ICAI 2026 dates */}
+        {/* Tabs */}
         <div className="flex mb-6 border-b">
           <button
             className={`py-2 px-6 font-medium ${activeTab === "day1" ? "text-indigo-600 border-b-2 border-indigo-600" : "text-gray-500"}`}
@@ -96,19 +107,23 @@ export default function Schedule() {
           </button>
         </div>
 
-        {/* Zoom & Passcode – temporary coming soon notice */}
+        {/* Zoom & Passcode placeholder */}
         <div className="flex justify-center gap-5 mt-5 mb-8">
           <div className="flex flex-col items-center bg-gray-50 border border-gray-200 rounded-md px-5 py-3 min-w-[140px]">
-            <span className="font-semibold text-gray-600 text-sm">Zoom Details</span>
+            <span className="font-semibold text-gray-600 text-sm">
+              Zoom Details
+            </span>
             <span className="text-gray-500 text-xs mt-1">Coming Soon</span>
           </div>
           <div className="flex flex-col items-center bg-gray-50 border border-gray-200 rounded-md px-5 py-3 min-w-[140px]">
-            <span className="font-semibold text-gray-600 text-sm">Passcode</span>
+            <span className="font-semibold text-gray-600 text-sm">
+              Passcode
+            </span>
             <span className="text-gray-500 text-xs mt-1">Coming Soon</span>
           </div>
         </div>
 
-        {/* Schedule table – uses demo placeholder data */}
+        {/* Schedule table */}
         <div className="container mx-auto px-4 overflow-x-auto mt-5">
           <table className="min-w-full table-auto">
             <thead className="bg-gray-50">
@@ -130,16 +145,16 @@ export default function Schedule() {
                     className="border-b hover:bg-gray-50"
                   >
                     <td className="px-4 py-2">
-                      {session?.speaker || "To be announced"}
+                      {session.speaker || "To be announced"}
                     </td>
                     <td className="px-4 py-2">
-                      {session?.topic || "To be announced"}
+                      {session.topic || "To be announced"}
                     </td>
                     <td className="px-4 py-2">{session.localTime}</td>
                     <td className="px-4 py-2">{session.utcTime}</td>
                     <td className="px-4 py-2">{session.duration}</td>
                   </motion.tr>
-                ),
+                )
               )}
             </tbody>
           </table>
