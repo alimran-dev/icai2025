@@ -913,20 +913,37 @@ const Home: React.FC = () => {
               <h3 className="text-2xl md:text-3xl font-semibold text-secondary-800 mb-6">
                 Collaboration Partners
               </h3>
-              <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-                ICAI 2026 welcomes collaboration from IEEE Student Branches, IEEE Chapters,
-                universities, research laboratories, startups, innovation hubs, professional societies,
-                and industry organizations worldwide.
-              </p>
-              <div className="mb-10">
-                <a
-                  href="#"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 text-white font-semibold rounded-full hover:bg-primary-700 transition-colors duration-300"
-                  onClick={(e) => e.preventDefault()}
-                >
-                  <Users2 className="w-5 h-5" />
-                  Pending
-                </a>
+
+              {/* Logo grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 items-center justify-items-center max-w-6xl mx-auto">
+                {[
+                  { logo: "https://i.ibb.co.com/TDb1RWcx/AI-Community-BUBT.png", name: "AI Community BUBT" },
+                  { logo: "https://i.ibb.co.com/8LJCkdys/IEEE-Computer-Society-Eastern-University-Student-Branch-Chapter.jpg", name: "IEEE Computer Society Eastern University Student Branch Chapter" },
+                  { logo: "https://i.ibb.co.com/yFnQh2TZ/IEEE-CS-SEU-SBC.png", name: "IEEE CS SEU SBC" },
+                  { logo: "https://i.ibb.co.com/0p0CC5Ns/IEEE-GUB-SB-IEEE-Student-Branch-GUB.png", name: "IEEE GUB SB" },
+                  { logo: "https://i.ibb.co.com/3y5Dm4vk/IEEE-SEU-Student-Branch.jpg", name: "IEEE SEU Student Branch" },
+                  { logo: "https://i.ibb.co.com/qMcBL9dp/IEEE-Southeast-University-Student-Branch-WIE-Affinity-Group.jpg", name: "IEEE Southeast University Student Branch WIE Affinity Group" },
+                  { logo: "https://i.ibb.co.com/1GmfjDtS/IEEE-UAP-SB-Official-IEEE-UAP-Student-Branch.jpg", name: "IEEE UAP SB" },
+                  { logo: "https://i.ibb.co.com/1J7hySbW/IEEE-UAP-SB-WIE-AG-IEEE-UAP-Student-Branch.jpg", name: "IEEE UAP SB WIE AG" },
+                  { logo: "https://i.ibb.co.com/TBw4rRvM/ieeeuiusb.png", name: "IEEE UIU SB" },
+                  { logo: "https://i.ibb.co.com/jvVmr6th/JUKTI-LOGO.png", name: "JUKTI Logo" }
+                ].map((partner, index) => (
+                  <motion.div
+                    key={partner.name}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="group w-full p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center"
+                  >
+                    <img
+                      src={partner.logo}
+                      alt={partner.name}
+                      loading="lazy"
+                      className="h-24 md:h-28 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                    />
+                  </motion.div>
+                ))}
               </div>
             </div>
           </motion.div>
