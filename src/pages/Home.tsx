@@ -893,14 +893,13 @@ const Home: React.FC = () => {
                     transition={{ duration: 0.5 }}
                     className="w-full max-w-md bg-white rounded-xl shadow p-6 flex flex-col items-center justify-center text-center hover:shadow-lg transition-shadow duration-300"
                   >
+                    {/* Image is no longer wrapped in an anchor – no link on click */}
                     <div className="w-24 h-24 mb-3 flex items-center justify-center">
-                      <a href={partner.link} target="_blank" rel="noreferrer">
-                        <img
-                          src={partner.logo}
-                          alt={partner.name}
-                          className="max-h-full max-w-full object-contain"
-                        />
-                      </a>
+                      <img
+                        src={partner.logo}
+                        alt={partner.name}
+                        className="max-h-full max-w-full object-contain"
+                      />
                     </div>
                     <h4 className="font-semibold text-gray-700">{partner.name}</h4>
                   </motion.div>
