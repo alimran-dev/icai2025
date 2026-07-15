@@ -2,17 +2,31 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 
 // =============================================
-// ICAI 2026 Schedule (Partial – announced keynotes)
-// Add more sessions as they are confirmed.
+// ICAI 2026 Schedule – All confirmed keynotes
 // =============================================
 const scheduleData = {
   day1: [
     {
-      speaker: "Coming Soon",
-      topic: "Opening Ceremony & Keynote Session",
-      localTime: "TBA",
-      utcTime: "TBA",
-      duration: "TBA",
+      speaker: "Salheen Bakhet",
+      topic: "Artificial Intelligence: A Global Perspective",
+      localTime: "08:00 PM – 08:20 PM",
+      utcTime: "02:00 PM – 02:20 PM",
+      duration: "20 minutes",
+    },
+    {
+      speaker: "Dr. Md. Jakir Hossen",
+      topic: "A Modified Adaptive Neuro-Fuzzy Inference Engine and Its Applications",
+      localTime: "08:30 PM – 08:50 PM",
+      utcTime: "02:30 PM – 02:50 PM",
+      duration: "20 minutes",
+    },
+    {
+      speaker: "Muhammad Mostafa Monowar",
+      topic:
+        "Artificial Intelligence at an Inflection Point: Recent Advances and the Research Frontiers Ahead",
+      localTime: "09:00 PM – 09:20 PM",
+      utcTime: "03:00 PM – 03:20 PM",
+      duration: "20 minutes",
     },
   ],
   day2: [
@@ -48,6 +62,13 @@ const scheduleData = {
       utcTime: "03:00 PM – 03:20 PM",
       duration: "20 minutes",
     },
+    {
+      speaker: "Ajmal Hinas",
+      topic: "AI-First Software Engineering: Rethinking How We Build",
+      localTime: "10:00 PM – 10:20 PM",
+      utcTime: "04:00 PM – 04:20 PM",
+      duration: "20 minutes",
+    },
   ],
 };
 
@@ -68,9 +89,8 @@ export default function Schedule() {
               Program Schedule
             </h1>
             <p className="text-xl max-w-3xl mx-auto text-primary-100">
-              The official ICAI 2026 program schedule will be announced soon.
-              The schedule below is a temporary preview based on confirmed
-              keynote sessions.
+              The official ICAI 2026 program schedule is now available. Check
+              out the keynotes and technical sessions planned for each day.
             </p>
           </motion.div>
         </div>
@@ -107,7 +127,7 @@ export default function Schedule() {
           </button>
         </div>
 
-        {/* Zoom & Passcode placeholder */}
+        {/* Zoom & Passcode placeholder (update when details are available) */}
         <div className="flex justify-center gap-5 mt-5 mb-8">
           <div className="flex flex-col items-center bg-gray-50 border border-gray-200 rounded-md px-5 py-3 min-w-[140px]">
             <span className="font-semibold text-gray-600 text-sm">

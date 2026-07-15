@@ -1,6 +1,15 @@
 [
   {
     "id": "ICAI26S01",
+    "name": "Muhammad Mostafa Monowar",
+    "title": "Professor, Department of Information Technology, King Abdulaziz University, Saudi Arabia",
+    "topic": "Artificial Intelligence at an Inflection Point: Recent Advances and the Research Frontiers Ahead",
+    "email": "mmonowar@kau.edu.sa",
+    "image": "https://via.placeholder.com/400x400.png?text=Prof.+Monowar",
+    "bio": "Muhammad Mostafa Monowar is a Professor in the Department of Information Technology at King AbdulAziz University, Saudi Arabia. He received his Ph.D. in Computer Engineering from Kyung Hee University, South Korea, in 2011. His research interests include artificial intelligence, wireless sensor networks, Internet of Things (IoT), cybersecurity, privacy, and cloud computing. He has published over 70 peer-reviewed research articles with more than 2,200 citations, an h-index of 26, and an i10-index of 46. He has led numerous externally funded research projects and received several prestigious awards, including Best Paper Awards."
+  },
+  {
+    "id": "ICAI26S02",
     "name": "Dr. Shashikant Patil",
     "title": "Director and Professor, Atlas SkillTech University, Mumbai, India",
     "topic": "Agentic AI for Computer Networks",
@@ -9,7 +18,16 @@
     "bio": "Dr. Shashikant Patil is a Full Professor and Senior Director at Atlas SkillTech University, Mumbai, with over 28 years of experience. He is a Senior Member of IEEE and ACM, Fellow of IETE, IEI, IBE, and ISDS, and a Chartered Engineer. His expertise spans Signal & Image Processing, Automation & Robotics, Data Science, Analytics, AI & Machine Learning. He has 103+ publications, seven books, one patent, and has reviewed over 5,000 research articles. He is an IEEE Brand Ambassador Expert and IEEE Computer Society Distinguished Visitor for 2025."
   },
   {
-    "id": "ICAI26S02",
+    "id": "ICAI26S03",
+    "name": "Dr. Md. Jakir Hossen",
+    "title": "Associate Professor, Department of Robotics and Automation, Multimedia University (MMU), Malaysia",
+    "topic": "A Modified Adaptive Neuro-Fuzzy Inference Engine and Its Applications",
+    "email": "jakir.hossen@mmu.edu.my",
+    "image": "https://via.placeholder.com/400x400.png?text=Dr.+Jakir+Hossen",
+    "bio": "Dr. Md. Jakir Hossen (SMIEEE, MIET, P.Tech) is an Associate Professor at Multimedia University (MMU), Malaysia. With over 20 years of experience, he specialises in Artificial Intelligence, Data Analytics, and their applications in Robotics, Healthcare, Renewable Energy, and IoT. He obtained his PhD from Universiti Putra Malaysia with a perfect CGPA of 4.00/4.00. He has authored over 150 journal publications, numerous conference papers, books, and patents. A Senior Member of IEEE, he has supervised many postgraduate students and received multiple international awards, including Best Researcher Award and Best Paper Awards."
+  },
+  {
+    "id": "ICAI26S04",
     "name": "Dr. Fida Hasan",
     "title": "Senior Lecturer in Cybersecurity, University of New South Wales (UNSW), Australia",
     "topic": "Trust, the Weakest Link in AI: What Does It Mean for AI to Be 'Trustworthy'?",
@@ -18,7 +36,25 @@
     "bio": "Dr. Fida Hasan is a Bangladeshi-Australian computer scientist and Senior Lecturer in Cybersecurity at UNSW. With over 18 years of academic experience, his research focuses on Trustworthy AI for Cybersecurity and security challenges in the era of quantum computing. He is a Harvard-certified higher education teacher, a Fellow of the Higher Education Academy (FHEA), a Senior Member of IEEE, and a professional member of the Australian Information Security Association (AISA)."
   },
   {
-    "id": "ICAI26S03",
+    "id": "ICAI26S05",
+    "name": "Ajmal Hinas",
+    "title": "Head, Department of Computer Science and Engineering, South Eastern University of Sri Lanka",
+    "topic": "AI-First Software Engineering: Rethinking How We Build",
+    "email": "ajmalhinas@seu.ac.lk",
+    "image": "https://via.placeholder.com/400x400.png?text=Ajmal+Hinas",
+    "bio": "Dr. Ajmal Hinas is a computer engineer and researcher specializing in AI-driven software engineering, software quality, and automation. He is the Head of the Department of Computer Science and Engineering at the South Eastern University of Sri Lanka. His recent work focuses on making software development more reliable through approaches such as Test-Driven Requirements Engineering (TDRE). He holds multiple international patent applications and is passionate about democratizing automation for real-world impact."
+  },
+  {
+    "id": "ICAI26S06",
+    "name": "Salheen Bakhet",
+    "title": "CEO, SiliconicPro International, Pakistan",
+    "topic": "Artificial Intelligence: A Global Perspective",
+    "email": "salhinue@gmail.com",
+    "image": "https://via.placeholder.com/400x400.png?text=Salheen+Bakhet",
+    "bio": "Salheen Bakhet is a Gold Medalist, Harvard Scholar, and Young Global Leader in Science & Technology. With decades of experience in Data Sciences and AI, he has served Fortune 100 companies including Hewlett-Packard, Glaxo SmithKline, and CISCO. He is an accredited coder of IEEEXtreme and currently serves on the ExCom of IEEE Computer Society Lahore Section. He has been ranked as the top freelancer from Pakistan and has completed several hundred projects for clients in over 30 countries. He has also worked as a technical consultant for World Bank IT & reforms projects."
+  },
+  {
+    "id": "ICAI26S07",
     "name": "Dr. Mohammad Polash",
     "title": "Lecturer and Director of Teaching & Learning, School of Computer Science, The University of Sydney, Australia",
     "topic": "AI and Innovation",
@@ -27,7 +63,7 @@
     "bio": "Dr. Mohammad Polash is a Lecturer at the University of Sydney, where he also serves as Director of Teaching & Learning. He has received multiple Best Paper Awards and the Vice-Chancellor's Award for Teaching and Learning Excellence. His research interests include Computing Education Research, Combinatorial Optimisation, and Natural Language Processing (NLP). He publishes extensively in high-impact journals and serves as a reviewer for top-tier conferences and journals."
   },
   {
-    "id": "ICAI26S04",
+    "id": "ICAI26S08",
     "name": "Dr. Tahera Hossain",
     "title": "Research Assistant Professor, Nagoya University, Japan",
     "topic": "Human Behavior Modeling for Human-Centered AI: From Wearable Sensing to Real-World Health and Wellbeing",
