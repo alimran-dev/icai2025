@@ -15,21 +15,25 @@ import {
   Briefcase,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import speakersData from "../../data/speakers2026.json";
 
 const ICAI_2026_DATE = "2026-07-18T20:00:00+06:00";
 const REGISTER_URL =
   "https://docs.google.com/forms/d/e/1FAIpQLScoeHfNTaWiEKTK3aE1lLrSxEomz2-rdU-SuYZH_FudqzA9bA/viewform";
-const AMBASSADOR_REG_URL = "#"; // Placeholder for Ambassador Registration URL
+// Ambassador registration isn't live yet — render this CTA as a disabled
+// "coming soon" state instead of linking to "#", which previously opened a
+// dead tab and looked broken.
+const AMBASSADOR_REG_URL: string | null = null;
 
 const achievements = [
   { icon: <Users className="w-6 h-6" />, label: "Registered Participants", value: 1000, suffix: "+" },
   { icon: <Users2 className="w-6 h-6" />, label: "Live Participants", value: 400, suffix: "+" },
-  { icon: <Globe className="w-6 h-6" />, label: "Countries Represented", value: 16 },
-  { icon: <Award className="w-6 h-6" />, label: "Student Ambassadors", value: 147 },
-  { icon: <Briefcase className="w-6 h-6" />, label: "Collaboration Partners", value: 16 },
-  { icon: <Presentation className="w-6 h-6" />, label: "Distinguished Speakers", value: 10 },
-  { icon: <Clock className="w-6 h-6" />, label: "Two-Day Virtual Congress", value: 2 },
-  { icon: <Globe className="w-6 h-6" />, label: "Global IEEE Community Engagement", value: null },
+  { icon: <Globe className="w-6 h-6" />, label: "Countries Represented", value: 16, suffix: "" },
+  { icon: <Award className="w-6 h-6" />, label: "Student Ambassadors", value: 147, suffix: "" },
+  { icon: <Briefcase className="w-6 h-6" />, label: "Collaboration Partners", value: 16, suffix: "" },
+  { icon: <Presentation className="w-6 h-6" />, label: "Distinguished Speakers", value: 10, suffix: "" },
+  { icon: <Clock className="w-6 h-6" />, label: "Two-Day Virtual Congress", value: 2, suffix: "" },
+  { icon: <Globe className="w-6 h-6" />, label: "Global IEEE Community Engagement", value: null, suffix: "" },
 ];
 
 const highlights = [
@@ -91,6 +95,19 @@ const youthPartners = [
   },
 ];
 
+const collaborationPartners = [
+  { logo: "https://i.ibb.co.com/23RM1RvH/AI-Community-BUBT.png", name: "AI Community BUBT" },
+  { logo: "https://i.ibb.co.com/4gtN47JV/IEEE-Computer-Society-Eastern-University-Student-Branch-Chapter.jpg", name: "IEEE Computer Society Eastern University Student Branch Chapter" },
+  { logo: "https://i.ibb.co.com/RkSvW49M/IEEE-CS-SEU-SBC.png", name: "IEEE CS SEU SBC" },
+  { logo: "https://i.ibb.co.com/LdCD6NF1/IEEE-GUB-SB-IEEE-Student-Branch-GUB.png", name: "IEEE GUB SB" },
+  { logo: "https://i.ibb.co.com/TMrRPg0p/IEEE-SEU-Student-Branch.jpg", name: "IEEE SEU Student Branch" },
+  { logo: "https://i.ibb.co.com/fztkJ6sH/IEEE-Southeast-University-Student-Branch-WIE-Affinity-Group.jpg", name: "IEEE Southeast University Student Branch WIE Affinity Group" },
+  { logo: "https://i.ibb.co.com/YF3KC9FQ/IEEE-UAP-SB-Official-IEEE-UAP-Student-Branch.jpg", name: "IEEE UAP SB" },
+  { logo: "https://i.ibb.co.com/bjMCgjBg/IEEE-UAP-SB-WIE-AG-IEEE-UAP-Student-Branch.jpg", name: "IEEE UAP SB WIE AG" },
+  { logo: "https://i.ibb.co.com/FLGjwnjp/ieeeuiusb.png", name: "IEEE UIU SB" },
+  { logo: "https://i.ibb.co.com/F40L4Hcg/JUKTI-LOGO.png", name: "JUKTI Logo" },
+];
+
 const highlightedConferences = [
   {
     name: "IEEE CSDE 2026",
@@ -122,19 +139,11 @@ const AnimatedNumber = ({ target }: { target: number }) => {
     }, stepTime);
     return () => clearInterval(timer);
   }, [target]);
-  return <span>{count}</span>;
+  return <span className="tabular-nums">{count}</span>;
 };
 
 // ------------------------------------------------------------------
 // GLOBAL VIEW COUNTER
-// - Uses a CountAPI-compatible service for a true global count
-//   (the original api.countapi.xyz is defunct; this points at a
-//   maintained, API-compatible replacement instead)
-// - 5s timeout so a slow/dead endpoint doesn't hang the UI
-// - Falls back to a per-browser localStorage count if the
-//   request fails or the response shape is unexpected
-// - "hit once per browser session" via sessionStorage, so
-//   refreshing the page doesn't inflate the count every time
 // ------------------------------------------------------------------
 const ViewCounter: React.FC = () => {
   const [views, setViews] = useState<number | null>(null);
@@ -174,14 +183,10 @@ const ViewCounter: React.FC = () => {
 
     const fetchGlobalCount = async () => {
       try {
-        // Only increment once per browser session; otherwise just
-        // read the current value so refreshes don't inflate the count.
         let alreadyCountedThisSession = false;
         try {
           alreadyCountedThisSession = sessionStorage.getItem(SESSION_FLAG) === "1";
-        } catch {
-          // sessionStorage unavailable (e.g. privacy mode) — treat as not counted
-        }
+        } catch {}
 
         const action = alreadyCountedThisSession ? "get" : "hit";
         const res = await fetchWithTimeout(
@@ -199,9 +204,7 @@ const ViewCounter: React.FC = () => {
         if (!alreadyCountedThisSession) {
           try {
             sessionStorage.setItem(SESSION_FLAG, "1");
-          } catch {
-            // ignore if sessionStorage isn't available
-          }
+          } catch {}
         }
 
         setViews(Number(data.value));
@@ -219,12 +222,33 @@ const ViewCounter: React.FC = () => {
   if (views === null) return null;
 
   return (
-    <span className="text-white/80 text-sm">
+    <span className="text-white/80 text-sm tabular-nums">
       Total Page Views: {views.toLocaleString()}
       {!isGlobal && " (local)"}
     </span>
   );
 };
+
+// Reusable, evenly-sized logo tile so partner grids line up regardless of
+// each source image's native aspect ratio.
+const LogoTile: React.FC<{ src: string; alt: string; delay?: number }> = ({ src, alt, delay = 0 }) => (
+  <motion.div
+    initial={{ opacity: 0, scale: 0.9 }}
+    whileInView={{ opacity: 1, scale: 1 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.5, delay }}
+    className="group w-full p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center"
+  >
+    <div className="h-20 md:h-24 w-full flex items-center justify-center">
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        className="max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-105"
+      />
+    </div>
+  </motion.div>
+);
 
 // ------------------------------------------------------------------
 // HOME COMPONENT
@@ -253,27 +277,25 @@ const Home: React.FC = () => {
 
   return (
     <div>
-      {/* ========================================================== */}
-      {/* HERO SECTION                                             */}
-      {/* ========================================================== */}
-      <section className="relative h-screen flex items-center justify-center bg-gradient-to-r from-primary-900 to-primary-700 text-white">
-        <div className="absolute inset-0 bg-black opacity-50"></div>
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-r from-primary-900 to-primary-700 text-white py-24">
+        {/* Single background + overlay (previously two stacked overlays
+            fought each other and the plain black layer was invisible). */}
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage:
               "url('https://images.pexels.com/photos/8721318/pexels-photo-8721318.jpeg')",
-            backgroundBlendMode: "overlay",
-            backgroundColor: "rgba(0, 0, 0, 0.6)",
           }}
         ></div>
-        <div className="container relative z-10 text-center">
+        <div className="absolute inset-0 bg-black/60"></div>
+        <div className="container relative z-10 text-center px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white leading-tight">
               2nd International Congress on
               <br />
               <span className="text-primary-300">Artificial Intelligence (ICAI 2026)</span>
@@ -281,12 +303,12 @@ const Home: React.FC = () => {
             <p className="text-xl md:text-2xl mb-3 text-secondary-200 font-medium">
               AI for Humanity: Research, Innovation, Industry, and Responsible Intelligence
             </p>
-            <p className="text-lg md:text-xl mb-6 text-white/80">
+            <p className="text-lg md:text-xl mb-8 text-white/80">
               18-20 July 2026 &bull; Virtual Congress
             </p>
 
             {/* Countdown Timer */}
-            <div className="grid grid-flow-col gap-5 justify-center text-center auto-cols-max mb-6">
+            <div className="grid grid-cols-4 gap-3 sm:gap-5 justify-center text-center max-w-md sm:max-w-lg mx-auto mb-8">
               {[
                 { value: timeLeft.days, label: "days" },
                 { value: timeLeft.hours, label: "hours" },
@@ -295,16 +317,20 @@ const Home: React.FC = () => {
               ].map((item) => (
                 <div
                   key={item.label}
-                  className="flex flex-col p-2 bg-primary-600 rounded-box text-neutral-content"
+                  className="flex flex-col items-center justify-center gap-1 py-3 px-1 bg-white/10 backdrop-blur-sm border border-white/10 rounded-xl"
                 >
-                  <span className="countdown font-mono text-3xl md:text-5xl">{item.value}</span>
-                  {item.label}
+                  <span className="font-mono tabular-nums text-3xl md:text-5xl font-bold">
+                    {String(item.value).padStart(2, "0")}
+                  </span>
+                  <span className="text-xs md:text-sm uppercase tracking-wide text-white/70">
+                    {item.label}
+                  </span>
                 </div>
               ))}
             </div>
 
-            {/* Global View Counter – placed right below the countdown */}
-            <div className="flex justify-center mb-6">
+            {/* Global View Counter */}
+            <div className="flex justify-center mb-8">
               <ViewCounter />
             </div>
 
@@ -313,7 +339,6 @@ const Home: React.FC = () => {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.8 }}
-              className="mt-4"
             >
               <a
                 href={REGISTER_URL}
@@ -329,9 +354,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* ========================================================== */}
-      {/* HIGHLIGHTED CONFERENCES                                   */}
-      {/* ========================================================== */}
+      {/* Highlighted Conferences */}
       <section className="py-12 bg-white">
         <div className="container mx-auto px-4">
           <motion.div
@@ -361,17 +384,18 @@ const Home: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.2 }}
                 whileHover={{ scale: 1.02, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }}
-                className="block bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition-all duration-300"
+                className="flex flex-col bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition-all duration-300"
               >
                 <div className="h-48 w-full flex items-center justify-center bg-gray-50">
                   <img
                     src={conf.logo}
                     alt={conf.alt}
+                    loading="lazy"
                     className="max-h-full max-w-full object-contain"
                   />
                 </div>
-                <div className="px-4 pb-4 pt-3 text-center">
-                  <span className="inline-block bg-primary-50 text-primary-700 px-4 py-1.5 rounded-full text-sm font-medium mb-2">
+                <div className="px-4 pb-4 pt-3 text-center flex flex-col items-center gap-2">
+                  <span className="inline-block bg-primary-50 text-primary-700 px-4 py-1.5 rounded-full text-sm font-medium">
                     {conf.name}
                   </span>
                   <p className="text-red-600 font-semibold text-xs uppercase tracking-wide">
@@ -384,43 +408,76 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* ========================================================== */}
-      {/* FEATURED SPEAKERS (Coming Soon Placeholder)                */}
-      {/* ========================================================== */}
-      <section id="speakers" className="section bg-gray-100 px-2 md:px-10">
-        <div className="flex flex-col items-center">
-          <div className="w-full lg:w-[70%] bg-gradient-to-br from-primary-100 to-primary-50 rounded-2xl p-10 flex flex-col items-center justify-center mb-6">
-            <Presentation className="w-16 h-16 text-primary-400 mb-4" />
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
-              ICAI 2026 Distinguished Speakers Coming Soon
+      {/* Featured Speakers (real data) */}
+      <section id="speakers" className="section bg-gray-100 px-2 md:px-10 py-16">
+        <div className="container mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-3 text-center">
+              Meet Our Distinguished Speakers
             </h2>
-            <p className="text-gray-600 text-center max-w-xl">
-              International keynote speakers, researchers, industry experts, and IEEE leaders will be
-              announced soon.
+            <p className="text-lg text-center mb-10 text-gray-600">
+              Gain insights from esteemed experts and thought leaders <br />
+              at the forefront of Artificial Intelligence research and innovation.
             </p>
-          </div>
-          <div>
-            <h2 className="section-title mt-3 mb-3">Meet Our Distinguished Speakers</h2>
-            <p className="text-lg text-center">
-              Gain insights from esteemed experts and thought leaders <br /> at the forefront of
-              Artificial Intelligence research and innovation.
-            </p>
-            <div className="flex justify-center gap-4 mt-3">
+
+            {/* Speakers grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {speakersData.map((speaker) => (
+                <motion.div
+                  key={speaker.id}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                  whileHover={{ y: -5 }}
+                  className="bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden transition-all duration-300"
+                >
+                  <div className="flex flex-col items-center p-6 h-full">
+                    <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-primary-100 shadow-lg mb-4 shrink-0">
+                      <img
+                        src={speaker.image}
+                        alt={speaker.name}
+                        loading="lazy"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <h3 className="text-lg font-bold text-gray-800 text-center mb-1">
+                      {speaker.name}
+                    </h3>
+                    <p className="text-sm text-gray-600 text-center mb-3 leading-tight flex-1">
+                      {speaker.title}
+                    </p>
+                    <Link
+                      to={`/speakers/${speaker.id}`}
+                      className="btn btn-primary border-none text-sm px-4 py-2 mt-auto"
+                    >
+                      View Details
+                    </Link>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Action buttons */}
+            <div className="flex flex-wrap justify-center gap-4 mt-10">
               <Link to={"/speakers"} className="btn btn-primary border-none">
-                View Speakers
+                View All Speakers
               </Link>
               <Link to={"/schedule"} className="btn btn-primary border-none">
                 Event Schedule
               </Link>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* ========================================================== */}
-      {/* ABOUT ICAI 2026                                          */}
-      {/* ========================================================== */}
-      <section id="about" className="section bg-white">
+      {/* About Section */}
+      <section id="about" className="section bg-white py-16">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -432,7 +489,7 @@ const Home: React.FC = () => {
             <div className="max-w-3xl mx-auto text-center mb-12">
               <p className="text-lg text-secondary-700 mb-4 text-justify">
                 The 2nd International Congress on Artificial Intelligence (ICAI 2026) is a premier
-                global virtual event organized by the IEEE Systems Council BUBT Student Branch Chapter.
+                global virtual event organized by the IEEE BUBT Student Branch.
                 Building on the outstanding success of its inaugural edition, ICAI 2026 aims to bring
                 together a vibrant community of researchers, students, IEEE volunteers, academia,
                 startups, industry leaders, and technology innovators from across the globe.
@@ -499,10 +556,8 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* ========================================================== */}
-      {/* BUILDING ON THE SUCCESS OF ICAI 2025                      */}
-      {/* ========================================================== */}
-      <section className="section bg-gray-50">
+      {/* Building on Success */}
+      <section className="section bg-gray-50 py-16">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -529,17 +584,19 @@ const Home: React.FC = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="bg-white rounded-xl shadow-md p-6 flex flex-col items-center justify-center text-center hover:shadow-lg transition-shadow duration-300"
+                className="bg-white rounded-xl shadow-md p-6 flex flex-col items-center justify-center text-center hover:shadow-lg transition-shadow duration-300 min-h-[180px]"
               >
-                <div className="mb-3 p-3 bg-primary-100 rounded-full">{item.icon}</div>
-                {item.value !== null ? (
-                  <div className="text-3xl font-bold text-primary-700">
-                    {item.value > 0 ? <AnimatedNumber target={item.value} /> : item.value}
-                    {item.suffix}
-                  </div>
-                ) : (
-                  <div className="text-2xl font-bold text-primary-700" />
-                )}
+                <div className="mb-3 p-3 bg-primary-100 rounded-full text-primary-600">{item.icon}</div>
+                <div className="flex-1 flex items-center justify-center">
+                  {item.value !== null ? (
+                    <div className="text-3xl font-bold text-primary-700">
+                      {item.value > 0 ? <AnimatedNumber target={item.value} /> : item.value}
+                      {item.suffix}
+                    </div>
+                  ) : (
+                    <div className="text-lg font-bold text-primary-700">Worldwide</div>
+                  )}
+                </div>
                 <p className="text-sm text-gray-600 mt-2">{item.label}</p>
               </motion.div>
             ))}
@@ -547,10 +604,8 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* ========================================================== */}
-      {/* ICAI 2025 HIGHLIGHTS                                     */}
-      {/* ========================================================== */}
-      <section className="section bg-white">
+      {/* ICAI 2025 Highlights */}
+      <section className="section bg-white py-16">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -561,31 +616,27 @@ const Home: React.FC = () => {
           >
             <h2 className="section-title">ICAI 2025 Highlights</h2>
           </motion.div>
+          {/* Rendered as static chips, not buttons — they don't trigger any
+              action, so a <button> previously implied interactivity that
+              wasn't there. */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {highlights.map((item, idx) => (
-              <motion.button
+              <motion.div
                 key={idx}
-                type="button"
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: idx * 0.05 }}
-                whileHover={{ scale: 1.04, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                className="group bg-primary-50 rounded-lg p-4 flex items-center justify-center text-center cursor-pointer shadow-sm hover:bg-primary-100 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 transition-all duration-200"
+                className="bg-primary-50 rounded-lg p-4 flex items-center justify-center text-center shadow-sm"
               >
-                <span className="text-primary-700 font-bold text-sm transition-colors duration-200 group-hover:text-primary-800">
-                  {item}
-                </span>
-              </motion.button>
+                <span className="text-primary-700 font-bold text-sm">{item}</span>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ========================================================== */}
-      {/* CTA – BE PART OF ICAI 2026                               */}
-      {/* ========================================================== */}
+      {/* CTA – Be Part */}
       <section className="py-16 bg-primary-700 text-white">
         <div className="container text-center">
           <motion.div
@@ -611,50 +662,62 @@ const Home: React.FC = () => {
               >
                 Register Now
               </a>
-              <a
-                href={AMBASSADOR_REG_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn bg-white text-primary-700 hover:bg-primary-100"
-              >
-                Become an Ambassador
-              </a>
+              {AMBASSADOR_REG_URL ? (
+                <a
+                  href={AMBASSADOR_REG_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn bg-white text-primary-700 hover:bg-primary-100"
+                >
+                  Become an Ambassador
+                </a>
+              ) : (
+                <button
+                  disabled
+                  className="btn bg-white/40 text-white cursor-not-allowed border border-white/40"
+                  title="Ambassador registration opens soon"
+                >
+                  Ambassador Registration - Closed
+                </button>
+              )}
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* ========================================================== */}
-      {/* MESSAGES FROM ADVISORS                                    */}
-      {/* ========================================================== */}
-      <section className="section bg-secondary-50 mb-4">
+      {/* Messages from Advisors */}
+      <section className="section bg-secondary-50 mb-4 py-16">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
+            className="space-y-6"
           >
-            <div className="flex flex-col md:flex-row justify-center border p-5 rounded-md shadow-md mb-4 hover:bg-primary-50 duration-500">
-              <div className="w-full md:w-1/3 flex flex-col justify-center items-center space-y-2">
+            <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-center md:items-start border p-6 rounded-md shadow-md bg-white hover:bg-primary-50 transition-colors duration-500">
+              <div className="w-full md:w-1/3 flex flex-col items-center gap-3 shrink-0">
                 <img
                   src="https://i.ibb.co.com/0jVMjqzz/download-1.png"
                   alt="Prof. Dr. A B M Shawkat Ali"
-                  className="h-40 w-40 rounded-full"
+                  loading="lazy"
+                  className="h-40 w-40 rounded-full object-cover"
                 />
                 <div className="text-center">
-                  <h3>Prof. Dr. A B M Shawkat Ali</h3>
-                  <p>Vice Chancellor, BUBT</p>
+                  <h3 className="text-lg font-bold text-gray-800">Prof. Dr. A B M Shawkat Ali</h3>
+                  <p className="text-sm text-gray-600">Vice Chancellor, BUBT</p>
                 </div>
               </div>
               <div className="w-full md:w-2/3">
-                <h2>Message From the Vice Chancellor of BUBT</h2>
-                <p className="text-justify font-medium text-gray-500 hover:text-gray-700 !duration-0">
+                <h2 className="text-xl font-semibold text-gray-800 mb-3">
+                  Message From the Vice Chancellor of BUBT
+                </h2>
+                <p className="text-justify font-medium text-gray-500 hover:text-gray-700 transition-colors">
                   I am delighted to welcome you to the{" "}
                   <span className="text-gray-700 font-semibold">
                     2nd International Congress on Artificial Intelligence (ICAI 2026)
                   </span>
-                  , organized by the IEEE Systems Council BUBT Student Branch Chapter. This prestigious
+                  , organized by the IEEE BUBT Student Branch . This prestigious
                   global platform continues to unite experts, researchers, and learners to foster
                   collaboration, share transformative AI insights, and inspire innovation. I commend the
                   organizers for their vision and dedication, and I wish all participants a highly
@@ -662,26 +725,29 @@ const Home: React.FC = () => {
                 </p>
               </div>
             </div>
-            <div className="flex flex-col md:flex-row-reverse justify-center border p-5 rounded-md shadow-md hover:bg-primary-50 duration-500">
-              <div className="w-full md:w-1/3 flex flex-col justify-center items-center space-y-2">
+            <div className="flex flex-col md:flex-row-reverse gap-6 md:gap-8 items-center md:items-start border p-6 rounded-md shadow-md bg-white hover:bg-primary-50 transition-colors duration-500">
+              <div className="w-full md:w-1/3 flex flex-col items-center gap-3 shrink-0">
                 <img
                   src="https://i.ibb.co.com/wN2PthKc/chairman.jpg"
                   alt="Prof. Dr. Md. Ahsan Habib"
-                  className="h-40 w-40 rounded-full"
+                  loading="lazy"
+                  className="h-40 w-40 rounded-full object-cover"
                 />
                 <div className="text-center">
-                  <h3>Prof. Dr. Md. Ahsan Habib</h3>
-                  <p>Chairman, Dept. of CSE, BUBT</p>
+                  <h3 className="text-lg font-bold text-gray-800">Prof. Dr. Md. Ahsan Habib</h3>
+                  <p className="text-sm text-gray-600">Chairman, Dept. of CSE, BUBT</p>
                 </div>
               </div>
               <div className="w-full md:w-2/3">
-                <h2>Message From the Chairman, Dept. of CSE, BUBT</h2>
-                <p className="text-justify font-medium text-gray-500 hover:text-gray-700 !duration-0">
+                <h2 className="text-xl font-semibold text-gray-800 mb-3">
+                  Message From the Chairman, Dept. of CSE, BUBT
+                </h2>
+                <p className="text-justify font-medium text-gray-500 hover:text-gray-700 transition-colors">
                   I am pleased to welcome you to the{" "}
                   <span className="text-gray-700 font-semibold">
                     2nd International Congress on Artificial Intelligence (ICAI 2026)
                   </span>
-                  , organized by the IEEE Systems Council BUBT Student Branch Chapter. This distinguished
+                  , organized by the IEEE BUBT Student Branch . This distinguished
                   platform offers a unique opportunity to explore cutting-edge AI innovations and connect
                   with a global network of experts. I applaud the organizers&apos; dedication and wish all
                   participants an inspiring, collaborative, and impactful experience over these three
@@ -693,9 +759,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* ========================================================== */}
-      {/* IEEE vTOOLS REGISTRATION                                  */}
-      {/* ========================================================== */}
+      {/* IEEE vTools */}
       <section className="py-16 bg-primary-700 text-white">
         <div className="container text-center">
           <motion.div
@@ -714,7 +778,7 @@ const Home: React.FC = () => {
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <button
                 disabled
-                className="btn bg-gray-400 text-white cursor-not-allowed opacity-70"
+                className="btn bg-white/40 text-white cursor-not-allowed border border-white/40"
               >
                 Coming Soon
               </button>
@@ -723,10 +787,8 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* ========================================================== */}
-      {/* WHY ATTEND ICAI 2026                                    */}
-      {/* ========================================================== */}
-      <section className="section bg-secondary-50">
+      {/* Why Attend */}
+      <section className="section bg-secondary-50 py-16">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -745,10 +807,10 @@ const Home: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="card p-6"
+                className="card p-6 flex flex-col"
               >
                 <div className="flex items-center mb-4">
-                  <div className="p-3 bg-primary-100 rounded-full mr-4">{item.icon}</div>
+                  <div className="p-3 bg-primary-100 rounded-full mr-4 shrink-0">{item.icon}</div>
                   <h3 className="text-xl font-semibold">{item.title}</h3>
                 </div>
                 <p className="text-secondary-700">{item.description}</p>
@@ -758,9 +820,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* ========================================================== */}
-      {/* PARTNERS SECTIONS                                         */}
-      {/* ========================================================== */}
+      {/* Partners Sections */}
       <section className="section bg-gradient-to-b from-white to-gray-50 py-16">
         <div className="container mx-auto px-4 md:px-6">
           <motion.div
@@ -783,11 +843,12 @@ const Home: React.FC = () => {
                   transition={{ duration: 0.6 }}
                   className="group w-full max-w-md p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 hover:bg-primary-50"
                 >
-                  <div className="relative overflow-hidden rounded-xl">
+                  <div className="h-36 md:h-40 flex items-center justify-center overflow-hidden rounded-xl">
                     <img
                       src="https://i.ibb.co.com/ZphFCFt5/balabubt.png"
                       alt="IEEE BUBT Student Branch"
-                      className="h-36 md:h-40 w-auto mx-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                      className="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
                 </motion.div>
@@ -807,11 +868,12 @@ const Home: React.FC = () => {
                   transition={{ duration: 0.6 }}
                   className="group w-full max-w-md p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 hover:bg-primary-50"
                 >
-                  <div className="relative overflow-hidden rounded-xl">
+                  <div className="h-36 md:h-40 flex items-center justify-center overflow-hidden rounded-xl">
                     <img
                       src="https://i.ibb.co.com/kgWCqpy9/bubtsbc.jpg"
                       alt="IEEE BUBT Student Branch Chapters"
-                      className="h-36 md:h-40 w-auto mx-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                      className="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
                 </motion.div>
@@ -831,11 +893,12 @@ const Home: React.FC = () => {
                   transition={{ duration: 0.6 }}
                   className="group w-full max-w-md p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 hover:bg-primary-50"
                 >
-                  <div className="relative overflow-hidden rounded-xl">
+                  <div className="h-36 md:h-40 flex items-center justify-center overflow-hidden rounded-xl">
                     <img
                       src="https://i.postimg.cc/8PhtFvTZ/bubt-logo.png"
                       alt="BUBT"
-                      className="h-36 md:h-40 w-auto mx-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                      className="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
                 </motion.div>
@@ -865,6 +928,7 @@ const Home: React.FC = () => {
                       <img
                         src={partner.logo}
                         alt={partner.name}
+                        loading="lazy"
                         className="max-h-full max-w-full object-contain"
                       />
                     </div>
@@ -885,24 +949,27 @@ const Home: React.FC = () => {
               </p>
               <div className="flex justify-center">
                 {youthPartners.map((partner) => (
-                  <motion.div
+                  <motion.a
                     key={partner.name}
+                    // href={partner.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                     className="w-full max-w-md bg-white rounded-xl shadow p-6 flex flex-col items-center justify-center text-center hover:shadow-lg transition-shadow duration-300"
                   >
-                    {/* Image is no longer wrapped in an anchor – no link on click */}
                     <div className="w-24 h-24 mb-3 flex items-center justify-center">
                       <img
                         src={partner.logo}
                         alt={partner.name}
+                        loading="lazy"
                         className="max-h-full max-w-full object-contain"
                       />
                     </div>
                     <h4 className="font-semibold text-gray-700">{partner.name}</h4>
-                  </motion.div>
+                  </motion.a>
                 ))}
               </div>
             </div>
@@ -913,35 +980,14 @@ const Home: React.FC = () => {
                 Collaboration Partners
               </h3>
 
-              {/* Logo grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 items-center justify-items-center max-w-6xl mx-auto">
-                {[
-                  { logo: "https://i.ibb.co.com/23RM1RvH/AI-Community-BUBT.png", name: "AI Community BUBT" },
-                  { logo: "https://i.ibb.co.com/4gtN47JV/IEEE-Computer-Society-Eastern-University-Student-Branch-Chapter.jpg", name: "IEEE Computer Society Eastern University Student Branch Chapter" },
-                  { logo: "https://i.ibb.co.com/RkSvW49M/IEEE-CS-SEU-SBC.png", name: "IEEE CS SEU SBC" },
-                  { logo: "https://i.ibb.co.com/LdCD6NF1/IEEE-GUB-SB-IEEE-Student-Branch-GUB.png", name: "IEEE GUB SB" },
-                  { logo: "https://i.ibb.co.com/TMrRPg0p/IEEE-SEU-Student-Branch.jpg", name: "IEEE SEU Student Branch" },
-                  { logo: "https://i.ibb.co.com/fztkJ6sH/IEEE-Southeast-University-Student-Branch-WIE-Affinity-Group.jpg", name: "IEEE Southeast University Student Branch WIE Affinity Group" },
-                  { logo: "https://i.ibb.co.com/YF3KC9FQ/IEEE-UAP-SB-Official-IEEE-UAP-Student-Branch.jpg", name: "IEEE UAP SB" },
-                  { logo: "https://i.ibb.co.com/bjMCgjBg/IEEE-UAP-SB-WIE-AG-IEEE-UAP-Student-Branch.jpg", name: "IEEE UAP SB WIE AG" },
-                  { logo: "https://i.ibb.co.com/FLGjwnjp/ieeeuiusb.png", name: "IEEE UIU SB" },
-                  { logo: "https://i.ibb.co.com/F40L4Hcg/JUKTI-LOGO.png", name: "JUKTI Logo" }
-                ].map((partner, index) => (
-                  <motion.div
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 items-stretch justify-items-stretch max-w-6xl mx-auto">
+                {collaborationPartners.map((partner, index) => (
+                  <LogoTile
                     key={partner.name}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="group w-full p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center"
-                  >
-                    <img
-                      src={partner.logo}
-                      alt={partner.name}
-                      loading="lazy"
-                      className="h-24 md:h-28 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-                    />
-                  </motion.div>
+                    src={partner.logo}
+                    alt={partner.name}
+                    delay={index * 0.05}
+                  />
                 ))}
               </div>
             </div>
