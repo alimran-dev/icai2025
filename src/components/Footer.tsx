@@ -42,15 +42,6 @@ const Footer: React.FC = () => {
                   Speakers
                 </Link>
               </li>
-
-              {/* <li>
-                <Link
-                  to="/contact"
-                  className="text-secondary-300 hover:text-white"
-                >
-                  Contact
-                </Link>
-              </li> */}
               <li>
                 <Link
                   to="/schedule"
@@ -133,38 +124,32 @@ const Footer: React.FC = () => {
             </a>
           </div>
         </div>
-        {/* <div>
-          <h3 className="mb-4 text-lg font-bold text-white">Important Dates</h3>
-          <ul className="space-y-2">
-            <li className="text-secondary-300">
-              <span className="font-semibold">Paper Submission:</span> June 15,
-              2025
-            </li>
-            <li className="text-secondary-300">
-              <span className="font-semibold">Notification:</span> August 1,
-              2025
-            </li>
-            <li className="text-secondary-300">
-              <span className="font-semibold">Camera Ready:</span> September 1,
-              2025
-            </li>
-            <li className="text-secondary-300">
-              <span className="font-semibold">Registration:</span> September 15,
-              2025
-            </li>
-            <li className="text-secondary-300">
-              <span className="font-semibold">Conference:</span> October 10-12,
-              2025
-            </li>
-          </ul>
-        </div> */}
       </div>
 
-      {/* Copyright */}
+      {/* Copyright & Maintainer */}
       <div className="py-4 text-center bg-primary-800">
         <p className="text-sm text-secondary-400">
-          &copy; {new Date().getFullYear()} ICAI 2025. All rights reserved.
+          &copy; {new Date().getFullYear()} ICAI All rights reserved.
         </p>
+        <div className="flex items-center justify-center gap-3 mt-2">
+          <img
+            src="https://i.ibb.co.com/vx5hPvmw/pp.png"
+            alt="Md Mehedi Hasan"
+            className="w-8 h-8 rounded-full object-cover border border-primary-400"
+          />
+          <span className="text-sm text-secondary-400">
+            Maintained by Md Mehedi Hasan, Research Assistant, AMIR Lab
+          </span>
+          <a
+            href="https://www.linkedin.com/in/0mehedihasan/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary-400 hover:text-primary-300 inline-flex items-center"
+            title="LinkedIn Profile"
+          >
+            <Linkedin size={16} />
+          </a>
+        </div>
       </div>
     </footer>
   );
