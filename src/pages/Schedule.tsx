@@ -28,6 +28,13 @@ const scheduleData = {
       utcTime: "03:00 PM – 03:20 PM",
       duration: "20 minutes",
     },
+    {
+      speaker: "Dr. Tangina Sultana",
+      topic: "Shaping the Future of Education: AI, Innovation, and Emerging Technologies",
+      localTime: "09:30 PM – 09:50 PM",
+      utcTime: "03:30 PM – 03:50 PM",
+      duration: "20 minutes",
+    }
   ],
   day2: [
     {
