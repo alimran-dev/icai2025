@@ -1,9 +1,14 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import speakersData from "../../data/speakers2026.json";
 
-// =============================================
-// ICAI 2026 Schedule – All confirmed keynotes
-// =============================================
+// Quick lookup from speaker name to full speaker object
+const speakerMap = new Map<string, (typeof speakersData)[number]>();
+speakersData.forEach((s) => {
+  speakerMap.set(s.name, s);
+});
+
 const scheduleData = {
   day1: [
     {
@@ -15,7 +20,8 @@ const scheduleData = {
     },
     {
       speaker: "Dr. Md. Jakir Hossen",
-      topic: "A Modified Adaptive Neuro-Fuzzy Inference Engine and Its Applications",
+      topic:
+        "A Modified Adaptive Neuro-Fuzzy Inference Engine and Its Applications",
       localTime: "08:30 PM – 08:50 PM",
       utcTime: "02:30 PM – 02:50 PM",
       duration: "20 minutes",
@@ -30,11 +36,12 @@ const scheduleData = {
     },
     {
       speaker: "Dr. Tangina Sultana",
-      topic: "Shaping the Future of Education: AI, Innovation, and Emerging Technologies",
+      topic:
+        "Shaping the Future of Education: AI, Innovation, and Emerging Technologies",
       localTime: "09:30 PM – 09:50 PM",
       utcTime: "03:30 PM – 03:50 PM",
       duration: "20 minutes",
-    }
+    },
   ],
   day2: [
     {
@@ -134,7 +141,7 @@ export default function Schedule() {
           </button>
         </div>
 
-        {/* Zoom & Passcode placeholder (update when details are available) */}
+        {/* Zoom & Passcode placeholder */}
         <div className="flex justify-center gap-5 mt-5 mb-8">
           <div className="flex flex-col items-center bg-gray-50 border border-gray-200 rounded-md px-5 py-3 min-w-[140px]">
             <span className="font-semibold text-gray-600 text-sm">
@@ -164,24 +171,58 @@ export default function Schedule() {
             </thead>
             <tbody>
               {scheduleData[activeTab as keyof typeof scheduleData].map(
-                (session, index) => (
-                  <motion.tr
-                    key={index}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="border-b hover:bg-gray-50"
-                  >
-                    <td className="px-4 py-2">
-                      {session.speaker || "To be announced"}
-                    </td>
-                    <td className="px-4 py-2">
-                      {session.topic || "To be announced"}
-                    </td>
-                    <td className="px-4 py-2">{session.localTime}</td>
-                    <td className="px-4 py-2">{session.utcTime}</td>
-                    <td className="px-4 py-2">{session.duration}</td>
-                  </motion.tr>
-                )
+                (session, index) => {
+                  const speaker = speakerMap.get(session.speaker);
+                  return (
+                    <motion.tr
+                      key={index}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="border-b hover:bg-gray-50"
+                    >
+                      <td className="px-4 py-2">
+                        <div className="flex items-center gap-3">
+                          {/* Speaker thumbnail */}
+                          {speaker?.image ? (
+                            <img
+                              src={speaker.image}
+                              alt={session.speaker}
+                              className="w-10 h-10 rounded-full object-cover border border-gray-200"
+                            />
+                          ) : (
+                            <div className="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center text-primary-700 font-bold text-xs">
+                              {session.speaker
+                                .split(" ")
+                                .map((n) => n[0])
+                                .join("")
+                                .substring(0, 2)}
+                            </div>
+                          )}
+                          {/* Speaker name – now using primary-700 colour */}
+                          {speaker ? (
+                            <Link
+                              to={`/speakers/${speaker.id}`}
+                              className="text-primary-700 hover:underline font-medium"
+                            >
+                              {session.speaker}
+                            </Link>
+                          ) : (
+                            <span className="text-gray-800">
+                              {session.speaker || "To be announced"}
+                            </span>
+                          )}
+                        </div>
+                      </td>
+                      {/* Topic cell – rendered in italics */}
+                      <td className="px-4 py-2 italic">
+                        {session.topic || "To be announced"}
+                      </td>
+                      <td className="px-4 py-2">{session.localTime}</td>
+                      <td className="px-4 py-2">{session.utcTime}</td>
+                      <td className="px-4 py-2">{session.duration}</td>
+                    </motion.tr>
+                  );
+                }
               )}
             </tbody>
           </table>
