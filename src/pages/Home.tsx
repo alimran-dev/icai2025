@@ -13,13 +13,15 @@ import {
   Presentation,
   Network,
   Briefcase,
+  Video,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import speakersData from "../../data/speakers2026.json";
 
 const ICAI_2026_DATE = "2026-07-18T20:00:00+06:00";
-const REGISTER_URL =
-  "https://docs.google.com/forms/d/e/1FAIpQLScoeHfNTaWiEKTK3aE1lLrSxEomz2-rdU-SuYZH_FudqzA9bA/viewform";
+const ZOOM_LINK = "https://bdren.zoom.us/j/95062404702?pwd=tkay2GbiKLWHfcPGjtpHLygshaUeuQ.1";
+const ZOOM_MEETING_ID = "950 6240 4702";
+const ZOOM_PASSCODE = "icai";
 // Ambassador registration isn't live yet — render this CTA as a disabled
 // "coming soon" state instead of linking to "#", which previously opened a
 // dead tab and looked broken.
@@ -229,8 +231,7 @@ const ViewCounter: React.FC = () => {
   );
 };
 
-// Reusable, evenly-sized logo tile so partner grids line up regardless of
-// each source image's native aspect ratio.
+// Reusable, evenly-sized logo tile
 const LogoTile: React.FC<{ src: string; alt: string; delay?: number }> = ({ src, alt, delay = 0 }) => (
   <motion.div
     initial={{ opacity: 0, scale: 0.9 }}
@@ -279,8 +280,6 @@ const Home: React.FC = () => {
     <div>
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-r from-primary-900 to-primary-700 text-white py-24">
-        {/* Single background + overlay (previously two stacked overlays
-            fought each other and the plain black layer was invisible). */}
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
@@ -334,21 +333,24 @@ const Home: React.FC = () => {
               <ViewCounter />
             </div>
 
-            {/* Register Now Button */}
+            {/* Join Zoom Button (Zoom blue) */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.8 }}
             >
               <a
-                href={REGISTER_URL}
+                href={ZOOM_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-8 py-3 bg-white text-primary-700 font-bold rounded-full shadow-lg hover:bg-primary-100 transition-colors duration-300 text-lg"
+                className="inline-flex items-center gap-2 px-8 py-3 bg-[#2D8CFF] text-white font-bold rounded-full shadow-lg hover:bg-[#2681F2] transition-colors duration-300 text-lg"
               >
-                <Users2 className="w-5 h-5" />
-                Register Now
+                <Video className="w-5 h-5" />
+                Join Zoom Meeting
               </a>
+              <p className="text-sm text-white/80 mt-2">
+                Meeting ID: {ZOOM_MEETING_ID} | Passcode: {ZOOM_PASSCODE}
+              </p>
             </motion.div>
           </motion.div>
         </div>
@@ -616,9 +618,6 @@ const Home: React.FC = () => {
           >
             <h2 className="section-title">ICAI 2025 Highlights</h2>
           </motion.div>
-          {/* Rendered as static chips, not buttons — they don't trigger any
-              action, so a <button> previously implied interactivity that
-              wasn't there. */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {highlights.map((item, idx) => (
               <motion.div
@@ -636,7 +635,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* CTA – Be Part */}
+      {/* CTA – Be Part (with Zoom-colored Join button) */}
       <section className="py-16 bg-primary-700 text-white">
         <div className="container text-center">
           <motion.div
@@ -655,12 +654,13 @@ const Home: React.FC = () => {
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <a
-                href={REGISTER_URL}
+                href={ZOOM_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn bg-white text-primary-700 hover:bg-primary-100"
+                className="btn bg-[#2D8CFF] text-white hover:bg-[#2681F2] border-none"
               >
-                Register Now
+                <Video className="w-5 h-5 inline mr-2" />
+                Join Zoom Meeting
               </a>
               {AMBASSADOR_REG_URL ? (
                 <a
@@ -951,7 +951,6 @@ const Home: React.FC = () => {
                 {youthPartners.map((partner) => (
                   <motion.a
                     key={partner.name}
-                    // href={partner.link}
                     target="_blank"
                     rel="noopener noreferrer"
                     initial={{ opacity: 0, scale: 0.9 }}

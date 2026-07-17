@@ -9,6 +9,24 @@
     "bio": "Muhammad Mostafa Monowar is a Professor in the Department of Information Technology at King AbdulAziz University, Saudi Arabia. He received his Ph.D. in Computer Engineering from Kyung Hee University, South Korea, in 2011. His research interests include artificial intelligence, wireless sensor networks, Internet of Things (IoT), cybersecurity, privacy, and cloud computing. He has published over 70 peer-reviewed research articles with more than 2,200 citations, an h-index of 26, and an i10-index of 46. He has led numerous externally funded research projects and received several prestigious awards, including Best Paper Awards."
   },
   {
+    "id": "ICAI26S12",
+    "name": "Prof. Dr. Mohammad Shamsul Arefin",
+    "title": "Professor, Department of CSE, CUET; President, Bangladesh Computer Society",
+    "topic": "Green AI for Sustainable Education: Building Intelligent, Inclusive, and Energy-Efficient Learning Ecosystems",
+    "email": "sarefin@cuet.ac.bd",
+    "image": "https://i.postimg.cc/cCkjnc0s/Whats-App-Image-2025-09-05-at-12-22-08-PM.jpg",
+    "bio": "Prof. Dr. Mohammad Shamsul Arefin is a Professor in the Department of Computer Science and Engineering at CUET, Director of the Center for Intelligent Computing, and President of Bangladesh Computer Society. He previously served as Dean of the Faculty of Electrical and Computer Engineering and Chair of the IEEE Computer Society Bangladesh Chapter. He received his Doctor of Engineering from Hiroshima University, Japan. He has authored over 270 scholarly publications and was CUET’s highest publication contributor for three consecutive years. In 2025, he was listed among Bangladesh’s top 15 publication contributors. He has delivered more than 65 keynote and invited talks and led numerous national-level academic, research, and digital transformation initiatives."
+  },
+  {
+    "id": "ICAI26S11",
+    "name": "Md Atiqur Rahman Ahad",
+    "title": "Professor of AI, University of East London, UK; Visiting Professor, KyuTech, Japan",
+    "topic": "AI & Healthcare: Few Examples",
+    "email": "atiqahad@gmail.com",
+    "image": "https://i.ibb.co.com/KxtJ0YSN/Md-Atiqur-Rahman-Ahad.jpg",
+    "bio": "Md Atiqur Rahman Ahad, Ph.D. (SMIEEE, SMOPTICA) is Professor of AI at the University of East London and Visiting Professor at Kyushu Institute of Technology. He works on AI in healthcare (Parkinson’s Disease, antimicrobial resistance, gait, rehabilitation) using vision and sensors, with a focus on AI safety and ethics. He has 60+ awards/grants, 21 books, and 220+ peer-reviewed publications. He is an Associate Editor of Pattern Recognition, Editorial Board Member of Scientific Reports (Nature), and General Chair of the 9th Int. Conf. on Activity and Behavior Computing (ABC) 2027. He serves on IEEE/ACM journals and conferences."
+  },
+  {
     "id": "ICAI26S02",
     "name": "Dr. Shashikant Patil",
     "title": "Director and Professor, Atlas SkillTech University, Mumbai, India",
@@ -34,6 +52,15 @@
     "email": "tangina@hstu.ac.bd",
     "image": "https://i.ibb.co.com/zWHQNkdn/tangina-Tangina-Sultana.png",
     "bio": "Dr. Tangina Sultana, SMIEEE, is an Associate Professor in the Department of Electronics and Communication Engineering at Hajee Mohammad Danesh Science and Technology University (HSTU), Dinajpur, Bangladesh. She holds a Ph.D. in Computer Engineering from Kyung Hee University, South Korea, where she also served as a postdoctoral researcher. Her research spans graph neural networks, federated learning, explainable AI, edge computing, big data, and IoT, with over 60 publications. She is a granted Korean patent holder, editor of IntechOpen volume and Biztech Bytes magazine. A recipient of the IEEE Computer Society Bangladesh Chapter's Women in Computing Award 2025, she serves as Rangpur Divisional Coordinator and across multiple IEEE conference committees. She is also the organizing chair of ICBISET 2026."
+  },
+  {
+    "id": "ICAI26S13",
+    "name": "Rashed Mazumder, Ph.D",
+    "title": "Associate Professor, Institute of Information Technology, Jahangirnagar University, Bangladesh",
+    "topic": "The Future of Cybersecurity: Explainable AI and Federated Learning for Intelligent Threat Detection",
+    "email": "rmiit@juniv.edu",
+    "image": "https://i.ibb.co.com/q3YW3961/Rashed-Mazumder.jpg",
+    "bio": "Rashed Mazumder, Ph.D is an Associate Professor at the Institute of Information Technology (IIT), Jahangirnagar University, Bangladesh. He earned his Bachelor’s in CSE from the University of Dhaka and completed both his Master’s and Ph.D. at the Japan Advanced Institute of Science and Technology (JAIST). He holds Microsoft Certified IT Professional (MCITP) and Cisco CCNA certifications. With extensive industry experience, he provided a variety of IT professional services before joining academia. His interests include computer networks, cybersecurity, and emerging computing technologies."
   },
   {
     "id": "ICAI26S04",
@@ -79,5 +106,14 @@
     "email": "tahera.hossain@nagoya-u.ac.jp",
     "image": "https://i.ibb.co.com/2YkMb6YK/Tahera-Hossain.png",
     "bio": "Dr. Tahera Hossain is a Research Assistant Professor at Nagoya University, Japan, specializing in Human-Computer Interaction (HCI) and AI-driven healthcare technologies. She earned her Ph.D. in Engineering from the Kyushu Institute of Technology, Japan, in 2021. She has held research positions at the University of Michigan, Aoyama Gakuin University, and now Nagoya University. Her work leverages multimodal data (behavioral, physiological, clinical) and machine learning to understand human behaviour and predict health outcomes. She is an active member of ACM and ACM SIGCHI."
+  },
+  {
+    "id": "ICAI26S14",
+    "name": "Minhaz-Us-Salakeen Fahme",
+    "title": "Chairman & CEO, Battery Low Interactive Ltd., Bangladesh",
+    "topic": "The Workforce of 2030: AI Analytics, Productivity Sweet Spots, and the End of the Eight-Hour Day",
+    "email": "fahme.minhaz@gmail.com",
+    "image": "https://i.ibb.co.com/211T2XZx/Minhaz-Fahme.png",
+    "bio": "Minhaz-Us-Salakeen Fahme is CEO and co-founder of Battery Low Interactive Ltd, Bangladesh’s pioneering interactive and XR studio. Since 2015, he has grown the company to 300+ paid solutions, 250+ clients, and a 50+ person team. He is also Managing Director of Sleepy Penguin Studios Ltd. He builds AI products at the intersection of technology and accessibility, including FeedBoss AI and Brand Review AI. Fahme is founding president of IGDA Bangladesh, General Secretary of the IUT Alumni Association, and the first Bangladeshi author of a globally published game development book (How to Make a Game, Apress/Springer Nature, 2021). A US State Department Professional Fellow, he has spoken at 40+ stages worldwide."
   }
 ]
