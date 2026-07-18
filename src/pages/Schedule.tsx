@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import speakersData from "../../data/speakers2026.json";
 
@@ -115,6 +115,13 @@ const scheduleData = {
   ],
 };
 
+// Day end times in BDT (UTC+6) – used to detect if a day has passed
+const DAY_DATES: Record<string, { end: string }> = {
+  day1: { end: "2026-07-18T22:20:00+06:00" }, // 10:20 PM
+  day2: { end: "2026-07-19T21:50:00+06:00" }, // 9:50 PM
+  day3: { end: "2026-07-20T22:20:00+06:00" }, // 10:20 PM
+};
+
 export default function Schedule() {
   const [activeTab, setActiveTab] = useState("day1");
 
@@ -122,6 +129,13 @@ export default function Schedule() {
   const zoomLink = "https://bdren.zoom.us/j/95062404702?pwd=tkay2GbiKLWHfcPGjtpHLygshaUeuQ.1";
   const meetingId = "950 6240 4702";
   const passcode = "icai";
+
+  // Check if the currently selected day has already ended
+  const dayHasEnded = useMemo(() => {
+    const dayEnd = DAY_DATES[activeTab]?.end;
+    if (!dayEnd) return false;
+    return new Date() > new Date(dayEnd);
+  }, [activeTab]);
 
   return (
     <div className="pt-20">
@@ -175,17 +189,29 @@ export default function Schedule() {
         {/* Zoom Details */}
         <div className="flex flex-col items-center gap-4 mt-5 mb-8">
           <div className="flex flex-wrap justify-center gap-4">
-            <a
-              href={zoomLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 text-white font-semibold rounded-full shadow hover:bg-indigo-700 transition-colors duration-200"
-            >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
-              </svg>
-              Join Zoom Meeting
-            </a>
+            {dayHasEnded ? (
+              <button
+                disabled
+                className="inline-flex items-center gap-2 px-6 py-3 bg-gray-400 text-white font-semibold rounded-full shadow cursor-not-allowed"
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
+                </svg>
+                Day Ended
+              </button>
+            ) : (
+              <a
+                href={zoomLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 text-white font-semibold rounded-full shadow hover:bg-indigo-700 transition-colors duration-200"
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
+                </svg>
+                Join Zoom Meeting
+              </a>
+            )}
           </div>
           <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-700 bg-gray-100 rounded-lg px-6 py-3">
             <span><strong>Meeting ID:</strong> {meetingId}</span>
