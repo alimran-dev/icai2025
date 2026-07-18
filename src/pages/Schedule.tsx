@@ -38,6 +38,13 @@ const scheduleData = {
       utcTime: "03:30 PM – 03:50 PM",
       duration: "20 minutes",
     },
+    {
+      speaker: "Prof. Dr. Rahamatullah Khondoker",
+      topic: "AI-based Solutions for Real World Cyber Security Challenges",
+      localTime: "10:00 PM – 10:20 PM",
+      utcTime: "04:00 PM – 04:20 PM",
+      duration: "20 minutes",
+    },
   ],
   day2: [
     {
