@@ -42,8 +42,8 @@ const Navbar: React.FC = () => {
     {
       name: "Past Congresses",
       children: [
+        { name: "2026", path: "/2026" },
         { name: "2025", path: "/2025" },
-        // { name: "2023", path: "/2023" },
         // { name: "2022", path: "/2022" },
       ],
     },

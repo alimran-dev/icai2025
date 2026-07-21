@@ -7,6 +7,7 @@ import Speakers from "./pages/Speakers";
 import Schedule from "./pages/Schedule";
 import Ambassadors from "./pages/Ambassadors";
 import Congress2025 from "./pages/prev-congress/Congress2025";
+import Congress2026 from "./pages/prev-congress/Congress2026";
 import SpeakerDetail from "./pages/SpeakerDetail";
 import Participants from "./pages/Participants";
 
@@ -27,6 +28,7 @@ function App() {
               <Route path="/participants" element={<Participants />} />
               <Route path="/ambassadors" element={<Ambassadors />} />
               <Route path="/2025" element={<Congress2025 />} />
+              <Route path="/2026" element={<Congress2026 />} />
               <Route path="/speakers/:id" element={<SpeakerDetail />} />
             </Routes>
           </main>

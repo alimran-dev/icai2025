@@ -8,6 +8,12 @@ import {
   AlertCircle,
 } from "lucide-react";
 
+
+
+
+
+
+
 const CallForPapers: React.FC = () => {
   const topics = [
     "Artificial Intelligence and Machine Learning",
