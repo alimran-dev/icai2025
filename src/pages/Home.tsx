@@ -125,7 +125,7 @@ const advisorMessages = [
   },
 ];
 
-// General Chair message – separate, to be placed after Partners
+// General Chair message
 const generalChairMessage = {
   name: "Md Mehedi Hasan",
   title: "General Chair, ICAI 2026",
@@ -134,6 +134,24 @@ const generalChairMessage = {
   body: "On behalf of the Organizing Committee of the 2nd International Congress on Artificial Intelligence (ICAI 2026), I extend my sincere gratitude to our distinguished speakers, participants, student ambassadors, volunteers, technical partners, collaboration partners, and the global IEEE community for making ICAI 2026 a remarkable success. Over the course of three inspiring days, we witnessed meaningful discussions, international collaboration, and the exchange of innovative ideas that reaffirmed the transformative potential of artificial intelligence. Your enthusiasm, dedication, and active participation have contributed to building a vibrant global community committed to advancing AI for the benefit of society. We are deeply grateful for your trust and support, and we look forward to welcoming you again to the next edition of ICAI as we continue this journey of innovation, collaboration, and excellence.",
   reverse: false,
 };
+
+// Highlighted Conferences (restored)
+const highlightedConferences = [
+  {
+    name: "IEEE CSDE 2026",
+    logo: "https://i.ibb.co.com/LDYfxmTs/csde.jpg",
+    link: "https://ieee-csde.org/",
+    alt: "CSDE Conference",
+    deadline: "Submission Deadline: 31 July 2026",
+  },
+  {
+    name: "IEEE iCOSTE 2026",
+    logo: "https://i.ibb.co.com/2pVHz3m/icoste.jpg",
+    link: "https://i-coste.org/",
+    alt: "iCOSTE Conference",
+    deadline: "Submission Deadline: 31 July 2026",
+  },
+];
 
 // ============================================================
 // Animated counter
@@ -286,7 +304,7 @@ const SectionTransition: React.FC<{ bg: string; children: React.ReactNode }> = (
 );
 
 // ============================================================
-// Reusable logo tile (with consistent hover)
+// Reusable logo tile
 // ============================================================
 const LogoTile: React.FC<{ src: string; alt: string; delay?: number }> = ({ src, alt, delay = 0 }) => (
   <motion.div
@@ -308,7 +326,7 @@ const LogoTile: React.FC<{ src: string; alt: string; delay?: number }> = ({ src,
 );
 
 // ============================================================
-// Reusable message card (used for VC, Chairman, and General Chair)
+// Reusable message card
 // ============================================================
 const MessageCard: React.FC<{
   name: string;
@@ -385,6 +403,60 @@ const Home: React.FC = () => {
               <ViewCounter />
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* =============== HIGHLIGHTED CONFERENCES =============== */}
+      <section className="py-12 bg-white">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-10"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-secondary-800 mb-4">
+              Highlighted Conferences
+            </h2>
+            <p className="text-lg text-secondary-600 max-w-2xl mx-auto">
+              Explore these premier IEEE events happening alongside ICAI 2026.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {highlightedConferences.map((conf, idx) => (
+              <motion.a
+                key={conf.name}
+                href={conf.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.2 }}
+                whileHover={{ scale: 1.02, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }}
+                className="flex flex-col bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition-all duration-300"
+              >
+                <div className="h-48 w-full flex items-center justify-center bg-gray-50">
+                  <img
+                    src={conf.logo}
+                    alt={conf.alt}
+                    loading="lazy"
+                    className="max-h-full max-w-full object-contain"
+                  />
+                </div>
+                <div className="px-4 pb-4 pt-3 text-center flex flex-col items-center gap-2">
+                  <span className="inline-block bg-primary-50 text-primary-700 px-4 py-1.5 rounded-full text-sm font-medium">
+                    {conf.name}
+                  </span>
+                  <p className="text-red-600 font-semibold text-xs uppercase tracking-wide">
+                    {conf.deadline}
+                  </p>
+                </div>
+              </motion.a>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -472,7 +544,7 @@ const Home: React.FC = () => {
       <SectionTransition bg="bg-gray-50">
         Guided by this vision, ICAI 2026 brought together experts and participants from diverse backgrounds to
         explore the latest developments in artificial intelligence. The congress featured keynote sessions,
-        technical discussions, industry insights, and collaborative learning experiences that defined this year’s
+        technical discussions, industry insights, and collaborative learning experiences that defined this year's
         edition.
       </SectionTransition>
 
